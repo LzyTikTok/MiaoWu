@@ -2,14 +2,12 @@ package com.apps.miaowu.web.controller;
 
 import com.apps.miaowu.bean.Article;
 import com.apps.miaowu.bean.extend.ArticleExtend;
+import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.ArticleService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,7 @@ public class ArticleController {
             @ApiImplicitParam(name = "last_update", value = "", required = false),
             @ApiImplicitParam(name = "thumb_up", value = "", required = false),
             @ApiImplicitParam(name = "animal_id", value = "", required = false),
+            //1是空间，2是救助文？？？
             @ApiImplicitParam(name = "type", value = "", required = true),
     })
     public String saveOrupdate(Article article){
@@ -61,4 +60,7 @@ public class ArticleController {
     public List<ArticleExtend> findArticleWithLabelById(Long id){
         return articleService.findArticleWithLabelById(id);
     }
+
+    @DeleteMapping(value = "deleteArticleById")
+    public APIResult deleteArticleById(Long id){return articleService.deleteById(id);}
 }

@@ -1,6 +1,7 @@
 package com.apps.miaowu.web.controller;
 
 import com.apps.miaowu.bean.Animal;
+import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,7 @@ public class AnimalController {
     }
 
     @PostMapping(value = "saveOrUpdate")
-    String saveOrUpdate(Animal animal){
+    APIResult saveOrUpdate(Animal animal){
         return animalService.saveOrUpdate(animal);
     }
 

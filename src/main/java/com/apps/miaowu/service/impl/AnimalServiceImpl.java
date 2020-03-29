@@ -2,6 +2,8 @@ package com.apps.miaowu.service.impl;
 
 import com.apps.miaowu.bean.Animal;
 import com.apps.miaowu.bean.AnimalExample;
+import com.apps.miaowu.bean.result.APIResult;
+import com.apps.miaowu.bean.result.ResultCode;
 import com.apps.miaowu.dao.AnimalMapper;
 import com.apps.miaowu.service.AnimalService;
 import org.springframework.stereotype.Service;
@@ -30,14 +32,17 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public String saveOrUpdate(Animal animal) {
-        if(animal.getId() != null){
-            animalMapper.updateByPrimaryKey(animal);
-            return "更新成功";
+    public APIResult saveOrUpdate(Animal animal) {
+        Animal find  = animalMapper.selectByPrimaryKey(animal.getId());
+        System.out.println(find);
+        //todo 把update改成部分更新字段
+        if(find != null){
+            animalMapper.updateByPrimaryKeySelective(animal);
+            return APIResult.newResult(ResultCode.SuccessCode,"Update successfully",null);
         }
         else {
             animalMapper.insert(animal);
-            return "插入成功";
+            return APIResult.newResult(ResultCode.BadRequest,"Insert successfully",null);
         }
     }
 }

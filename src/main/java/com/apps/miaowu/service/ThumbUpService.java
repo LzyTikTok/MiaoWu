@@ -1,5 +1,7 @@
 package com.apps.miaowu.service;
 
+import com.apps.miaowu.bean.result.APIResult;
+
 public interface ThumbUpService {
-    String thumbUpOrDown(Long articleId, Long userId);
+    APIResult thumbUpOrDown(Long articleId, Long userId);
 }

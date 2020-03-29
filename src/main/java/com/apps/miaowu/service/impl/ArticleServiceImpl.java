@@ -1,17 +1,20 @@
 package com.apps.miaowu.service.impl;
 
-import com.apps.miaowu.bean.Article;
-import com.apps.miaowu.bean.ArticleExample;
-import com.apps.miaowu.bean.ArticleLabel;
-import com.apps.miaowu.bean.Label;
+import com.apps.miaowu.bean.*;
 import com.apps.miaowu.bean.extend.ArticleExtend;
+import com.apps.miaowu.bean.result.APIResult;
+import com.apps.miaowu.bean.result.ResultCode;
 import com.apps.miaowu.dao.ArticleMapper;
 import com.apps.miaowu.dao.LabelMapper;
+import com.apps.miaowu.dao.ThumbUpMapper;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.service.ArticleService;
+import io.swagger.annotations.Example;
 import org.springframework.stereotype.Service;
+import springfox.documentation.swagger.web.ApiResourceController;
 
 import javax.annotation.Resource;
+import javax.xml.transform.Result;
 import java.util.Date;
 import java.util.List;
 
@@ -26,34 +29,42 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     LabelMapper labelMapper;
 
+    @Resource
+    ThumbUpMapper thumbUpMapper;
+
     @Override
     public List<Article> findAll() {
         ArticleExample example = new ArticleExample();
+        //todo 返回APIResult
         return articleMapper.selectByExample(example);
     }
 
     @Override
-    public String saveOrUpdate(Article article) {
+    public APIResult saveOrUpdate(Article article) {
         if(article.getId() != null){
             article.setLastUpdate(new Date());
             articleMapper.updateByPrimaryKey(article);
-            return "更新成功";
+            return APIResult.newResult(ResultCode.SuccessCode,"Update successfully",null);
         }
         else {
             article.setWriteDate(new Date());
             articleMapper.insert(article);
-            return "插入成功";
+            return APIResult.newResult(ResultCode.SuccessCode,"insert successfully",null);
         }
     }
 
     @Override
-    public String deleteById(Article article) {
-        if((articleMapper.selectByPrimaryKey(article.getId()) != null)){
-            articleMapper.deleteByPrimaryKey(article.getId());
-            return "删除成功";
+    public APIResult deleteById(Long id) {
+        //联表删除相关的赞表
+        if((articleMapper.selectByPrimaryKey(id) != null)){
+            articleMapper.deleteByPrimaryKey(id);
+            ThumbUpExample thumbUpExample = new ThumbUpExample();
+            thumbUpExample.createCriteria().andArticleIdEqualTo(id);
+            thumbUpMapper.deleteByExample(thumbUpExample);
+            return APIResult.newResult(200,"Delete successfully",null);
         }
         else {
-            return "不存在该用户";
+            return APIResult.newResult(400,"article not exited",null);
         }
     }
 

@@ -32,6 +32,7 @@ com\apps\miaowu\bean\ArticleLabelExample$GeneratedCriteria.class
 com\apps\miaowu\bean\SaveExample$GeneratedCriteria.class
 com\apps\miaowu\web\controller\UserController.class
 com\apps\miaowu\service\AnimalService.class
+com\apps\miaowu\bean\result\ResultCode.class
 com\apps\miaowu\bean\UserExample$GeneratedCriteria.class
 com\apps\miaowu\bean\extend\ArticleExtend.class
 com\apps\miaowu\bean\ArticleExample.class
@@ -48,6 +49,7 @@ com\apps\miaowu\service\impl\CommentServiceImpl.class
 com\apps\miaowu\bean\SaveExample$Criteria.class
 com\apps\miaowu\bean\ArticleExample$Criterion.class
 com\apps\miaowu\bean\ArticleExample$GeneratedCriteria.class
+com\apps\miaowu\dao\extend\UserMapperExtend.class
 com\apps\miaowu\bean\Animal.class
 com\apps\miaowu\service\CommentService.class
 com\apps\miaowu\bean\CountryExample$GeneratedCriteria.class
@@ -60,6 +62,7 @@ com\apps\miaowu\bean\ThumbUpExample$Criteria.class
 com\apps\miaowu\bean\LabelExample.class
 com\apps\miaowu\bean\FoundExample$GeneratedCriteria.class
 com\apps\miaowu\bean\LabelExample$GeneratedCriteria.class
+com\apps\miaowu\bean\result\APIResult.class
 com\apps\miaowu\service\impl\UserServiceImpl.class
 com\apps\miaowu\bean\CommentExample$GeneratedCriteria.class
 com\apps\miaowu\bean\Save.class
@@ -68,6 +71,7 @@ com\apps\miaowu\web\controller\AnimalController.class
 com\apps\miaowu\MiaowuApplication.class
 com\apps\miaowu\bean\ArticleLabel.class
 com\apps\miaowu\bean\ArticleLabelExample.class
+com\apps\miaowu\bean\result\ResultSupport.class
 com\apps\miaowu\bean\SaveExample$Criterion.class
 com\apps\miaowu\dao\LabelMapper.class
 com\apps\miaowu\bean\extend\UserExtend.class
