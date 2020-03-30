@@ -68,7 +68,7 @@ public class ThumbUpServiceImpl implements ThumbUpService {
                 return APIResult.newResult(ResultCode.SuccessCode,"ThumbDown successfully",null);
 //                return "取消点赞成功";
             } else {
-                return APIResult.newResult(ResultCode.ServerIneerError,"Server Inner Error",null);
+                return APIResult.newResult(ResultCode.ServerInnerError,"Server Inner Error, thumb up number is zero",null);
 //                return "数据库异常，此时的点赞数为0";
             }
         }

@@ -30,6 +30,7 @@ public class ArticleController {
             @ApiImplicitParam(name = "thumb_up", value = "", required = false),
             @ApiImplicitParam(name = "animal_id", value = "", required = false),
             //1是空间，2是救助文？？？
+            //todo 救助文与空间文分开两个接口去添加？
             @ApiImplicitParam(name = "type", value = "", required = true),
     })
     public APIResult saveOrUpdate(Article article){

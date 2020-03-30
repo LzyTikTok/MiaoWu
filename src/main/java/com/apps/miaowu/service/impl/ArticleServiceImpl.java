@@ -35,7 +35,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public APIResult findAll() {
         ArticleExample example = new ArticleExample();
-        //todo 返回APIResult
         List<Article> results = articleMapper.selectByExample(example);
         return APIResult.newResult(200,"Find all article successfully",results);
     }

@@ -2,6 +2,7 @@ package com.apps.miaowu.web.controller;
 
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.extend.UserExtend;
+import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -21,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "findAll")
-    public List<User> findAll() {
+    public APIResult findAll() {
         return userService.findAll();
     }
 
@@ -42,7 +43,7 @@ public class UserController {
             @ApiImplicitParam(name = "birthday", value = "", required = false),
             @ApiImplicitParam(name = "password", value = "", required = false)
     })
-    public String saveOrUpdate(User user) {
+    public APIResult saveOrUpdate(User user) {
         return userService.saveOrUpdate(user);
     }
 
@@ -60,42 +61,42 @@ public class UserController {
             @ApiImplicitParam(name = "birthday", value = "", required = false),
             @ApiImplicitParam(name = "password", value = "", required = true)
     })
-    public String login(User user) {
+    public APIResult login(User user) {
         return userService.login(user);
     }
 
     @GetMapping(value = "findById")
-    public List<User> findById(Long id){
+    public APIResult findById(Long id){
         return userService.findById(id);
     }
 
     @GetMapping(value = "findAllUserWithFound")
-    public List<UserExtend> findAllUserWithFound(){
+    public APIResult findAllUserWithFound(){
         return userService.findAllUserWithFound();
     }
 
     @GetMapping(value = "findAllUserWithFoundById")
-    public List<UserExtend> findAllUserWithFoundById(Long id){
+    public APIResult findAllUserWithFoundById(Long id){
         return userService.findUserWithFoundById(id);
     }
 
     @GetMapping(value = "findAllUserWithSave")
-    public List<UserExtend> findAllUserWithSave(){
+    public APIResult findAllUserWithSave(){
         return userService.findAllUserWithSave();
     }
 
     @GetMapping(value = "findUserWithSaveById")
-    public List<UserExtend> findUserWithSaveById(Long id){
+    public APIResult findUserWithSaveById(Long id){
         return userService.findUserWithSaveById(id);
     }
 
     @GetMapping(value = "cascadeFindAllUser")
-    public List<UserExtend> cascadeFindAllUser(){
+    public APIResult cascadeFindAllUser(){
         return userService.cascadeFindAllUser();
     }
 
     @GetMapping(value = "cascadeFindUserById")
-    public List<UserExtend> cascadeFindUserById(Long id){
+    public APIResult cascadeFindUserById(Long id){
         return userService.cascadeFindUserById(id);
     }
 
