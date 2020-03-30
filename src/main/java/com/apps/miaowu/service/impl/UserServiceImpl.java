@@ -1,9 +1,11 @@
 package com.apps.miaowu.service.impl;
 
-import com.apps.miaowu.bean.User;
-import com.apps.miaowu.bean.UserExample;
+import com.apps.miaowu.bean.*;
 import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
+import com.apps.miaowu.bean.result.ResultCode;
+import com.apps.miaowu.dao.ClipMapper;
+import com.apps.miaowu.dao.FollowMapper;
 import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.dao.extend.UserMapperExtend;
 import com.apps.miaowu.service.UserService;
@@ -23,11 +25,17 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapperExtend userMapperExtend;
 
+    @Resource
+    private ClipMapper clipMapper;
+
+    @Resource
+    private FollowMapper followMapper;
+
     @Override
     public APIResult findAll() {
         UserExample example = new UserExample();
         List<User> results = userMapper.selectByExample(example);
-        return APIResult.newResult(200, "Find all user successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find all user successfully", results);
     }
 
     @Override
@@ -68,7 +76,7 @@ public class UserServiceImpl implements UserService {
             user.setCreateDate(new Date());
             userMapper.insert(user);
         }
-        return APIResult.newResult(200, "Update successfully", null);
+        return APIResult.newResult(ResultCode.SuccessCode, "Update successfully", null);
     }
 
     @Override
@@ -81,7 +89,7 @@ public class UserServiceImpl implements UserService {
             return APIResult.newResult(500, "User not exist", null);
         } else if (!user.getPassword().equals(users.get(0).getPassword())) {
             return APIResult.newResult(400, "Incorrect password", null);
-        } else return APIResult.newResult(200, "Login successfully", null);
+        } else return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", null);
 
     }
 
@@ -90,42 +98,106 @@ public class UserServiceImpl implements UserService {
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(id);
         List<User> users = userMapper.selectByExample(example);
-        return APIResult.newResult(200, "Find all user successfully", null);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find all user successfully", null);
     }
 
     @Override
     public APIResult findAllUserWithFound() {
         List<UserExtend> results = userMapperExtend.selectUserWithFound();
-        return APIResult.newResult(200, "Find all with found successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find all with found successfully", results);
     }
 
     @Override
     public APIResult findUserWithFoundById(Long id) {
         List<UserExtend> results = userMapperExtend.selectUserWithFoundById(id);
-        return APIResult.newResult(200, "Find user with found by id successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find user with found by id successfully", results);
     }
 
     @Override
     public APIResult findAllUserWithSave() {
         List<UserExtend> results = userMapperExtend.selectUserWithSave();
-        return APIResult.newResult(200, "Find all user with save successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find all user with save successfully", results);
     }
 
     @Override
     public APIResult findUserWithSaveById(Long id) {
         List<UserExtend> results = userMapperExtend.selectUserWithSaveById(id);
-        return APIResult.newResult(200, "Find user with save by id successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find user with save by id successfully", results);
     }
 
     @Override
     public APIResult cascadeFindAllUser() {
         List<UserExtend> results = userMapperExtend.cascadeFindAllUser();
-        return APIResult.newResult(200, "Cascade find all user successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Cascade find all user successfully", results);
     }
 
     @Override
     public APIResult cascadeFindUserById(Long id) {
         List<UserExtend> results = userMapperExtend.cascadeFindUserById(id);
-        return APIResult.newResult(200, "Cascade find user by id successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Cascade find user by id successfully", results);
+    }
+
+    @Override
+    public APIResult deleteUserById(Long id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        if (user != null) {
+            userMapper.deleteByPrimaryKey(id);
+            return APIResult.newResult(ResultCode.SuccessCode, "Delete user by id successfully", null);
+        } else {
+            return APIResult.newResult(500, "can't find the uesr", null);
+        }
+    }
+
+    @Override
+    public APIResult addClipArticle(Long userId, Long articleId) {
+        // todo 一些意外情况的处理
+        Clip clip = new Clip();
+        clip.setArticleId(articleId);
+        clip.setUserId(userId);
+        clipMapper.insert(clip);
+        return APIResult.newResult(ResultCode.SuccessCode, "Clip article successfully", clip);
+    }
+    //todo 查询所有收藏的文章
+
+
+    @Override
+    public APIResult deleteClipArticle(Long userId, Long articleId) {
+        // todo 一些意外情况的处理
+        ClipExample example = new ClipExample();
+        example.createCriteria().andArticleIdEqualTo(articleId).andUserIdEqualTo(userId);
+        clipMapper.deleteByExample(example);
+        return APIResult.newResult(ResultCode.SuccessCode, "Delete clip article successfully", null);
+    }
+
+    @Override
+    public APIResult addFollow(Long userId, Long fansId) {
+        //todo 参照此模板进行其他Service类的异常情况处理
+        Follow follow = new Follow();
+        follow.setUserId(userId);
+        follow.setFansId(fansId);
+        //找不到user和article
+        if(userId == null || fansId == null){
+            return APIResult.newResult(ResultCode.BadRequest,"Parameter missing",null);
+        }
+        if(userMapper.selectByPrimaryKey(userId) == null || userMapper.selectByPrimaryKey(fansId) == null) {
+            return APIResult.newResult(ResultCode.BadRequest,"Parameter Error",null);
+        }
+        try{
+            followMapper.insert(follow);
+            return APIResult.newResult(ResultCode.SuccessCode, "Add follow successfully", follow);
+        } catch (Exception e){
+            return  APIResult.newResult(ResultCode.ServerInnerError,e.toString(),null);
+        }
+    }
+
+    @Override
+    public APIResult deleteFollow(Long userId, Long fansId) {
+        FollowExample followExample = new FollowExample();
+        try {
+            followExample.createCriteria().andUserIdEqualTo(userId).andFansIdEqualTo(fansId);
+            return APIResult.newResult(ResultCode.SuccessCode, "Cancel follow successfully", null);
+        } catch (Exception e) {
+            return APIResult.newResult(ResultCode.ServerInnerError, e.toString(), null);
+        }
     }
 }
