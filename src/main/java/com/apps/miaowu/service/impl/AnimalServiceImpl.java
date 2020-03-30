@@ -18,17 +18,18 @@ public class AnimalServiceImpl implements AnimalService {
     private AnimalMapper animalMapper;
 
     @Override
-    public List<Animal> findAll() {
+    public APIResult findAll() {
         AnimalExample example = new AnimalExample();
-        return animalMapper.selectByExample(example);
+        List<Animal> results = animalMapper.selectByExample(example);
+        return APIResult.newResult(200,"Find all animal successfully", results);
     }
 
     @Override
-    public List<Animal> findById(Long id) {
+    public APIResult findById(Long id) {
         AnimalExample example = new AnimalExample();
         example.createCriteria().andIdEqualTo(id);
         List<Animal> animals = animalMapper.selectByExample(example);
-        return animals;
+        return APIResult.newResult(200,"Find animal by id successfully",animals);
     }
 
     @Override

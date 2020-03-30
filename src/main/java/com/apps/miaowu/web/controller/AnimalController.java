@@ -19,12 +19,12 @@ public class AnimalController {
     AnimalService animalService;
 
     @GetMapping(value = "findAll")
-    List<Animal> findAllAnimal(){
+    APIResult findAllAnimal(){
         return animalService.findAll();
     }
 
     @GetMapping(value = "findById")
-    List<Animal> findAnimalById(Long id){
+    APIResult findAnimalById(Long id){
         return animalService.findById(id);
     }
 

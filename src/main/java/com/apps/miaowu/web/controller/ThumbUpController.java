@@ -1,4 +1,5 @@
 package com.apps.miaowu.web.controller;
+import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.ThumbUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ public class ThumbUpController {
     ThumbUpService thumbUpService;
 
     @PostMapping(value = "thumbUp")
-    String thumbUp(Long articleId, Long user_id){
+    APIResult thumbUp(Long articleId, Long user_id){
         return thumbUpService.thumbUpOrDown(articleId,user_id);
     }
 }

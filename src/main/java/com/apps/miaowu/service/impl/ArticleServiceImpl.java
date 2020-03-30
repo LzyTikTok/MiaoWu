@@ -33,10 +33,11 @@ public class ArticleServiceImpl implements ArticleService {
     ThumbUpMapper thumbUpMapper;
 
     @Override
-    public List<Article> findAll() {
+    public APIResult findAll() {
         ArticleExample example = new ArticleExample();
         //todo 返回APIResult
-        return articleMapper.selectByExample(example);
+        List<Article> results = articleMapper.selectByExample(example);
+        return APIResult.newResult(200,"Find all article successfully",results);
     }
 
     @Override
@@ -69,27 +70,31 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleExtend> findAllArticleWithAnimal() {
-        return articleMapperExtend.selectArticleWithAnimal();
+    public APIResult findAllArticleWithAnimal() {
+        List<ArticleExtend> results = articleMapperExtend.selectArticleWithAnimal();
+        return APIResult.newResult(200,"Find all article with animal successfully", results);
     }
 
     @Override
-    public List<ArticleExtend> findArticleWithAnimalById(Long id) {
-        return articleMapperExtend.selectArticleWithAnimalById(id);
+    public APIResult<List<ArticleExtend>> findArticleWithAnimalById(Long id) {
+        List<ArticleExtend> results = articleMapperExtend.selectArticleWithAnimalById(id);
+        return APIResult.newResult(200,"Find article with animal by id successfully", results);
     }
 
     @Override
-    public List<ArticleExtend> findAllArticleWithLabel() {
-        return articleMapperExtend.selectArticleWithLabel();
+    public APIResult findAllArticleWithLabel() {
+        List<ArticleExtend> results = articleMapperExtend.selectArticleWithLabel();
+        return APIResult.newResult(200,"Find all article with label successfully", results);
     }
 
     @Override
-    public List<ArticleExtend> findArticleWithLabelById(Long id) {
-        return articleMapperExtend.selectArticleWithLabelById(id);
+    public APIResult findArticleWithLabelById(Long id) {
+        List<ArticleExtend> results = articleMapperExtend.selectArticleWithLabelById(id);
+        return APIResult.newResult(200,"Find article by id with label successfully", results);
     }
 
     @Override
-    public List<ArticleExtend> cascadeFindAll() {
+    public APIResult cascadeFindAll() {
         //此处应该不这么写
 //        List<ArticleExtend> articleExtends = articleMapperExtend.cascadeFindAll();
 //        for(ArticleExtend articleExtend : articleExtends){
@@ -103,7 +108,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleExtend> cascadeFindById(Long id) {
+    public APIResult cascadeFindById(Long id) {
         return null;
     }
 

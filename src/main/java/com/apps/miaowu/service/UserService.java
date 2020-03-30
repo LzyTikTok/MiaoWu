@@ -2,28 +2,29 @@ package com.apps.miaowu.service;
 
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.extend.UserExtend;
+import com.apps.miaowu.bean.result.APIResult;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> findAll();
+    APIResult findAll();
 
-    String saveOrUpdate(User user);
+    APIResult saveOrUpdate(User user);
 
-    String login(User user);
+    APIResult login(User user);
 
-    List<User> findById(Long id);
+    APIResult findById(Long id);
 
-    List<UserExtend> findAllUserWithFound();
+    APIResult findAllUserWithFound();
 
-    List<UserExtend> findUserWithFoundById(Long id);
+    APIResult findUserWithFoundById(Long id);
 
-    List<UserExtend> findAllUserWithSave();
+    APIResult findAllUserWithSave();
 
-    List<UserExtend> findUserWithSaveById(Long id);
+    APIResult findUserWithSaveById(Long id);
 
-    List<UserExtend> cascadeFindAllUser();
+    APIResult cascadeFindAllUser();
 
-    List<UserExtend> cascadeFindUserById(Long id);
+    APIResult cascadeFindUserById(Long id);
 
 }

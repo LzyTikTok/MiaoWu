@@ -32,32 +32,32 @@ public class ArticleController {
             //1是空间，2是救助文？？？
             @ApiImplicitParam(name = "type", value = "", required = true),
     })
-    public String saveOrupdate(Article article){
+    public APIResult saveOrUpdate(Article article){
         return articleService.saveOrUpdate(article);
     }
 
     @GetMapping(value = "findAll")
-    public List<Article> findAll(){
+    public APIResult findAll(){
         return articleService.findAll();
     }
 
     @GetMapping(value = "findAllArticleWithAnimal")
-    public List<ArticleExtend> findAllArticleWithAnimal(){
+    public APIResult findAllArticleWithAnimal(){
         return articleService.findAllArticleWithAnimal();
     }
 
     @GetMapping(value = "findArticleWithAnimalById")
-    public List<ArticleExtend> findArticleWithAnimalById(Long id){
+    public APIResult findArticleWithAnimalById(Long id){
         return articleService.findArticleWithAnimalById(id);
     }
 
     @GetMapping(value = "findAllArticleWithLabel")
-    public List<ArticleExtend> findAllArticleWithLabel(){
+    public APIResult findAllArticleWithLabel(){
         return articleService.findAllArticleWithLabel();
     }
 
     @GetMapping(value = "findArticleWithLabelById")
-    public List<ArticleExtend> findArticleWithLabelById(Long id){
+    public APIResult findArticleWithLabelById(Long id){
         return articleService.findArticleWithLabelById(id);
     }
 

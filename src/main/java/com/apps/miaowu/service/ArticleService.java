@@ -7,22 +7,22 @@ import com.apps.miaowu.bean.result.APIResult;
 import java.util.List;
 
 public interface ArticleService {
-    List<Article> findAll();
+    APIResult findAll();
 
     APIResult saveOrUpdate(Article article);
 
     APIResult deleteById(Long id);
 
-    List<ArticleExtend> findAllArticleWithAnimal();
+    APIResult findAllArticleWithAnimal();
 
-    List<ArticleExtend> findArticleWithAnimalById(Long id);
+    APIResult findArticleWithAnimalById(Long id);
 
-    List<ArticleExtend> findAllArticleWithLabel();
+    APIResult findAllArticleWithLabel();
 
-    List<ArticleExtend> findArticleWithLabelById(Long id);
+    APIResult findArticleWithLabelById(Long id);
 
-    List<ArticleExtend> cascadeFindAll();
+    APIResult cascadeFindAll();
 
-    List<ArticleExtend> cascadeFindById(Long id);
+    APIResult cascadeFindById(Long id);
 
 }

@@ -3,6 +3,7 @@ package com.apps.miaowu.service.impl;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.UserExample;
 import com.apps.miaowu.bean.extend.UserExtend;
+import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.dao.extend.UserMapperExtend;
 import com.apps.miaowu.service.UserService;
@@ -23,27 +24,29 @@ public class UserServiceImpl implements UserService {
     private UserMapperExtend userMapperExtend;
 
     @Override
-    public List<User> findAll() {
+    public APIResult findAll() {
         UserExample example = new UserExample();
-        return userMapper.selectByExample(example);
+        List<User> results = userMapper.selectByExample(example);
+        return APIResult.newResult(200, "Find all user successfully", results);
     }
 
     @Override
-    public String saveOrUpdate(User user) {
+    public APIResult saveOrUpdate(User user) {
+        //todo 检查是否逻辑有错
         //update
         //此处有错，应该连接数据库判断是否有字段存在，而不是直接getid
-        if(user.getId() != null){
+        if (user.getId() != null) {
             Pattern p = Pattern.compile("^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$");
             Matcher m = p.matcher(user.getPhone());
-            if(!m.matches()){
-                return "密码必须在8位以上且至少包含密码和字母";
+            if (!m.matches()) {
+                //密码必须在8位以上且至少包含密码和字母
+                return APIResult.newResult(400, "Illegal password", null);
             }
             //用户修改信息，此时进行密码的判断
             userMapper.updateByPrimaryKey(user);
-
         }
         //save
-        else{
+        else {
             //        中国电信号段 133、149、153、173、177、180、181、189、199
 //        中国联通号段 130、131、132、145、155、156、166、175、176、185、186
 //        中国移动号段 134(0-8)、135、136、137、138、139、147、150、151、152、157、158、159、178、182、183、184、187、188、198
@@ -59,63 +62,70 @@ public class UserServiceImpl implements UserService {
 //        原文链接：https://blog.csdn.net/m18860232520/article/details/79396889
             Pattern p = Pattern.compile("^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$");
             Matcher m = p.matcher(user.getPhone());
-            if(!m.matches()){
-                return "手机号码不合法";
+            if (!m.matches()) {
+                return APIResult.newResult(400, "Phonenumber illegal ", null);
             }
             user.setCreateDate(new Date());
             userMapper.insert(user);
         }
-        return "更新成功";
+        return APIResult.newResult(200, "Update successfully", null);
     }
 
     @Override
-    public String login(User user) {
+    public APIResult login(User user) {
         UserExample example = new UserExample();
         example.createCriteria().andPhoneEqualTo(user.getPhone());
         List<User> users = userMapper.selectByExample(example);
         System.out.println(users.get(0).getPhone() + " " + users.get(0).getPassword());
-        if(users.size() == 0){
-            return "不存在该用户";
-        }
-        else if(!user.getPassword().equals(users.get(0).getPassword())){
-            return "密码错误";
-        }
-        else return "登录成功";
+        if (users.size() == 0) {
+            return APIResult.newResult(500, "User not exist", null);
+        } else if (!user.getPassword().equals(users.get(0).getPassword())) {
+            return APIResult.newResult(400, "Incorrect password", null);
+        } else return APIResult.newResult(200, "Login successfully", null);
+
     }
 
     @Override
-    public List<User> findById(Long id) {
+    public APIResult findById(Long id) {
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(id);
         List<User> users = userMapper.selectByExample(example);
-        return users;
+        return APIResult.newResult(200, "Find all user successfully", null);
     }
 
     @Override
-    public List<UserExtend> findAllUserWithFound() {
-        return userMapperExtend.selectUserWithFound();
+    public APIResult findAllUserWithFound() {
+        List<UserExtend> results = userMapperExtend.selectUserWithFound();
+        return APIResult.newResult(200, "Find all with found successfully", results);
     }
 
     @Override
-    public List<UserExtend> findUserWithFoundById(Long id) {
-        return userMapperExtend.selectUserWithFoundById(id);
+    public APIResult findUserWithFoundById(Long id) {
+        List<UserExtend> results = userMapperExtend.selectUserWithFoundById(id);
+        return APIResult.newResult(200, "Find user with found by id successfully", results);
     }
 
     @Override
-    public List<UserExtend> findAllUserWithSave() {
-        return userMapperExtend.selectUserWithSave();
+    public APIResult findAllUserWithSave() {
+        List<UserExtend> results = userMapperExtend.selectUserWithSave();
+        return APIResult.newResult(200, "Find all user with save successfully", results);
     }
 
     @Override
-    public List<UserExtend> findUserWithSaveById(Long id) {
-        return userMapperExtend.selectUserWithSaveById(id);
+    public APIResult findUserWithSaveById(Long id) {
+        List<UserExtend> results = userMapperExtend.selectUserWithSaveById(id);
+        return APIResult.newResult(200, "Find user with save by id successfully", results);
     }
 
     @Override
-    public List<UserExtend> cascadeFindAllUser() { return userMapperExtend.cascadeFindAllUser(); }
+    public APIResult cascadeFindAllUser() {
+        List<UserExtend> results = userMapperExtend.cascadeFindAllUser();
+        return APIResult.newResult(200, "Cascade find all user successfully", results);
+    }
 
     @Override
-    public List<UserExtend> cascadeFindUserById(Long id) {
-        return userMapperExtend.cascadeFindUserById(id);
+    public APIResult cascadeFindUserById(Long id) {
+        List<UserExtend> results = userMapperExtend.cascadeFindUserById(id);
+        return APIResult.newResult(200, "Cascade find user by id successfully", results);
     }
 }
