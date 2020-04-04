@@ -2,6 +2,313 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d8f2c42-92aa-487b-958a-710036ac5cd0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.env.development" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.env.production" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.env.staging" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.github/FUNDING.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.github/ISSUE_TEMPLATE/bug_report.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.github/ISSUE_TEMPLATE/feature_request.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.github/ISSUE_TEMPLATE/question.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/README.es.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/README.ja.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/README.zh-CN.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/build/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/jest.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/jsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/mock/article.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/mock/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/mock/mock-server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/mock/remote-search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/mock/role/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/mock/role/routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/mock/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plop-templates/component/index.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plop-templates/component/prompt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plop-templates/store/index.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plop-templates/store/prompt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plop-templates/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plop-templates/view/index.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plop-templates/view/prompt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/plopfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/api/article.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/api/qiniu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/api/remote-search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/api/role.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/api/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/assets/401_images/401.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/assets/404_images/404.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/assets/404_images/404_cloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/assets/custom-theme/fonts/element-icons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/assets/custom-theme/fonts/element-icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/assets/custom-theme/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/BackToTop/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Breadcrumb/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Charts/Keyboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Charts/LineMarker.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Charts/MixChart.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Charts/mixins/resize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/DndList/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/DragSelect/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Dropzone/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/ErrorLog/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/GithubCorner/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Hamburger/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/HeaderSearch/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/ImageCropper/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/ImageCropper/utils/data2blob.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/ImageCropper/utils/effectRipple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/ImageCropper/utils/language.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/ImageCropper/utils/mimes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/JsonEditor/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Kanban/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/MDinput/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/MarkdownEditor/default-options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/MarkdownEditor/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Pagination/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/PanThumb/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/RightPanel/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Screenfull/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Share/DropdownMenu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/SizeSelect/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Sticky/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/SvgIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/TextHoverEffect/Mallki.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/ThemePicker/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Tinymce/components/EditorImage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Tinymce/dynamicLoadScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Tinymce/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Tinymce/plugins.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Tinymce/toolbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Upload/SingleImage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Upload/SingleImage2.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/Upload/SingleImage3.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/components/UploadExcel/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/clipboard/clipboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/clipboard/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/el-drag-dialog/drag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/el-drag-dialog/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/el-table/adaptive.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/el-table/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/permission/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/permission/permission.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/sticky.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/waves/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/waves/waves.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/directive/waves/waves.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/filters/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/404.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/bug.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/chart.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/clipboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/component.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/dashboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/documentation.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/drag.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/edit.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/education.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/email.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/example.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/excel.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/exit-fullscreen.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/eye-open.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/eye.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/form.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/fullscreen.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/guide.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/international.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/language.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/link.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/list.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/lock.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/message.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/money.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/nested.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/password.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/pdf.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/people.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/peoples.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/qq.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/shopping.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/size.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/skill.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/star.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/tab.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/table.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/theme.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/tree-table.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/tree.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/user.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/wechat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svg/zip.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/icons/svgo.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/AppMain.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Navbar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Settings/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Sidebar/FixiOSBug.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Sidebar/Item.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Sidebar/Link.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Sidebar/Logo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Sidebar/SidebarItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/Sidebar/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/TagsView/ScrollPane.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/TagsView/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/layout/mixin/ResizeHandler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/pages/article/List.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/pages/user/user.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/permission.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/router/modules/charts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/router/modules/components.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/router/modules/nested.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/router/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/settings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/getters.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/errorLog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/permission.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/settings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/tagsView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/btn.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/element-ui.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/element-variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/mixin.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/sidebar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/transition.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/styles/variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/clipboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/error-log.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/get-page-title.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/open-window.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/permission.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/request.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/scroll-to.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/utils/validate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/vendor/Export2Excel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/vendor/Export2Zip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/charts/keyboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/charts/line.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/charts/mix-chart.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/clipboard/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/avatar-upload.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/back-to-top.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/count-to.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/dnd-list.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/drag-dialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/drag-kanban.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/drag-select.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/dropzone.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/json-editor.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/markdown.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/mixin.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/split-pane.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/sticky.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/components-demo/tinymce.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/BarChart.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/BoxCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/LineChart.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/PanelGroup.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/PieChart.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/RaddarChart.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/TodoList/Todo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/TodoList/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/TodoList/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/TransactionTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/components/mixins/resize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/admin/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/editor/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/dashboard/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/documentation/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/error-log/components/ErrorTestA.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/error-log/components/ErrorTestB.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/error-log/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/error-page/401.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/error-page/404.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/components/ArticleDetail.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/components/Dropdown/Comment.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/components/Dropdown/Platform.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/components/Dropdown/SourceUrl.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/components/Dropdown/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/components/Warning.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/create.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/edit.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/example/list.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/excel/components/AutoWidthOption.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/excel/components/BookTypeOption.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/excel/components/FilenameOption.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/excel/export-excel.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/excel/merge-header.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/excel/select-excel.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/excel/upload-excel.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/guide/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/guide/steps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/icons/element-icons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/icons/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/icons/svg-icons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/login/auth-redirect.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/login/components/SocialSignin.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/login/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/nested/menu1/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/nested/menu1/menu1-1/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/nested/menu1/menu1-2/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/nested/menu1/menu1-2/menu1-2-1/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/nested/menu1/menu1-2/menu1-2-2/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/nested/menu1/menu1-3/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/nested/menu2/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/pdf/content.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/pdf/download.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/pdf/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/permission/components/SwitchRoles.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/permission/directive.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/permission/page.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/permission/role.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/Account.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/Activity.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/Timeline.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/UserCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/qiniu/upload.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/redirect/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/tab/components/TabPane.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/tab/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/table/complex-table.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/table/drag-table.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/table/dynamic-table/components/FixedThead.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/table/dynamic-table/components/UnfixedThead.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/table/dynamic-table/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/table/inline-edit-table.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/theme/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/zip/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/tests/unit/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/tests/unit/components/Hamburger.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/tests/unit/components/SvgIcon.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/tests/unit/utils/formatTime.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/tests/unit/utils/parseTime.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/tests/unit/utils/validate.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MiaoWuWeb/vue.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -58,20 +365,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1634">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="266">
+              <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/Article.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+            <state relative-caret-position="228">
+              <caret line="66" column="27" lean-forward="true" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
               <folding>
                 <element signature="e#1970#1971#0" expanded="true" />
                 <element signature="e#1995#1996#0" expanded="true" />
@@ -202,8 +509,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -288,6 +593,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -371,6 +678,7 @@
       <workItem from="1585578654796" duration="4203000" />
       <workItem from="1585583586476" duration="36000" />
       <workItem from="1585974129897" duration="638000" />
+      <workItem from="1586002232978" duration="499000" />
     </task>
     <servers />
   </component>
@@ -389,7 +697,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16644000" />
+    <option name="totallyTimeSpent" value="17143000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -403,7 +711,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1705757" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17217484" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -693,13 +1001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1634">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1254">
@@ -716,8 +1017,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/Article.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        <state relative-caret-position="228">
+          <caret line="66" column="27" lean-forward="true" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
           <folding>
             <element signature="e#1970#1971#0" expanded="true" />
             <element signature="e#1995#1996#0" expanded="true" />
@@ -746,6 +1047,13 @@
             <element signature="e#5953#5954#0" expanded="true" />
             <element signature="e#5983#5984#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
         </state>
       </provider>
     </entry>
