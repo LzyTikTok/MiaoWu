@@ -45,6 +45,7 @@ com\apps\miaowu\bean\ArticleExample.class
 com\apps\miaowu\bean\CountryExample$Criterion.class
 com\apps\miaowu\bean\Label.class
 com\apps\miaowu\service\impl\AnimalServiceImpl.class
+com\apps\miaowu\bean\ArticleWithBLOBs.class
 com\apps\miaowu\bean\AnimalExample$Criteria.class
 com\apps\miaowu\bean\ThumbUpExample$Criterion.class
 com\apps\miaowu\bean\ClipExample$Criterion.class

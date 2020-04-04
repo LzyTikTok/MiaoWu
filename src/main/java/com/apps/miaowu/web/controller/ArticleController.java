@@ -21,6 +21,8 @@ public class ArticleController {
     @PostMapping(value = "saveOrUpdate")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "", required = false),
+            @ApiImplicitParam(name = "title", value = "", required = true),
+            @ApiImplicitParam(name = "author_id", value = "", required = true),
             @ApiImplicitParam(name = "content", value = "", required = false),
             //身份证号码可以先不需要，注册的门槛尽量放低
             @ApiImplicitParam(name = "write_date", value = "", required = false),

@@ -56,6 +56,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+  path: '/register',
+  component: () => import('@/pages/user/register'),
+  hidden: true
+  },
+  {
     path: '/auth-redirect',
     component: () => import('@/views/login/auth-redirect'),
     hidden: true
@@ -133,10 +138,17 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
+        hidden: true,
         path: 'list',
         component: () => import('@/pages/article/List'),
         name: 'article_list',
         meta: { title: '文章列表', icon: 'documentation', affix: true }
+      },
+      {
+        path: 'editor',
+        component: () => import('@/pages/article/Editor'),
+        name: 'article_list',
+        meta: { title: '编辑文章', icon: 'documentation', affix: true }
       }
     ]
   },

@@ -6,15 +6,15 @@
         <h3 class="title">流浪动物救助平台</h3>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="phone">
         <span class="svg-container">
-          <svg-icon icon-class="user" />
+          <i class="el-icon-phone"></i>
         </span>
         <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
+          ref="phone"
+          v-model="loginForm.phone"
+          placeholder="电话号码"
+          name="phone"
           type="text"
           tabindex="1"
           autocomplete="on"
@@ -31,7 +31,7 @@
             ref="password"
             v-model="loginForm.password"
             :type="passwordType"
-            placeholder="Password"
+            placeholder="密码"
             name="password"
             tabindex="2"
             autocomplete="on"
@@ -45,7 +45,8 @@
         </el-form-item>
       </el-tooltip>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
+      <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="toRegister">注册</el-button>
 
       <div style="position:relative">
         <div class="tips">
@@ -76,6 +77,8 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
+import request from '@/utils/request'
+import qs from 'querystring'
 
 export default {
   name: 'Login',
@@ -98,7 +101,8 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '111111'
+        phone: '18378980517',
+        password: '6942231'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -153,17 +157,30 @@ export default {
       })
     },
     handleLogin() {
+      this.loading = true
+      this.$store.dispatch('user/login', this.loginForm)
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
+          let url = 'http://localhost:8088/user/login';
+          request.request({
+            url,
+            method: "post",
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify(this.loginForm)
+          }).then((result)=>{
+            if(result.code === 200){
+                this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+                this.loading = false;
+            } else if (result.code === 400){
+              this.$message.error('账号或密码错误');
+              this.loading = false;
+            } else{
+              this.$message.error('账号或密码不能为空');
+              this.loading = false;
+            }
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -177,6 +194,9 @@ export default {
         }
         return acc
       }, {})
+    },
+    toRegister(){
+      this.$router.push({path:'@/pages/user/register'});
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {

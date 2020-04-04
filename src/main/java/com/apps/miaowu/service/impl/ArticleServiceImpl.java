@@ -48,7 +48,9 @@ public class ArticleServiceImpl implements ArticleService {
         }
         else {
             article.setWriteDate(new Date());
-            articleMapper.insert(article);
+            article.setLastUpdate(new Date());
+            //todo 处理blob
+//            articleMapper.insert(article);
             return APIResult.newResult(ResultCode.SuccessCode,"insert successfully",null);
         }
     }
