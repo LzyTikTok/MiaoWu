@@ -19,10 +19,28 @@
         <result column="save_date" jdbcType="TIMESTAMP" property="saveDate" />
     </resultMap>
 
+    <resultMap id="ArticleResultMap" type="com.apps.miaowu.bean.Article">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="write_date" jdbcType="TIMESTAMP" property="writeDate" />
+        <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+        <result column="thump_up" jdbcType="BIGINT" property="thumpUp" />
+        <result column="author_id" jdbcType="BIGINT" property="authorId" />
+        <result column="animal_id" jdbcType="BIGINT" property="animalId" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+    </resultMap>
+
     <resultMap id="UserWithSaveResultMap" type="com.apps.miaowu.bean.extend.UserExtend"
                extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
         <collection property="save" resultMap="SaveResultMap" />
     </resultMap>
+
+    <resultMap id="UserWithArticleResultMap" type="com.apps.miaowu.bean.extend.UserExtend"
+               extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
+        <collection property="article" resultMap="ArticleResultMap" />
+    </resultMap>
+
+
     <resultMap id="cascadeUserResultMap" type="com.apps.miaowu.bean.extend.UserExtend"
                extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
         <collection property="found" resultMap="FoundResultMap" />

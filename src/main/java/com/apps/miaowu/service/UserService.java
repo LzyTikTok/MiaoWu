@@ -31,9 +31,13 @@ public interface UserService {
 
     APIResult deleteUserById(Long id);
 
+    APIResult findAllClipArticle(Long userId);
+
     APIResult addClipArticle(Long userId, Long articleId);
 
     APIResult deleteClipArticle(Long userId, Long articleId);
+
+    APIResult findAllFollow(Long userId);
 
     APIResult addFollow(Long userId, Long followerId);
 

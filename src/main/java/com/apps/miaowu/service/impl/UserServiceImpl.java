@@ -200,4 +200,16 @@ public class UserServiceImpl implements UserService {
             return APIResult.newResult(ResultCode.ServerInnerError, e.toString(), null);
         }
     }
+
+
+    //todo 实现查找
+    @Override
+    public APIResult findAllClipArticle(Long userId) {
+        return null;
+    }
+
+    @Override
+    public APIResult findAllFollow(Long userId) {
+        return null;
+    }
 }
