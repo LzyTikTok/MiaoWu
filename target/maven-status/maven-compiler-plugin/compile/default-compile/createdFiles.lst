@@ -12,6 +12,7 @@ com\apps\miaowu\dao\CommentMapper.class
 com\apps\miaowu\service\ThumbUpService.class
 com\apps\miaowu\config\Swagger2.class
 com\apps\miaowu\dao\CountryMapper.class
+com\apps\miaowu\service\impl\FollowServiceImpl.class
 com\apps\miaowu\bean\FollowExample$GeneratedCriteria.class
 com\apps\miaowu\dao\extend\ArticleLabelExtend.class
 com\apps\miaowu\bean\CommentExample$Criterion.class
@@ -19,6 +20,7 @@ com\apps\miaowu\config\MybatisConfig.class
 com\apps\miaowu\service\UserService.class
 com\apps\miaowu\bean\ArticleLabelExample$Criterion.class
 com\apps\miaowu\bean\FollowExample$Criterion.class
+com\apps\miaowu\service\impl\ClipServiceImpl.class
 com\apps\miaowu\bean\FoundExample$Criteria.class
 com\apps\miaowu\bean\AnimalExample$Criterion.class
 com\apps\miaowu\bean\UserExample$Criterion.class
@@ -36,6 +38,7 @@ com\apps\miaowu\bean\ArticleLabelExample$GeneratedCriteria.class
 com\apps\miaowu\bean\SaveExample$GeneratedCriteria.class
 com\apps\miaowu\bean\Clip.class
 com\apps\miaowu\web\controller\UserController.class
+com\apps\miaowu\web\controller\FollowController.class
 com\apps\miaowu\service\AnimalService.class
 com\apps\miaowu\bean\result\ResultCode.class
 com\apps\miaowu\bean\UserExample$GeneratedCriteria.class
@@ -71,6 +74,7 @@ com\apps\miaowu\bean\CountryExample.class
 com\apps\miaowu\bean\ThumbUpExample$Criteria.class
 com\apps\miaowu\bean\LabelExample.class
 com\apps\miaowu\bean\FollowExample.class
+com\apps\miaowu\service\FollowService.class
 com\apps\miaowu\bean\FoundExample$GeneratedCriteria.class
 com\apps\miaowu\bean\LabelExample$GeneratedCriteria.class
 com\apps\miaowu\bean\result\APIResult.class
@@ -81,8 +85,10 @@ com\apps\miaowu\bean\Save.class
 com\apps\miaowu\web\controller\ThumbUpController.class
 com\apps\miaowu\web\controller\AnimalController.class
 com\apps\miaowu\MiaowuApplication.class
+com\apps\miaowu\service\ClipService.class
 com\apps\miaowu\bean\ArticleLabel.class
 com\apps\miaowu\bean\ArticleLabelExample.class
+com\apps\miaowu\web\controller\ClipController.class
 com\apps\miaowu\bean\result\ResultSupport.class
 com\apps\miaowu\bean\SaveExample$Criterion.class
 com\apps\miaowu\bean\ClipExample.class

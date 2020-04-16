@@ -86,6 +86,13 @@
 		ON art.id = l.article_id
 		WHERE art.id = #{id,jdbcType=BIGINT};
     </select>
+
+    <select id="selectClipArticleByUserIdDesc" parameterType="java.lang.Long" resultMap="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+    SELECT  art.*
+    FROM article art
+    WHERE art.id IN (SELECT article_id FROM clip WHERE user_id = #{id.jdbcType=BIGINT}) ORDER BY art.last_update desc
+    </select>
+
     <!--  <resultMap id="BaseResultMap" type="com.apps.miaowu.bean.Article">-->
     <!--    &lt;!&ndash;-->
     <!--      WARNING - @mbg.generated-->

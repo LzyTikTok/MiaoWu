@@ -1,6 +1,7 @@
 package com.apps.miaowu.service;
 
 import com.apps.miaowu.bean.Article;
+import com.apps.miaowu.bean.ArticleWithBLOBs;
 import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.result.APIResult;
 
@@ -9,7 +10,7 @@ import java.util.List;
 public interface ArticleService {
     APIResult findAll();
 
-    APIResult saveOrUpdate(Article article);
+    APIResult saveOrUpdate(ArticleWithBLOBs article);
 
     APIResult deleteById(Long id);
 
@@ -20,6 +21,8 @@ public interface ArticleService {
     APIResult findAllArticleWithLabel();
 
     APIResult findArticleWithLabelById(Long id);
+
+    APIResult findClipArticleByUserIdDesc(Long userId);
 
     APIResult cascadeFindAll();
 

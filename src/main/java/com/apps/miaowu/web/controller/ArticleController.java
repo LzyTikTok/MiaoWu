@@ -1,6 +1,7 @@
 package com.apps.miaowu.web.controller;
 
 import com.apps.miaowu.bean.Article;
+import com.apps.miaowu.bean.ArticleWithBLOBs;
 import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.ArticleService;
@@ -35,7 +36,7 @@ public class ArticleController {
             //todo 救助文与空间文分开两个接口去添加？
             @ApiImplicitParam(name = "type", value = "", required = true),
     })
-    public APIResult saveOrUpdate(Article article){
+    public APIResult saveOrUpdate(ArticleWithBLOBs article){
         return articleService.saveOrUpdate(article);
     }
 
@@ -66,4 +67,7 @@ public class ArticleController {
 
     @DeleteMapping(value = "deleteArticleById")
     public APIResult deleteArticleById(Long id){return articleService.deleteById(id);}
+
+    @GetMapping(value = "findClipArticleDesc")
+    public APIResult findClipArticleByUserIdDesc(Long userId){return articleService.findClipArticleByUserIdDesc(userId);}
 }

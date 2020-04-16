@@ -100,25 +100,7 @@ public class UserController {
     @DeleteMapping(value = "deleteUserById")
     public APIResult deleteById(long id){return userService.deleteUserById(id);}
 
-    @PostMapping(value = "addClipArticle")
-    public APIResult addClipArticle(Long userId, Long articleId){
-     return userService.addClipArticle(userId, articleId);
-    }
-
-    @PostMapping(value = "deleteClipArticle")
-    public APIResult deleteClipArticle(Long userId, Long articleId){
-        return userService.deleteClipArticle(userId, articleId);
-    }
-
-    @PostMapping(value = "addFollow")
-    public APIResult addFollow(Long userId, Long followerId){
-        return userService.addFollow(userId, followerId);
-    }
-
-    @PostMapping(value = "deleteFollow")
-    public APIResult deleteFollow(Long userId, Long followerId){
-        return userService.deleteFollow(userId, followerId);
-    }
+//
 
 
 }

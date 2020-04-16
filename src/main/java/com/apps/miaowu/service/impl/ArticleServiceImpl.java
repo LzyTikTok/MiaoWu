@@ -36,11 +36,21 @@ public class ArticleServiceImpl implements ArticleService {
     public APIResult findAll() {
         ArticleExample example = new ArticleExample();
         List<Article> results = articleMapper.selectByExample(example);
-        return APIResult.newResult(200,"Find all article successfully",results);
+        return APIResult.newResult(ResultCode.SuccessCode,"Find all article successfully",results);
     }
 
     @Override
-    public APIResult saveOrUpdate(Article article) {
+    public APIResult findClipArticleByUserIdDesc(Long userId) {
+        List<Article> articles = articleMapperExtend.selectClipArticleByUserIdDesc(userId);
+        if(articles.size() == 0){
+            return APIResult.newResult(ResultCode.ServerInnerError,"no Clip Article",null);
+        } else {
+            return APIResult.newResult(ResultCode.SuccessCode,"success",articles);
+        }
+    }
+
+    @Override
+    public APIResult saveOrUpdate(ArticleWithBLOBs article) {
         if(article.getId() != null){
             article.setLastUpdate(new Date());
             articleMapper.updateByPrimaryKey(article);
@@ -50,7 +60,7 @@ public class ArticleServiceImpl implements ArticleService {
             article.setWriteDate(new Date());
             article.setLastUpdate(new Date());
             //todo 处理blob
-//            articleMapper.insert(article);
+            articleMapper.insert(article);
             return APIResult.newResult(ResultCode.SuccessCode,"insert successfully",null);
         }
     }

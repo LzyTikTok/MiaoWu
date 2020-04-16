@@ -17,5 +17,4 @@ public interface UserMapperExtend {
 
   List<UserExtend> cascadeFindUserById(Long id);
 
-
 }

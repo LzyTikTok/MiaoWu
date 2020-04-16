@@ -112,21 +112,21 @@ export default {
       capsTooltip: false,
       loading: false,
       showDialog: false,
-      redirect: undefined,
+      // redirect: undefined,
       otherQuery: {}
     }
   },
   watch: {
-    $route: {
-      handler: function(route) {
-        const query = route.query
-        if (query) {
-          this.redirect = query.redirect
-          this.otherQuery = this.getOtherQuery(query)
-        }
-      },
-      immediate: true
-    }
+    // $route: {
+    //   handler: function(route) {
+    //     const query = route.query
+    //     if (query) {
+    //       this.redirect = query.redirect
+    //       this.otherQuery = this.getOtherQuery(query)
+    //     }
+    //   },
+    //   immediate: true
+    // }
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
@@ -200,7 +200,7 @@ export default {
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue)
+    //     const code = getQueryObject(e.newValue) reject(createError('Network Error', config, null, request));
     //     const codeMap = {
     //       wechat: 'code',
     //       tencent: 'code'

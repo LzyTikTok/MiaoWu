@@ -26,9 +26,6 @@ public class UserServiceImpl implements UserService {
     private UserMapperExtend userMapperExtend;
 
     @Resource
-    private ClipMapper clipMapper;
-
-    @Resource
     private FollowMapper followMapper;
 
     @Override
@@ -148,68 +145,4 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public APIResult addClipArticle(Long userId, Long articleId) {
-        // todo 一些意外情况的处理
-        Clip clip = new Clip();
-        clip.setArticleId(articleId);
-        clip.setUserId(userId);
-        clipMapper.insert(clip);
-        return APIResult.newResult(ResultCode.SuccessCode, "Clip article successfully", clip);
-    }
-    //todo 查询所有收藏的文章
-
-
-    @Override
-    public APIResult deleteClipArticle(Long userId, Long articleId) {
-        // todo 一些意外情况的处理
-        ClipExample example = new ClipExample();
-        example.createCriteria().andArticleIdEqualTo(articleId).andUserIdEqualTo(userId);
-        clipMapper.deleteByExample(example);
-        return APIResult.newResult(ResultCode.SuccessCode, "Delete clip article successfully", null);
-    }
-
-    @Override
-    public APIResult addFollow(Long userId, Long fansId) {
-        //todo 参照此模板进行其他Service类的异常情况处理
-        Follow follow = new Follow();
-        follow.setUserId(userId);
-        follow.setFansId(fansId);
-        //找不到user和article
-        if(userId == null || fansId == null){
-            return APIResult.newResult(ResultCode.BadRequest,"Parameter missing",null);
-        }
-        if(userMapper.selectByPrimaryKey(userId) == null || userMapper.selectByPrimaryKey(fansId) == null) {
-            return APIResult.newResult(ResultCode.BadRequest,"Parameter Error",null);
-        }
-        try{
-            followMapper.insert(follow);
-            return APIResult.newResult(ResultCode.SuccessCode, "Add follow successfully", follow);
-        } catch (Exception e){
-            return  APIResult.newResult(ResultCode.ServerInnerError,e.toString(),null);
-        }
-    }
-
-    @Override
-    public APIResult deleteFollow(Long userId, Long fansId) {
-        FollowExample followExample = new FollowExample();
-        try {
-            followExample.createCriteria().andUserIdEqualTo(userId).andFansIdEqualTo(fansId);
-            return APIResult.newResult(ResultCode.SuccessCode, "Cancel follow successfully", null);
-        } catch (Exception e) {
-            return APIResult.newResult(ResultCode.ServerInnerError, e.toString(), null);
-        }
-    }
-
-
-    //todo 实现查找
-    @Override
-    public APIResult findAllClipArticle(Long userId) {
-        return null;
-    }
-
-    @Override
-    public APIResult findAllFollow(Long userId) {
-        return null;
-    }
 }
