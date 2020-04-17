@@ -22,7 +22,7 @@ public class CommentServiceImpl implements CommentService {
     CommentMapper commentMapper;
 
     @Override
-    public APIResult AddComment(User user, Comment comment) {
+    public APIResult addComment(User user, Comment comment) {
         //默认只要没有身份证号码则没有完善个人信息
         //
         //则不能评论
@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public APIResult DeleteComment(User user, Comment comment) {
+    public APIResult deleteComment(User user, Comment comment) {
         if (commentMapper.selectByPrimaryKey(comment.getId()) != null){
             commentMapper.deleteByPrimaryKey(comment.getId());
             return APIResult.newResult(ResultCode.SuccessCode,"Delete successfully",null);
@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public APIResult UpdateComment(User user, Comment comment) {
+    public APIResult updateComment(User user, Comment comment) {
         if (commentMapper.selectByPrimaryKey(comment.getId()) != null){
             commentMapper.updateByPrimaryKey(comment);
             return APIResult.newResult(ResultCode.SuccessCode,"Update successfully",null);
