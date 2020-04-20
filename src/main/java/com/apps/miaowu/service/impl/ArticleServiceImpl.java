@@ -105,6 +105,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public APIResult findArticleWithCommentById(Long articleId) {
+        return null;
+    }
+
+    @Override
     public APIResult cascadeFindAll() {
         //此处应该不这么写
 //        List<ArticleExtend> articleExtends = articleMapperExtend.cascadeFindAll();

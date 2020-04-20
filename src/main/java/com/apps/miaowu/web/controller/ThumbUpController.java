@@ -13,8 +13,8 @@ public class ThumbUpController {
     @Autowired
     ThumbUpService thumbUpService;
 
-    @PostMapping(value = "thumbUp")
-    APIResult thumbUp(Long articleId, Long user_id){
+    @PostMapping(value = "thumbUpOrDown")
+    APIResult thumbUpOrDown(Long articleId, Long user_id){
         return thumbUpService.thumbUpOrDown(articleId,user_id);
     }
 }

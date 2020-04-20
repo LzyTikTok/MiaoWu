@@ -12,4 +12,6 @@ public interface AnimalService {
 
     APIResult saveOrUpdate(Animal animal);
 
+    APIResult findAllSaveAnimalByUserId(Long UserId);
+
 }

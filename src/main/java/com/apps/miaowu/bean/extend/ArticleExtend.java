@@ -1,9 +1,6 @@
 package com.apps.miaowu.bean.extend;
 
-import com.apps.miaowu.bean.Animal;
-import com.apps.miaowu.bean.Article;
-import com.apps.miaowu.bean.ArticleLabel;
-import com.apps.miaowu.bean.Label;
+import com.apps.miaowu.bean.*;
 
 import java.util.List;
 
@@ -13,6 +10,8 @@ public class ArticleExtend extends Article {
     List<ArticleLabel> articleLabels;
 
     List<Label> labels;
+
+    Comment comment;
 
     public List<Animal> getAnimals() {
         return animals;

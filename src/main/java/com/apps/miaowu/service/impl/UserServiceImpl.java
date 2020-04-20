@@ -48,7 +48,8 @@ public class UserServiceImpl implements UserService {
                 return APIResult.newResult(400, "Illegal password", null);
             }
             //用户修改信息，此时进行密码的判断
-            userMapper.updateByPrimaryKey(user);
+            // todo 测试
+            userMapper.updateByPrimaryKeySelective(user);
         }
         //save
         else {
@@ -95,7 +96,7 @@ public class UserServiceImpl implements UserService {
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(id);
         List<User> users = userMapper.selectByExample(example);
-        return APIResult.newResult(ResultCode.SuccessCode, "Find all user successfully", null);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find all user successfully", users);
     }
 
     @Override

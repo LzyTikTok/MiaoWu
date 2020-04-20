@@ -22,6 +22,8 @@ public interface ArticleService {
 
     APIResult findArticleWithLabelById(Long id);
 
+    APIResult findArticleWithCommentById(Long articleId);
+
     APIResult findClipArticleByUserIdDesc(Long userId);
 
     APIResult cascadeFindAll();
