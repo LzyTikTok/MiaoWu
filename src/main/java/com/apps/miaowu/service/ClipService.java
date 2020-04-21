@@ -6,6 +6,4 @@ public interface ClipService {
     APIResult addClipArticle(Long userId, Long articleId);
 
     APIResult deleteClipArticle(Long userId, Long articleId);
-
-    APIResult findAllClipArticleDesc(Long userId);
 }

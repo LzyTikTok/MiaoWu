@@ -7,7 +7,5 @@ import org.springframework.stereotype.Service;
 public interface SaveService {
     APIResult addSave(Long userId, Long animalId);
 
-    APIResult deleteSave(Long userId, Long animalId);
-
-    APIResult findAllSaveByUserId(Long userId);
+    APIResult deleteSave(Long userId);
 }

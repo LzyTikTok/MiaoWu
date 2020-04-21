@@ -11,10 +11,18 @@ public class ArticleExtend extends Article {
 
     List<Label> labels;
 
-    Comment comment;
+    List<Comment> comments;
 
     public List<Animal> getAnimals() {
         return animals;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public void setAnimals(List<Animal> animals) {

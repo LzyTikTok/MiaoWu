@@ -20,4 +20,6 @@ public interface ArticleMapperExtend {
 
     List<Article> selectClipArticleByUserIdDesc(Long userId);
 
+    List<ArticleExtend> selectCommentArticleByArticleId(Long articleId);
+
 }

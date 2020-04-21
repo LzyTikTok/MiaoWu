@@ -10,19 +10,16 @@ import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.service.CommentService;
 
 import javax.annotation.Resource;
+import java.sql.Blob;
+import java.util.Date;
 
 public class CommentServiceImpl implements CommentService {
-    @Resource
-    UserMapper userMapper;
-
-    @Resource
-    ArticleMapper articleMapper;
 
     @Resource
     CommentMapper commentMapper;
 
     @Override
-    public APIResult addComment(User user, Comment comment) {
+    public APIResult addComment(User user, String content) {
         //默认只要没有身份证号码则没有完善个人信息
         //
         //则不能评论
@@ -31,16 +28,19 @@ public class CommentServiceImpl implements CommentService {
 //            return "完善个人信息后才能评论哦~";
         }
         else {
+            Comment comment = new Comment();
+            comment.setContent(content);
+            comment.setUserId(user.getId());
+            comment.setDate(new Date());
             commentMapper.insert(comment);
             return APIResult.newResult(ResultCode.SuccessCode,"Add comment successfully",null);
-//            return "评论成功~";
         }
     }
 
     @Override
-    public APIResult deleteComment(User user, Comment comment) {
-        if (commentMapper.selectByPrimaryKey(comment.getId()) != null){
-            commentMapper.deleteByPrimaryKey(comment.getId());
+    public APIResult deleteComment(User user, Long commentId) {
+        if (commentMapper.selectByPrimaryKey(commentId) != null){
+            commentMapper.deleteByPrimaryKey(commentId);
             return APIResult.newResult(ResultCode.SuccessCode,"Delete successfully",null);
         }
         else {

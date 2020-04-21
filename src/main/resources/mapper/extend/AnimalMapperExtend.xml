@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.apps.miaowu.dao.extend.AnimalMapperExtend">
     <resultMap id="BaseResultMap" type="com.apps.miaowu.bean.Animal">
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="category" jdbcType="VARCHAR" property="category" />
-        <result column="age" jdbcType="INTEGER" property="age" />
-        <result column="gender" jdbcType="VARCHAR" property="gender" />
-        <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
     </resultMap>
     <select id="selectSaveAnimalByUserId" resultType="com.apps.miaowu.bean.Animal">
         SELECT a.*
-FROM save s
-LEFT JOIN animal a
-ON s.animal_id = a.id
-WHERE s.user_id = #{id,jdbcType=BIGINT}
+        FROM save s
+        LEFT JOIN animal a
+        ON s.animal_id = a.id
+        WHERE s.user_id = #{id,jdbcType=BIGINT}
     </select>
 
 </mapper>

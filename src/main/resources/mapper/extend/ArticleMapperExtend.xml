@@ -21,6 +21,13 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
     </resultMap>
 
+    <resultMap id="commentResultMap" type="com.apps.miaowu.bean.Comment">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="article_id" jdbcType="BIGINT" property="articleId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    </resultMap>
+
     <resultMap id="ArticleWithAnimalResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
                extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
         <collection property="animals" resultMap="AnimalResultMap"/>
@@ -38,6 +45,12 @@
         <association property="label" resultMap="LabelResultMap" javaType="com.apps.miaowu.bean.Label"/>
         <collection property="animals" resultMap="AnimalResultMap"/>
         <collection property="articleLabels" resultMap="ArticleArticleLabelResultMap"/>
+    </resultMap>
+
+    <resultMap id="articleWithCommentResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+        <!--        todo 可能会因为id列同名而导致出错-->
+        <collection property="comments" resultMap="commentResultMap"/>
     </resultMap>
 
 
@@ -89,18 +102,23 @@
 
     <select id="selectClipArticleByUserIdDesc" parameterType="java.lang.Long"
             resultMap="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
-    SELECT  art.*
-    FROM article art
-    WHERE art.id IN (SELECT article_id FROM clip WHERE user_id = #{id.jdbcType=BIGINT}) ORDER BY art.last_update desc
+        SELECT  art.*
+        FROM article art
+        WHERE art.id IN (SELECT article_id FROM clip WHERE user_id = #{id.jdbcType=BIGINT}) ORDER BY art.last_update desc
     </select>
 
     <select id="selectArticleWithCommentById" resultType="com.apps.miaowu.bean.extend.ArticleExtend">
-    SELECT c.*, a.*
-    FROM comment_table c
-    LEFT JOIN article a
-    ON c.article_id = a.id
-    WHERE a.id = #{id,jdbcType=BIGINT};
+        SELECT c.*, a.*
+        FROM comment_table c
+        LEFT JOIN article a
+        ON c.article_id = a.id
+        WHERE a.id = #{id,jdbcType=BIGINT};
 --         文章一对一
+    </select>
+    <select id="selectCommentArticleByArticleId" resultType="com.apps.miaowu.bean.extend.ArticleExtend">
+        SELECT a.*,c.id comment_id, c.content comment_content
+        FROM article a LEFT JOIN comment_table c
+        ON a.id = c.article_id;
     </select>
 
     <!--  <resultMap id="BaseResultMap" type="com.apps.miaowu.bean.Article">-->
