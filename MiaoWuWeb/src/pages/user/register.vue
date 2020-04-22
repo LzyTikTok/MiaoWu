@@ -2,6 +2,7 @@
   <div class="register-container">
 
   <el-button type="text" @click="back">返回</el-button>
+    <el-form :rules = "rules" class = "register-container">
   <el-form-item prop="phone">
         <span class="svg-container">
           <i class="el-icon-phone"></i>
@@ -55,6 +56,7 @@
         autocomplete="on"
       />
     </el-form-item>
+    </el-form>
 
   </div>
 </template>
@@ -63,13 +65,56 @@
   export default {
     name: "register",
     data(){
-      return{
-        registerForm:{}
+      var self = this;
+      let phoneRegex = new RegExp("^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$");
+      let isPhoneMsg = "请输入正确的电话号码";
+      let isPhone = (rule, value, callback) => {
+        self.validator(rule, value, callback, isPhoneMsg, phoneRegex)
+      };
+      let idCodeRegex = new RegExp("^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$|^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$");
+      let isIdCodeMsg = "请输入正确的身份证";
+      let isIdCode = (rule, value, callback) => {
+       self.validator(rule,value, callback, isIdCodeMsg, idCodeRegex);
+      };
+      let pwdRegex = new RegExp("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$");
+      let isPwdCodeMsg = "请输入正确的身份证";
+      let isPwd = (rule, value, callback) => {
+        self.validator(rule, value, callback, isPwdCodeMsg, pwdRegex);
+      };
+      let userNameRegex = new RegExp("^[a-zA-z\u2E80-\u9FFF]{0,12}$");
+      let isUserNameMsg = "请输入正确的用户名";
+      let isUserName = (rule, value, callback) => {
+        self.validator(rule, value, callback, userNameRegex, isUserNameMsg);
       }
+      return{
+        registerForm:{},
+        rules: {
+          phone: [{required: true, message: '请输入电话', trigger: 'blur'},
+            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            {validator:isPhone}],
+          password: [{required: true, message: '请输入密码', trigger: 'blur'},
+            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            {validator: isPwd}],
+          idCode: [{required: true, message: '请输入身份证', trigger: 'blur'},
+            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            {validator: isIdCode}],
+          userName: [{required: true, message: '请输入用户名', trigger: 'blur'},
+            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            {validator: isUserName}],
+        }
+      }
+
     },
     methods: {
       back(){
         this.$router.go(-1);
+      },
+      validator(rule, value, message, callback, regex){
+        if (!regex.test(value)) {
+          return callback(new Error(message))
+        } else {
+          callback()
+        }
       }
     }
   }
