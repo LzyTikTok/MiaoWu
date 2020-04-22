@@ -56,6 +56,22 @@
         autocomplete="on"
       />
     </el-form-item>
+
+      <el-form-item prop="idCode">
+        <span class="svg-container">
+          <svg-icon icon-class="user" />
+        </span>
+        <el-input
+          ref="idCode"
+          v-model="registerForm.idCode"
+          placeholder="idCode"
+          name="idCode"
+          type="text"
+          tabindex="1"
+          autocomplete="on"
+        />
+      </el-form-item>
+
     </el-form>
 
   </div>
@@ -76,6 +92,7 @@
       let isIdCode = (rule, value, callback) => {
        self.validator(rule,value, callback, isIdCodeMsg, idCodeRegex);
       };
+      //第一代15位？？第二代18位
       let pwdRegex = new RegExp("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$");
       let isPwdCodeMsg = "请输入正确的身份证";
       let isPwd = (rule, value, callback) => {
@@ -90,16 +107,16 @@
         registerForm:{},
         rules: {
           phone: [{required: true, message: '请输入电话', trigger: 'blur'},
-            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            { min: 13, max: 13, message: '电话为长度13位的数字', trigger: 'blur' },
             {validator:isPhone}],
           password: [{required: true, message: '请输入密码', trigger: 'blur'},
-            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            { min: 6, max: 16, message: '密码为至少6位，至多16位的包含数字和字母的组合', trigger: 'blur' },
             {validator: isPwd}],
           idCode: [{required: true, message: '请输入身份证', trigger: 'blur'},
-            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            { min: 15, max: 18, message: '长度在 15 到 18 个字符', trigger: 'blur' },
             {validator: isIdCode}],
           userName: [{required: true, message: '请输入用户名', trigger: 'blur'},
-            { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' },
+            { min: 1, max: 12, message: '长度在 1 到 12 个字符', trigger: 'blur' },
             {validator: isUserName}],
         }
       }
