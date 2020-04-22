@@ -46,4 +46,9 @@ public class AnimalServiceImpl implements AnimalService {
             return APIResult.newResult(ResultCode.BadRequest,"Insert successfully",null);
         }
     }
+
+    @Override
+    public APIResult findAllSaveAnimalByUserId(Long UserId) {
+        return null;
+    }
 }

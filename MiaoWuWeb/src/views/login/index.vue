@@ -157,10 +157,11 @@ export default {
       })
     },
     handleLogin() {
-      this.loading = true
-      this.$store.dispatch('user/login', this.loginForm)
+      this.loading = true;
+      this.$store.dispatch('user/login', this.loginForm);
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          // todo domain配置化
           let url = 'http://localhost:8088/user/login';
           request.request({
             url,
@@ -169,7 +170,11 @@ export default {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             data: qs.stringify(this.loginForm)
-          }).then((result)=>{
+          }).then((result,error)=>{
+            if(error){
+              this.loading = false;
+              return ;
+            }
             if(result.code === 200){
                 this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
                 this.loading = false;
@@ -182,7 +187,8 @@ export default {
             }
           })
         } else {
-          console.log('error submit!!')
+          console.log('error submit!!');
+          this.loading = false;
           return false
         }
       })
@@ -196,7 +202,7 @@ export default {
       }, {})
     },
     toRegister(){
-      this.$router.push({path:'@/pages/user/register'});
+      this.$router.replace({path:'@/pages/user/register'});
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {

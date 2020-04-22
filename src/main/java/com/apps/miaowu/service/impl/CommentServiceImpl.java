@@ -8,11 +8,12 @@ import com.apps.miaowu.dao.ArticleMapper;
 import com.apps.miaowu.dao.CommentMapper;
 import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.service.CommentService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.sql.Blob;
 import java.util.Date;
 
+@Service
 public class CommentServiceImpl implements CommentService {
 
     @Resource

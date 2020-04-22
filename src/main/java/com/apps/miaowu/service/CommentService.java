@@ -4,8 +4,6 @@ import com.apps.miaowu.bean.Comment;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.result.APIResult;
 
-import java.sql.Blob;
-
 public interface CommentService {
     APIResult addComment(User user, String content);
 
