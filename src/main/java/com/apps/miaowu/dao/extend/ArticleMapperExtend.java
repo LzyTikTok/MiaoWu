@@ -22,4 +22,8 @@ public interface ArticleMapperExtend {
 
     List<ArticleExtend> selectCommentArticleByArticleId(Long articleId);
 
+//todo 未测试
+    List<ArtilceExtend> selectAllArticleWithLabelByIdAndPage(Int page);
+
+
 }

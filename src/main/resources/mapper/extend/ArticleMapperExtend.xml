@@ -81,6 +81,14 @@
         WHERE art.id = #{id,jdbcType=BIGINT};
     </select>
 
+<!--todo  未测试 -->
+    <select id="selectAllArticleWithLabelByIdAndPage" parameterType="java.lang.Long" resultMap="ArticleWithArticleLabelResultMap"
+        SELECT a.*, l.*
+        FROM article a LEFT JOIN article_label l
+        ON a.id = l.article_id;
+        WHERE LIMIT #{page,jdbcType=INTEGER};
+    </select>
+
     <select id="cascadeFindAll" resultMap="cascadeResultMap">
         SELECT art.*, ani.*, l.*
         FROM article art
