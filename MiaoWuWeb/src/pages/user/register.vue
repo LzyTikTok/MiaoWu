@@ -1,8 +1,12 @@
 <template>
   <div class="register-container">
-
   <el-button type="text" @click="back">返回</el-button>
     <el-form ref="registerForm" :model="registerForm" :rules = "rules" class = "register-form" autocomplete="on" label-position="left">
+
+      <div class="title-container">
+        <h3 class="title">注册页面</h3>
+      </div>
+
   <el-form-item prop="phone">
         <span class="svg-container">
           <i class="el-icon-phone"></i>
@@ -75,6 +79,7 @@
 
 <script>
   export default {
+    // TODO 确认密码，以及用户名的check
     name: "register",
     data(){
       var self = this;
@@ -103,19 +108,15 @@
         registerForm:{},
         rules: {
           phone: [{required: true, trigger: 'blur'},
-            { min: 13, max: 13, message: '电话为长度13位的数字', trigger: 'blur' },
             {validator:isPhone}
             ],
           password: [{required: true, trigger: 'blur'},
-            { min: 6, max: 16, message: '密码为至少6位，至多16位的包含数字和字母的组合', trigger: 'blur' },
             {validator: isPwd}
             ],
           idCode: [{required: true, trigger: 'blur'},
-            { min: 15, max: 18, message: '长度在 15 到 18 个字符', trigger: 'blur' },
             {validator: isIdCode}
             ],
           userName: [{required: true, trigger: 'blur'},
-            { min: 1, max: 12, message: '用户名长度在 1 到 12 个字符', trigger: 'blur' },
             {validator: isUserName}
             ],
         },
