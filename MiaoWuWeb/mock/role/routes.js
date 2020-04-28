@@ -18,6 +18,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path:'/register',
+    component:'pages/user/register',
+    hidden: true
+  },
+  {
     path: '/auth-redirect',
     component: 'views/login/auth-redirect',
     hidden: true

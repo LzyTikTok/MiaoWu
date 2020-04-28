@@ -202,7 +202,8 @@ export default {
       }, {})
     },
     toRegister(){
-      this.$router.replace({path:'@/pages/user/register'});
+      console.log("register");
+      this.$router.push({path:'/register'});
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
