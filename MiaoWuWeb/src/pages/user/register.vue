@@ -18,6 +18,7 @@
       name="phone"
       type="text"
       tabindex="1"
+      maxlength="13"
     />
   </el-form-item>
 
@@ -36,7 +37,8 @@
         tabindex="2"
         @keyup.native="checkCapslock"
         @blur="capsTooltip = false"
-        @keyup.enter.native="handleLogin"
+        @keyup.enter.native="handleRegister"
+        maxlength="16"
       />
       <span class="show-pwd" @click="showPwd">
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -45,21 +47,22 @@
   </el-tooltip>
 
       <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
-        <el-form-item prop="password">
+        <el-form-item prop="cpwd">
           <span class="svg-container">
             <svg-icon icon-class="password" />
           </span>
           <el-input
             :key="passwordType"
-            ref="password"
+            ref="cpwd"
             v-model="passwordCheck"
             :type="passwordType"
-            placeholder="密码"
-            name="password"
+            placeholder="再次输入密码"
+            name="cpwd"
             tabindex="3"
             @keyup.native="checkCapslock"
             @blur="capsTooltip = false"
-            @keyup.enter.native="handleLogin"
+            @keyup.enter.native="handleRegister"
+            maxlength="16"
           />
           <span class="show-pwd" @click="showPwd">
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -78,10 +81,11 @@
         name="username"
         type="text"
         tabindex="4"
+        maxlength="12"
       />
     </el-form-item>
 
-      <el-form-item prop="idCode">
+      <el-form-item prop="idCode" style="margin-left-20px">
         <span class="svg-container">
           <i class="el-icon-bank-card"></i>
         </span>
@@ -96,15 +100,18 @@
         />
       </el-form-item>
 
+        <span class="demonstration" style="color: white; margin-right:10px">性别</span>
       <el-radio v-model="registerForm.gender" label="man">男</el-radio>
       <el-radio v-model="registerForm.gender" label="woman">女</el-radio>
 
 <!--todo 生日      -->
       <div class="block">
+        <span class="demonstration" style="color: white">生日</span>
         <el-date-picker
           v-model="registerForm.date"
           type="date"
-          placeholder="选择日期">
+          placeholder="选择日期"
+          >
         </el-date-picker>
       </div>
 
@@ -147,14 +154,16 @@
         registerForm:{},
         rules: {
           phone: [{required: true, trigger: 'blur'},
-            {validator:isPhone}
+            {validator: isPhone}
             ],
           password: [{required: true, trigger: 'blur'},
             {validator: isPwd}
             ],
-          passwordCheck: [{required: true, trigger: 'blur'},
-            {validator: isPwd,
-            // pwdCheck
+          cpwd: [{required: true, trigger: 'blur'},
+            {validator: (rule, value, callback)=>{
+              if(value !== this.registerForm.password)
+                callback(new Error("两次密码不一致"))
+              }
             }
           ],
           idCode: [{required: true, trigger: 'blur'},
