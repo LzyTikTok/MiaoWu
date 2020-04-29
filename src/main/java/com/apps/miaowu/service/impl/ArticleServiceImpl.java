@@ -128,5 +128,16 @@ public class ArticleServiceImpl implements ArticleService {
         return null;
     }
 
+    @Override
+    public APIResult findArticleWithTitleFuzzily(String title) {
+        ArticleExample example = new ArticleExample();
+        example.createCriteria().andTitleLike(title);
+        List<Article> articles = articleMapper.selectByExample(example);
+        if(!articles.isEmpty()){
+            return APIResult.newResult(ResultCode.SuccessCode,"success" ,articles);
+        } else {
+            return APIResult.newResult(ResultCode.BadRequest,"can't find the article" ,null);
+        }
 
+    }
 }

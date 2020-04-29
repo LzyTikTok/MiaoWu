@@ -18,6 +18,8 @@ public interface ArticleService {
 
     APIResult findArticleWithAnimalById(Long id);
 
+    APIResult findArticleWithTitleFuzzily(String title);
+
     APIResult findAllArticleWithLabel();
 
     APIResult findArticleWithLabelById(Long id);

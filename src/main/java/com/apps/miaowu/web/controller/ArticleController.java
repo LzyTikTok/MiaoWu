@@ -70,4 +70,9 @@ public class ArticleController {
 
     @GetMapping(value = "findClipArticleDesc")
     public APIResult findClipArticleByUserIdDesc(Long userId){return articleService.findClipArticleByUserIdDesc(userId);}
+
+//todo 未测试
+    @GetMapping(value = "findArticleWithTitleFuzzily")
+    public APIResult findArticleWithTitleFuzzily(String title){return articleService.findArticleWithTitleFuzzily(title);}
+
 }
