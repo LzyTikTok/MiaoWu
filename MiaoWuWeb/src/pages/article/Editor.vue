@@ -1,6 +1,6 @@
 <template>
   <div class="article_editor">
-    <el-button type="text" @click="back">返回</el-button>
+    <el-button type="primary" @click="back">返回</el-button>
     编辑文章
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="文章标题">

@@ -46,7 +46,7 @@
       </el-tooltip>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
-      <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="toRegister">注册</el-button>
+      <el-button type="primary" style="width:100%;margin-bottom:30px; margin-left:0px;" @click="toRegister">注册</el-button>
 
       <div style="position:relative">
         <div class="tips">
@@ -79,6 +79,7 @@ import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
 import request from '@/utils/request'
 import qs from 'querystring'
+import settings  from '../../settings'
 
 export default {
   name: 'Login',
@@ -137,6 +138,7 @@ export default {
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
+    this.settings = settings;
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
@@ -160,6 +162,11 @@ export default {
       this.loading = true;
       this.$store.dispatch('user/login', this.loginForm);
       this.$refs.loginForm.validate(valid => {
+        if(settings.isDebug){
+          this.loading = false;
+          this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
+          return ;
+        }
         if (valid) {
           // todo domain配置化
           let url = 'http://localhost:8088/user/login';

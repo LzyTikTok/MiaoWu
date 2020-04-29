@@ -1,6 +1,6 @@
 <template>
   <div class="register-container">
-  <el-button type="text" @click="back">返回</el-button>
+    <el-button type="primary" @click="back">返回</el-button>
     <el-form ref="registerForm" :model="registerForm" :rules = "rules" class = "register-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
@@ -44,6 +44,29 @@
     </el-form-item>
   </el-tooltip>
 
+      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+        <el-form-item prop="password">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input
+            :key="passwordType"
+            ref="password"
+            v-model="passwordCheck"
+            :type="passwordType"
+            placeholder="密码"
+            name="password"
+            tabindex="3"
+            @keyup.native="checkCapslock"
+            @blur="capsTooltip = false"
+            @keyup.enter.native="handleLogin"
+          />
+          <span class="show-pwd" @click="showPwd">
+            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+          </span>
+        </el-form-item>
+      </el-tooltip>
+
     <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
@@ -54,7 +77,7 @@
         placeholder="昵称"
         name="username"
         type="text"
-        tabindex="3"
+        tabindex="4"
       />
     </el-form-item>
 
@@ -68,11 +91,27 @@
           placeholder="身份证"
           name="idCode"
           type="text"
-          tabindex="4"
+          maxlength="18"
+          tabindex="5"
         />
       </el-form-item>
 
+      <el-radio v-model="registerForm.gender" label="man">男</el-radio>
+      <el-radio v-model="registerForm.gender" label="woman">女</el-radio>
+
+<!--todo 生日      -->
+      <div class="block">
+        <el-date-picker
+          v-model="registerForm.date"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
+      </div>
+
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleRegister">注册</el-button>
+
     </el-form>
+
 
   </div>
 </template>
@@ -113,6 +152,11 @@
           password: [{required: true, trigger: 'blur'},
             {validator: isPwd}
             ],
+          passwordCheck: [{required: true, trigger: 'blur'},
+            {validator: isPwd,
+            // pwdCheck
+            }
+          ],
           idCode: [{required: true, trigger: 'blur'},
             {validator: isIdCode}
             ],
@@ -120,8 +164,36 @@
             {validator: isUserName}
             ],
         },
+        pickerOptions: {
+          disabledDate(time) {
+            return time.getTime() > Date.now();
+          },
+          shortcuts: [{
+            text: '今天',
+            onClick(picker) {
+              picker.$emit('pick', new Date());
+            }
+          }, {
+            text: '昨天',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+          }, {
+            text: '一周前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', date);
+            }
+          }]
+        },
+        //todo 确认密码
         capsTooltip: false,
-        passwordType: 'password'
+        passwordType: 'password',
+        passwordCheck: '',
+        loading: false,
       }
 
     },
@@ -150,6 +222,43 @@
           this.$refs.password.focus()
         })
       },
+      handleRegister() {
+        this.loading = true;
+        this.$store.dispatch('user/register', this.registerForm);
+        this.$refs.registerForm.validate(valid => {
+          if (valid) {
+            // todo domain配置化
+            let url = 'http://localhost:8088/user/register';
+            request.request({
+              url,
+              method: "post",
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              data: qs.stringify(this.registerForm)
+            }).then((result,error)=>{
+              if(error){
+                this.loading = false;
+                return ;
+              }
+              if(result.code === 200){
+                this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+                this.loading = false;
+              } else if (result.code === 400){
+                this.$message.error('账号或密码错误');
+                this.loading = false;
+              } else{
+                this.$message.error('账号或密码不能为空');
+                this.loading = false;
+              }
+            })
+          } else {
+            console.log('error submit!!');
+            this.loading = false;
+            return false
+          }
+        })
+      }
     }
   }
 </script>
@@ -272,6 +381,10 @@
       .thirdparty-button {
         display: none;
       }
+    }
+
+    .is-selected {
+      color: #1989FA;
     }
   }
 
