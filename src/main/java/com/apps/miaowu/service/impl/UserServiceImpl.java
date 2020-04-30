@@ -12,6 +12,7 @@ import com.apps.miaowu.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -87,7 +88,13 @@ public class UserServiceImpl implements UserService {
             return APIResult.newResult(500, "User not exist", null);
         } else if (!user.getPassword().equals(users.get(0).getPassword())) {
             return APIResult.newResult(400, "Incorrect password", null);
-        } else return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", null);
+        } else {
+        //用户名密码验证通过后，生成token
+        //todo 未验证
+        TokenModel model = tokenHelper.create(user.getId());
+        return JsonData.buildSuccess(model);
+        return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", null);
+        }
 
     }
 
@@ -146,4 +153,41 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+//todo 以下两个接口未测试
+    @Override
+    public APIResult findAllFans(Long userId) {
+        FollowExample example = new FollowExample();
+        //找到自己的所有粉丝
+        example.createCriteria().andUserIdEqualTo(userId);
+        List<Follow> follows = followMapper.selectByExample(example);
+        ArrayList<User> users = new ArrayList<>();
+        for (Follow follow:
+                follows) {
+            users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
+        }
+        if(users.isEmpty()){
+            return APIResult.newResult(ResultCode.BadRequest, "can't find the fans", null);
+        }
+        return APIResult.newResult(ResultCode.SuccessCode,"success", users);
+    }
+
+
+    @Override
+    public APIResult findAllFollows(Long userId) {
+        FollowExample example = new FollowExample();
+        //找到自己关注的所有user
+        example.createCriteria().andFansIdEqualTo(userId);
+        List<Follow> follows = followMapper.selectByExample(example);
+        ArrayList<User> users = new ArrayList<>();
+        for (Follow follow:
+                follows) {
+            users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
+        }
+        if(users.isEmpty()){
+            return APIResult.newResult(ResultCode.BadRequest, "can't find the follows", null);
+        }
+        return APIResult.newResult(ResultCode.SuccessCode,"success", users);
+    }
+
+    //todo logout
 }

@@ -23,6 +23,8 @@
 
 <script>
   import request from '@/utils/request'
+  // import from '@/../../../src'
+  import settings from '@/../../../src/settings'
 export default {
   name: 'List',
   data() {
@@ -34,7 +36,7 @@ export default {
     }
   },
   created() {
-    request.get('http://localhost:8088/article/findAll').then((result)=>{
+    request.get(settings.apiUrl + 'article/findAll').then((result)=>{
       this.articles = result.data;
       console.log(result.data);
     })

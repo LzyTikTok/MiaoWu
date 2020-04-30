@@ -31,4 +31,8 @@ public interface UserService {
 
     APIResult deleteUserById(Long id);
 
+    APIResult findAllFans(Long id);
+
+    APIResult findAllFollows(Long id);
+
 }

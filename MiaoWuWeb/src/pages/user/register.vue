@@ -124,6 +124,7 @@
 </template>
 
 <script>
+  import settings from '@/../../../src/settings'
   export default {
     // TODO 确认密码，以及用户名的check
     name: "register",
@@ -236,8 +237,7 @@
         this.$store.dispatch('user/register', this.registerForm);
         this.$refs.registerForm.validate(valid => {
           if (valid) {
-            // todo domain配置化
-            let url = 'http://localhost:8088/user/register';
+            let url =  settings.apiUrl + 'user/register';
             request.request({
               url,
               method: "post",

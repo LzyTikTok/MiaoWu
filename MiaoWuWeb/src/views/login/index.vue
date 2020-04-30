@@ -168,8 +168,7 @@ export default {
           return ;
         }
         if (valid) {
-          // todo domain配置化
-          let url = 'http://localhost:8088/user/login';
+          let url = settings.apiUrl + 'user/login';
           request.request({
             url,
             method: "post",

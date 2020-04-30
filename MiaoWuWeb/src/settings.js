@@ -37,4 +37,11 @@ module.exports = {
    *  debug mode, develop without request server
    */
   isDebug: true,
+
+  /**
+   *
+   */
+  apiUrl: 'http://localhost:8088/',
+
+  apiUrl: ''
 }
