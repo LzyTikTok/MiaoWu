@@ -68,7 +68,7 @@ public class ArticleController {
     @DeleteMapping(value = "deleteArticleById")
     public APIResult deleteArticleById(Long id){return articleService.deleteById(id);}
 
-    @GetMapping(value = "findClipArticleDesc")
+    @GetMapping(value = "findClipArticleByUserIdDesc")
     public APIResult findClipArticleByUserIdDesc(Long userId){return articleService.findClipArticleByUserIdDesc(userId);}
 
 //todo 未测试

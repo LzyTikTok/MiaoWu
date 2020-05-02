@@ -27,6 +27,7 @@
 	<!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
     <javaTypeResolver >
       <property name="forceBigDecimals" value="false" />
+<!--      <property name="useJSR310Types" value="true" />-->
     </javaTypeResolver>
 
 	<!--自动生成的实体的存放包路径 -->
@@ -50,17 +51,33 @@
 
 	<!-- 映射配置 -->
 
-    <table tableName="animal" domainObjectName="Animal" ></table>
-    <table tableName="article" domainObjectName="Article" ></table>
+    <table tableName="animal" domainObjectName="Animal" >
+<!--      <columnOverride column="create_date" jdbcType="TIMESTAMP"/>-->
+    </table>
+    <table tableName="article" domainObjectName="Article" >
+<!--      <columnOverride column="last_update" jdbcType="TIMESTAMP"/>-->
+<!--      <columnOverride column="write_date" jdbcType="TIMESTAMP"/>-->
+    </table>
     <table tableName="article_label" domainObjectName="ArticleLabel" ></table>
-    <table tableName="comment_table" domainObjectName="Comment" ></table>
+    <table tableName="comment_table" domainObjectName="Comment" >
+<!--      <columnOverride column="date" jdbcType="TIMESTAMP"/>-->
+    </table>
     <table tableName="country" domainObjectName="Country" ></table>
-    <table tableName="found_table" domainObjectName="Found" ></table>
+    <table tableName="found_table" domainObjectName="Found" >
+<!--      <columnOverride column="found_date" jdbcType="TIMESTAMP"/>-->
+    </table>
     <table tableName="label" domainObjectName="Label" ></table>
-    <table tableName="save" domainObjectName="Save" ></table>
-    <table tableName="user" domainObjectName="User" ></table>
+    <table tableName="save" domainObjectName="Save" >
+<!--      <columnOverride column="save_date" jdbcType="TIMESTAMP"/>-->
+    </table>
+    <table tableName="user" domainObjectName="User" >
+<!--      <columnOverride column="create_date" jdbcType="TIMESTAMP"/>-->
+<!--      <columnOverride column="birthday" jdbcType="TIMESTAMP"/>-->
+    </table>
     <table tableName="thumb_up" domainObjectName="ThumbUp" ></table>
-    <table tableName="clip" domainObjectName="Clip" ></table>
+    <table tableName="clip" domainObjectName="Clip" >
+<!--      <columnOverride column="date" jdbcType="TIMESTAMP"/>-->
+    </table>
     <table tableName="follow" domainObjectName="Follow" ></table>
 
     <!--

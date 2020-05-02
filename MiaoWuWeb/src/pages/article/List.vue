@@ -23,8 +23,7 @@
 
 <script>
   import request from '@/utils/request'
-  // import from '@/../../../src'
-  import settings from '@/../../../src/settings'
+  import settings from '../../settings'
 export default {
   name: 'List',
   data() {

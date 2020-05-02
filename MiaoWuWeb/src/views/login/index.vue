@@ -80,6 +80,7 @@ import SocialSign from './components/SocialSignin'
 import request from '@/utils/request'
 import qs from 'querystring'
 import settings  from '../../settings'
+import {ResultCode} from "../../utils/ResultCode";
 
 export default {
   name: 'Login',
@@ -159,6 +160,7 @@ export default {
       })
     },
     handleLogin() {
+      var self = this;
       this.loading = true;
       this.$store.dispatch('user/login', this.loginForm);
       this.$refs.loginForm.validate(valid => {
@@ -181,8 +183,9 @@ export default {
               this.loading = false;
               return ;
             }
-            if(result.code === 200){
-                this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+            if(result.code === ResultCode.SuccessCode){
+                this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
+                self.$store.state.userInfo = result.data;
                 this.loading = false;
             } else if (result.code === 400){
               this.$message.error('账号或密码错误');

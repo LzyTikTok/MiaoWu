@@ -15,6 +15,7 @@ import springfox.documentation.swagger.web.ApiResourceController;
 
 import javax.annotation.Resource;
 import javax.xml.transform.Result;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -53,10 +54,13 @@ public class ArticleServiceImpl implements ArticleService {
     public APIResult saveOrUpdate(ArticleWithBLOBs article) {
         if(article.getId() != null){
             article.setLastUpdate(new Date());
+//            article.setLastUpdate(LocalDateTime.now());
             articleMapper.updateByPrimaryKey(article);
             return APIResult.newResult(ResultCode.SuccessCode,"Update successfully",null);
         }
         else {
+//            article.setWriteDate(LocalDateTime.now());
+//            article.setLastUpdate(LocalDateTime.now());
             article.setWriteDate(new Date());
             article.setLastUpdate(new Date());
             //todo 处理blob

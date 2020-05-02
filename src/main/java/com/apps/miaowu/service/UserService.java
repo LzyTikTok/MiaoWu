@@ -11,7 +11,9 @@ import java.util.List;
 public interface UserService {
     APIResult findAll();
 
-    APIResult saveOrUpdate(User user);
+    APIResult updateUserInfo(User user);
+
+    APIResult addUser(User user);
 
     APIResult login(User user);
 

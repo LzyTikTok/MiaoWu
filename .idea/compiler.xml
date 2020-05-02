@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MiaoWu" options="-parameters" />
+      <module name="MiaoWu" options="-parameters -XDignore.symbol.file" />
     </option>
   </component>
 </project>

@@ -4,11 +4,21 @@ import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.UserService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,12 +36,30 @@ public class UserController {
 //    @GetMapping(value = )
 
 
-    @PostMapping(value = "saveOrUpdate")
+    @PostMapping(value = "addUser")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "", required = false),
             @ApiImplicitParam(name = "name", value = "", required = false),
             //身份证号码可以先不需要，注册的门槛尽量放低
-            @ApiImplicitParam(name = "idcode", value = "", required = false),
+            @ApiImplicitParam(name = "idCode", value = "", required = true),
+//          思考 归属地的问题 可不可以通过号码直接判断
+            //前端传送数据过来的时候 直接加上国际区号。
+//            @ApiImplicitParam(name = "contry_id", value = "", required = true),
+            @ApiImplicitParam(name = "phone", value = "", required = true),
+            @ApiImplicitParam(name = "create_date", value = "", required = false),
+            @ApiImplicitParam(name = "birthday", value = "", required = true),
+            @ApiImplicitParam(name = "password", value = "", required = true)
+    })
+    public APIResult addUser(User user) {
+        return userService.addUser(user);
+    }
+
+    @PostMapping(value = "updateUserInfo")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "", required = false),
+            @ApiImplicitParam(name = "name", value = "", required = false),
+            //身份证号码可以先不需要，注册的门槛尽量放低
+            @ApiImplicitParam(name = "idCode", value = "", required = false),
 //          思考 归属地的问题 可不可以通过号码直接判断
             //前端传送数据过来的时候 直接加上国际区号。
             @ApiImplicitParam(name = "contry_id", value = "", required = true),
@@ -40,8 +68,8 @@ public class UserController {
             @ApiImplicitParam(name = "birthday", value = "", required = false),
             @ApiImplicitParam(name = "password", value = "", required = false)
     })
-    public APIResult saveOrUpdate(User user) {
-        return userService.saveOrUpdate(user);
+    public APIResult updateUserInfo(User user) {
+        return userService.updateUserInfo(user);
     }
 
     @PostMapping(value = "login")
@@ -49,7 +77,7 @@ public class UserController {
             @ApiImplicitParam(name = "id", value = "", required = false),
             @ApiImplicitParam(name = "name", value = "", required = false),
             //身份证号码可以先不需要，注册的门槛尽量放低
-            @ApiImplicitParam(name = "idcode", value = "", required = false),
+            @ApiImplicitParam(name = "idCode", value = "", required = false),
 //          思考 归属地的问题 可不可以通过号码直接判断
             //前端传送数据过来的时候 直接加上国际区号。
             @ApiImplicitParam(name = "contry_id", value = "", required = false),
@@ -100,7 +128,12 @@ public class UserController {
     @DeleteMapping(value = "deleteUserById")
     public APIResult deleteById(long id){return userService.deleteUserById(id);}
 
+    //只需要加上下面这段即可，注意不能忘记注解
+    @InitBinder
+    protected void init(HttpServletRequest request, ServletRequestDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
 //
-
-
 }

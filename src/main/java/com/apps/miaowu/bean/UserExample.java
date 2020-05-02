@@ -325,73 +325,73 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeIsNull() {
-            addCriterion("idcode is null");
+        public Criteria andIdCodeIsNull() {
+            addCriterion("id_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeIsNotNull() {
-            addCriterion("idcode is not null");
+        public Criteria andIdCodeIsNotNull() {
+            addCriterion("id_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeEqualTo(String value) {
-            addCriterion("idcode =", value, "idcode");
+        public Criteria andIdCodeEqualTo(String value) {
+            addCriterion("id_code =", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeNotEqualTo(String value) {
-            addCriterion("idcode <>", value, "idcode");
+        public Criteria andIdCodeNotEqualTo(String value) {
+            addCriterion("id_code <>", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeGreaterThan(String value) {
-            addCriterion("idcode >", value, "idcode");
+        public Criteria andIdCodeGreaterThan(String value) {
+            addCriterion("id_code >", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeGreaterThanOrEqualTo(String value) {
-            addCriterion("idcode >=", value, "idcode");
+        public Criteria andIdCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("id_code >=", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeLessThan(String value) {
-            addCriterion("idcode <", value, "idcode");
+        public Criteria andIdCodeLessThan(String value) {
+            addCriterion("id_code <", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeLessThanOrEqualTo(String value) {
-            addCriterion("idcode <=", value, "idcode");
+        public Criteria andIdCodeLessThanOrEqualTo(String value) {
+            addCriterion("id_code <=", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeLike(String value) {
-            addCriterion("idcode like", value, "idcode");
+        public Criteria andIdCodeLike(String value) {
+            addCriterion("id_code like", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeNotLike(String value) {
-            addCriterion("idcode not like", value, "idcode");
+        public Criteria andIdCodeNotLike(String value) {
+            addCriterion("id_code not like", value, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeIn(List<String> values) {
-            addCriterion("idcode in", values, "idcode");
+        public Criteria andIdCodeIn(List<String> values) {
+            addCriterion("id_code in", values, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeNotIn(List<String> values) {
-            addCriterion("idcode not in", values, "idcode");
+        public Criteria andIdCodeNotIn(List<String> values) {
+            addCriterion("id_code not in", values, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeBetween(String value1, String value2) {
-            addCriterion("idcode between", value1, value2, "idcode");
+        public Criteria andIdCodeBetween(String value1, String value2) {
+            addCriterion("id_code between", value1, value2, "idCode");
             return (Criteria) this;
         }
 
-        public Criteria andIdcodeNotBetween(String value1, String value2) {
-            addCriterion("idcode not between", value1, value2, "idcode");
+        public Criteria andIdCodeNotBetween(String value1, String value2) {
+            addCriterion("id_code not between", value1, value2, "idCode");
             return (Criteria) this;
         }
 

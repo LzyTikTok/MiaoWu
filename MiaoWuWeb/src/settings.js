@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Vue Element Admin',
+  title: '喵呜（流浪动物救助平台）',
 
   /**
    * @type {boolean} true | false
@@ -36,12 +36,12 @@ module.exports = {
   /**
    *  debug mode, develop without request server
    */
-  isDebug: true,
+  isDebug: false,
 
   /**
    *
    */
   apiUrl: 'http://localhost:8088/',
 
-  apiUrl: ''
+  // apiUrl: ''
 }

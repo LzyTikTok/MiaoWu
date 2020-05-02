@@ -8,6 +8,7 @@ import com.apps.miaowu.service.SaveService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -21,7 +22,9 @@ public class saveServiceImpl implements SaveService {
         Save save = new Save();
         save.setAnimalId(animalId);
         save.setUserId(userId);
+//        save.setSaveDate(LocalDateTime.now());
         save.setSaveDate(new Date());
+
         saveMapper.insert(save);
         return APIResult.newResult(ResultCode.SuccessCode, "success", null);
 //        return null;

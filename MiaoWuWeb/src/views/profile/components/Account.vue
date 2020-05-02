@@ -26,6 +26,7 @@ export default {
     }
   },
   methods: {
+    //更新用户信息
     submit() {
       this.$message({
         message: 'User information has been updated successfully',
