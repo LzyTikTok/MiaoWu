@@ -194,63 +194,63 @@ public class ArticleLabelExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andBelIsNull() {
-            addCriterion("bel is null");
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
             return (Criteria) this;
         }
 
-        public Criteria andBelIsNotNull() {
-            addCriterion("bel is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBelEqualTo(Long value) {
-            addCriterion("bel =", value, "bel");
+        public Criteria andIdEqualTo(Long value) {
+            addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelNotEqualTo(Long value) {
-            addCriterion("bel <>", value, "bel");
+        public Criteria andIdNotEqualTo(Long value) {
+            addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelGreaterThan(Long value) {
-            addCriterion("bel >", value, "bel");
+        public Criteria andIdGreaterThan(Long value) {
+            addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelGreaterThanOrEqualTo(Long value) {
-            addCriterion("bel >=", value, "bel");
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelLessThan(Long value) {
-            addCriterion("bel <", value, "bel");
+        public Criteria andIdLessThan(Long value) {
+            addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelLessThanOrEqualTo(Long value) {
-            addCriterion("bel <=", value, "bel");
+        public Criteria andIdLessThanOrEqualTo(Long value) {
+            addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelIn(List<Long> values) {
-            addCriterion("bel in", values, "bel");
+        public Criteria andIdIn(List<Long> values) {
+            addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelNotIn(List<Long> values) {
-            addCriterion("bel not in", values, "bel");
+        public Criteria andIdNotIn(List<Long> values) {
+            addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelBetween(Long value1, Long value2) {
-            addCriterion("bel between", value1, value2, "bel");
+        public Criteria andIdBetween(Long value1, Long value2) {
+            addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBelNotBetween(Long value1, Long value2) {
-            addCriterion("bel not between", value1, value2, "bel");
+        public Criteria andIdNotBetween(Long value1, Long value2) {
+            addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
 

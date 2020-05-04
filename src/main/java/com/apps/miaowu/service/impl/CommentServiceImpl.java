@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
 //            return "完善个人信息后才能评论哦~";
         } else {
             Comment comment = new Comment();
-            comment.setContent(content);
+            comment.setCommentContent(content);
             comment.setUserId(user.getId());
 
 //            comment.setDate(LocalDateTime.now());

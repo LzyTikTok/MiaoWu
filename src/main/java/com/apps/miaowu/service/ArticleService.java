@@ -10,7 +10,17 @@ import java.util.List;
 public interface ArticleService {
     APIResult findAll();
 
+    APIResult findAllArticleOrderByUpdateDesc();
+
+    APIResult findArticleByAuthorIdOrderByUpdateDesc(Long authorId);
+
+    APIResult cascadeFindById(Long articleId);
+
     APIResult saveOrUpdate(ArticleWithBLOBs article);
+
+    APIResult addArticle(ArticleWithBLOBs article);
+
+    APIResult updateArticle(ArticleWithBLOBs article);
 
     APIResult deleteById(Long id);
 
@@ -26,10 +36,10 @@ public interface ArticleService {
 
     APIResult findArticleWithCommentById(Long articleId);
 
-    APIResult findClipArticleByUserIdDesc(Long userId);
+    APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId);
 
     APIResult cascadeFindAll();
 
-    APIResult cascadeFindById(Long id);
+    APIResult thumbUpOrDown(Long articleId, Long userId);
 
 }

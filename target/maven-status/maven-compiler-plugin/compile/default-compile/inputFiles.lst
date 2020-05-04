@@ -1,4 +1,5 @@
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\CountryMapper.java
+D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\utils\DateEditor.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\CommentMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\AnimalExample.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\CountryExample.java
@@ -12,7 +13,6 @@ D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\Article.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\CommentExample.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\impl\AnimalServiceImpl.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\impl\UserServiceImpl.java
-D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\ThumbUpService.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\web\controller\AnimalController.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\ArticleLabelMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\CommentService.java
@@ -24,6 +24,7 @@ D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\AnimalService.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\config\WebConfig.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\impl\FollowServiceImpl.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\config\Swagger2.java
+D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\extend\LabelMapperExtend.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\ClipExample.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\utils\MiaoWuUtil.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\impl\CommentServiceImpl.java
@@ -46,7 +47,6 @@ D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\MiaowuApplication.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\FollowMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\result\ResultSupport.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\ArticleLabelExample.java
-D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\impl\ThumbUpServiceImpl.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\ArticleWithBLOBs.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\ArticleMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\SaveExample.java
@@ -57,7 +57,6 @@ D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\web\controller\ArticleControlle
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\FollowService.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\User.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\ThumbUpMapper.java
-D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\web\controller\ThumbUpController.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\UserMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\result\APIResult.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\ClipMapper.java

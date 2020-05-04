@@ -11,7 +11,6 @@ com\apps\miaowu\web\controller\CommentController.class
 com\apps\miaowu\service\impl\ArticleServiceImpl.class
 com\apps\miaowu\dao\extend\ArticleMapperExtend.class
 com\apps\miaowu\dao\CommentMapper.class
-com\apps\miaowu\service\ThumbUpService.class
 com\apps\miaowu\config\Swagger2.class
 com\apps\miaowu\dao\CountryMapper.class
 com\apps\miaowu\service\impl\FollowServiceImpl.class
@@ -88,7 +87,6 @@ com\apps\miaowu\bean\ClipExample$GeneratedCriteria.class
 com\apps\miaowu\service\impl\UserServiceImpl.class
 com\apps\miaowu\bean\CommentExample$GeneratedCriteria.class
 com\apps\miaowu\bean\Save.class
-com\apps\miaowu\web\controller\ThumbUpController.class
 com\apps\miaowu\web\controller\AnimalController.class
 com\apps\miaowu\MiaowuApplication.class
 com\apps\miaowu\service\ClipService.class
@@ -107,5 +105,4 @@ com\apps\miaowu\bean\CommentExample.class
 com\apps\miaowu\bean\SaveExample.class
 com\apps\miaowu\bean\User.class
 com\apps\miaowu\service\SaveService.class
-com\apps\miaowu\service\impl\ThumbUpServiceImpl.class
 com\apps\miaowu\bean\UserExample$Criteria.class

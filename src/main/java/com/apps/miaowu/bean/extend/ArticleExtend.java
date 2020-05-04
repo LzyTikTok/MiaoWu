@@ -4,7 +4,7 @@ import com.apps.miaowu.bean.*;
 
 import java.util.List;
 
-public class ArticleExtend extends Article {
+public class ArticleExtend extends ArticleWithBLOBs {
     List<Animal> animals;
 
     List<ArticleLabel> articleLabels;
@@ -12,6 +12,16 @@ public class ArticleExtend extends Article {
     List<Label> labels;
 
     List<Comment> comments;
+
+    String authorName;
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
 
     public List<Animal> getAnimals() {
         return animals;
@@ -44,4 +54,6 @@ public class ArticleExtend extends Article {
     public void setLabels(List<Label> labels) {
         this.labels = labels;
     }
+
+
 }

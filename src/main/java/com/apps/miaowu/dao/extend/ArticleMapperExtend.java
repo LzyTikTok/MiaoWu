@@ -6,6 +6,11 @@ import com.apps.miaowu.bean.extend.ArticleExtend;
 import java.util.List;
 
 public interface ArticleMapperExtend {
+
+    Integer selectLastUpdate();
+
+    List<Article> selectAllArticleOrderByUpdateDesc();
+
     List<ArticleExtend> selectArticleWithAnimal();
 
     List<ArticleExtend> selectArticleWithAnimalById(Long id);
@@ -18,12 +23,13 @@ public interface ArticleMapperExtend {
 
     List<ArticleExtend> cascadeFindById(Long id);
 
-    List<Article> selectClipArticleByUserIdDesc(Long userId);
+    List<ArticleExtend> selectClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId);
 
     List<ArticleExtend> selectCommentArticleByArticleId(Long articleId);
 
 //todo 未测试
     List<ArticleExtend> selectAllArticleWithLabelByIdAndPage(Integer page);
 
+    ArticleExtend selectArticleById(Long id);
 
 }

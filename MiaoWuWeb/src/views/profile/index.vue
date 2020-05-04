@@ -10,17 +10,14 @@
         <el-col :span="18" :xs="24">
           <el-card>
             <el-tabs v-model="activeTab">
-              <el-tab-pane label="UserInfo" name="用户信息">
+              <el-tab-pane label="用户信息" name="userInfo">
                 <userInfo :user="this.$store.state.userInfo"/>
               </el-tab-pane>
-              <el-tab-pane label="Activity" name="activity">
-                <activity/>
+              <el-tab-pane label="收藏文章列表" name="ArticleList">
+                <ArticleList :articles="this.$store.state.clipArtilces"/>
               </el-tab-pane>
-              <el-tab-pane label="Account" name="account">
-                <account :user="user"/>
-              </el-tab-pane>
-              <el-tab-pane label="ClipArticle" name="收藏文章列表">
-                <account :articles="this.$store.state.clipArtilces"/>
+                <el-tab-pane label="我发布的文章" name="ArticleList">
+                <ArticleList :articles="this.$store.state.myArtiles"/>
               </el-tab-pane>
             </el-tabs>
           </el-card>
@@ -34,22 +31,21 @@
 <script>
   import {mapGetters} from 'vuex'
   import UserCard from './components/UserCard'
-  import Activity from './components/Activity'
-  import Account from './components/Account'
   import UserInfo from './components/UserInfo'
-  import ClipArticle from './components/ClipArticle'
+  import ArticleList from './components/ArticleList'
   import request from '@/utils/request'
   import settings from '../../settings'
+  import {ResultCode} from '@/utils/ResultCode'
   import qs from 'querystring'
 
 
   export default {
     name: 'Profile',
-    components: {UserCard, Activity, Account, UserInfo, ClipArticle},
+    components: {UserCard, UserInfo, ArticleList},
     data() {
       return {
         user: {},
-        activeTab: 'activity'
+        activeTab: 'userInfo'
       }
     },
     computed: {
@@ -61,6 +57,8 @@
     },
     created() {
       this.getUser();
+      this.getClipArticle();
+      this.getMyArtiles();
       // this.getUserInfo();
     },
     methods: {
@@ -73,15 +71,23 @@
         }
       },
       getClipArticle() {
+        if (settings.isDebug) {
+          this.$store.state.clipArtilces = {
+            0: {
+              title: '英短',
+              content: '求收养'
+            }
+          };
+          return;
+        }
         let self = this;
-        let url = settings.apiUrl + 'article/getClipArticleByUserIdDesc';
+        let url = settings.apiUrl + 'article/findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.state.userInfo.id ;
         request.request({
           url,
-          method: "post",
+          method: "get",
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-          data: qs.stringify(self.userInfo.id)
         }).then((result, error) => {
           if (error) {
             this.loading = false;
@@ -89,6 +95,28 @@
           }
           if (result.code === ResultCode.SuccessCode) {
             this.$store.state.clipArtilces = result.data;
+          } else if (result.code === ResultCode.ServerInnerError) {
+            this.$message.error('服务器出错喵~');
+            this.loading = false;
+          }
+        })
+      },
+      getMyArtiles(){
+        let self = this;
+        let url = settings.apiUrl + 'article/findArticleByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.state.userInfo.id ;
+        request.request({
+          url,
+          method: "get",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        }).then((result, error) => {
+          if (error) {
+            this.loading = false;
+            return;
+          }
+          if (result.code === ResultCode.SuccessCode) {
+            this.$store.state.myArtiles = result.data;
           } else if (result.code === ResultCode.ServerInnerError) {
             this.$message.error('服务器出错喵~');
             this.loading = false;

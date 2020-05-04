@@ -23,9 +23,10 @@
 
     <resultMap id="commentResultMap" type="com.apps.miaowu.bean.Comment">
         <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="comment_content" jdbcType="LONGVARCHAR" property="commentContent"/>
         <result column="article_id" jdbcType="BIGINT" property="articleId"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="date" jdbcType="TIMESTAMP" property="userId"/>
     </resultMap>
 
     <resultMap id="ArticleWithAnimalResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
@@ -50,8 +51,25 @@
     <resultMap id="articleWithCommentResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
                extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
         <!--        todo 可能会因为id列同名而导致出错-->
-        <collection property="comments" resultMap="commentResultMap"/>
+        <collection property="comments" resultMap="com.apps.miaowu.dao.CommentMapper.BaseResultMap"/>
+
+<!--        <result column="user_name" jdbcType="VARCHAR" property="authorName"/>-->
     </resultMap>
+
+    <resultMap id="articleWithAuthorNameResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+        <result column="user_name" jdbcType="VARCHAR" property="authorName"/>
+    </resultMap>
+
+    <select id="selectArticleById" resultMap="articleWithCommentResultMap">
+        SELECT art.*,c.comment_content, u.name, u.id user_id
+        FROM comment_table c
+        LEFT JOIN article art
+        ON c.article_id = art.id
+        LEFT JOIN user u
+        ON u.id = c.user_id
+        WHERE art.id = #{id,jdbcType=BIGINT};
+    </select>
 
 
     <select id="selectArticleWithAnimal" resultMap="ArticleWithAnimalResultMap">
@@ -108,11 +126,19 @@
 		WHERE art.id = #{id,jdbcType=BIGINT};
     </select>
 
-    <select id="selectClipArticleByUserIdDesc" parameterType="java.lang.Long"
-            resultMap="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+    <select id="selectClipArticleWithAuthorNameByUserIdOrderByUpdateDesc" parameterType="java.lang.Long"
+            resultMap="articleWithAuthorNameResultMap">
+        SELECT  art.*, u.name user_name
+        FROM article art, user u
+        WHERE art.id IN (SELECT article_id FROM clip WHERE user_id = #{id.jdbcType=BIGINT})
+        AND art.author_id = u.id
+        ORDER BY art.last_update desc
+    </select>
+
+    <select id="selectAllArticleOrderByUpdateDesc" resultMap="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
         SELECT  art.*
         FROM article art
-        WHERE art.id IN (SELECT article_id FROM clip WHERE user_id = #{id.jdbcType=BIGINT}) ORDER BY art.last_update desc
+        ORDER BY art.last_update desc
     </select>
 
     <select id="selectArticleWithCommentById" resultType="com.apps.miaowu.bean.extend.ArticleExtend">
@@ -127,6 +153,10 @@
         SELECT a.*,c.id comment_id, c.content comment_content
         FROM article a LEFT JOIN comment_table c
         ON a.id = c.article_id;
+    </select>
+
+    <select id="selectLastUpdate" resultType="java.lang.Integer">
+        SELECT
     </select>
 
     <!--  <resultMap id="BaseResultMap" type="com.apps.miaowu.bean.Article">-->

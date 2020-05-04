@@ -52,33 +52,25 @@
 	<!-- 映射配置 -->
 
     <table tableName="animal" domainObjectName="Animal" >
-<!--      <columnOverride column="create_date" jdbcType="TIMESTAMP"/>-->
     </table>
     <table tableName="article" domainObjectName="Article" >
-<!--      <columnOverride column="last_update" jdbcType="TIMESTAMP"/>-->
-<!--      <columnOverride column="write_date" jdbcType="TIMESTAMP"/>-->
+        <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+      <columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR"/>
+      <columnOverride column="source" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </table>
-    <table tableName="article_label" domainObjectName="ArticleLabel" ></table>
+    <table tableName="article_label" domainObjectName="ArticleLabel" />
     <table tableName="comment_table" domainObjectName="Comment" >
-<!--      <columnOverride column="date" jdbcType="TIMESTAMP"/>-->
+      <columnOverride column="comment_content" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </table>
-    <table tableName="country" domainObjectName="Country" ></table>
-    <table tableName="found_table" domainObjectName="Found" >
-<!--      <columnOverride column="found_date" jdbcType="TIMESTAMP"/>-->
-    </table>
-    <table tableName="label" domainObjectName="Label" ></table>
-    <table tableName="save" domainObjectName="Save" >
-<!--      <columnOverride column="save_date" jdbcType="TIMESTAMP"/>-->
-    </table>
+    <table tableName="country" domainObjectName="Country" />
+    <table tableName="found_table" domainObjectName="Found" />
+    <table tableName="label" domainObjectName="Label" />
+    <table tableName="save" domainObjectName="Save" />
     <table tableName="user" domainObjectName="User" >
-<!--      <columnOverride column="create_date" jdbcType="TIMESTAMP"/>-->
-<!--      <columnOverride column="birthday" jdbcType="TIMESTAMP"/>-->
     </table>
-    <table tableName="thumb_up" domainObjectName="ThumbUp" ></table>
-    <table tableName="clip" domainObjectName="Clip" >
-<!--      <columnOverride column="date" jdbcType="TIMESTAMP"/>-->
-    </table>
-    <table tableName="follow" domainObjectName="Follow" ></table>
+    <table tableName="thumb_up" domainObjectName="ThumbUp" />
+    <table tableName="clip" domainObjectName="Clip" />
+    <table tableName="follow" domainObjectName="Follow" />
 
     <!--
      mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
