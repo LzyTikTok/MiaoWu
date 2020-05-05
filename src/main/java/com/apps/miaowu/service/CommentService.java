@@ -5,7 +5,7 @@ import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.result.APIResult;
 
 public interface CommentService {
-    APIResult addComment(User user, String content);
+    APIResult addComment(Long userId, Long articleId, String content);
 
     APIResult deleteComment(User user, Long commentId);
 

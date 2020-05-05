@@ -10,14 +10,14 @@
         <el-col :span="18" :xs="24">
           <el-card>
             <el-tabs v-model="activeTab">
-              <el-tab-pane label="用户信息" name="userInfo">
+              <el-tab-pane label="我的信息" name="userInfo">
                 <userInfo :user="this.$store.state.userInfo"/>
               </el-tab-pane>
-              <el-tab-pane label="收藏文章列表" name="ArticleList">
-                <ArticleList :articles="this.$store.state.clipArtilces"/>
+              <el-tab-pane label="收藏文章列表" name="clipArticles">
+                <ArticleList :articles="this.clipArticles"/>
               </el-tab-pane>
-                <el-tab-pane label="我发布的文章" name="ArticleList">
-                <ArticleList :articles="this.$store.state.myArtiles"/>
+                <el-tab-pane label="我发布的文章" name="myArticles">
+                <ArticleList :articles="this.myArticles"/>
               </el-tab-pane>
             </el-tabs>
           </el-card>
@@ -58,7 +58,7 @@
     created() {
       this.getUser();
       this.getClipArticle();
-      this.getMyArtiles();
+      this.getMyArticles();
       // this.getUserInfo();
     },
     methods: {
@@ -72,7 +72,7 @@
       },
       getClipArticle() {
         if (settings.isDebug) {
-          this.$store.state.clipArtilces = {
+          this.$store.state.clipArticles = {
             0: {
               title: '英短',
               content: '求收养'
@@ -94,16 +94,17 @@
             return;
           }
           if (result.code === ResultCode.SuccessCode) {
-            this.$store.state.clipArtilces = result.data;
+            self.clipArticles = result.data;
           } else if (result.code === ResultCode.ServerInnerError) {
+            debugger;
             this.$message.error('服务器出错喵~');
             this.loading = false;
           }
         })
       },
-      getMyArtiles(){
+      getMyArticles(){
         let self = this;
-        let url = settings.apiUrl + 'article/findArticleByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.state.userInfo.id ;
+        let url = settings.apiUrl + 'article/findByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.state.userInfo.id ;
         request.request({
           url,
           method: "get",
@@ -116,8 +117,9 @@
             return;
           }
           if (result.code === ResultCode.SuccessCode) {
-            this.$store.state.myArtiles = result.data;
+            self.myArticles = result.data;
           } else if (result.code === ResultCode.ServerInnerError) {
+            debugger;
             this.$message.error('服务器出错喵~');
             this.loading = false;
           }

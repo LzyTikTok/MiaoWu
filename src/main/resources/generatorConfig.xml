@@ -64,7 +64,9 @@
     </table>
     <table tableName="country" domainObjectName="Country" />
     <table tableName="found_table" domainObjectName="Found" />
-    <table tableName="label" domainObjectName="Label" />
+    <table tableName="label" domainObjectName="Label" >
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+    </table>
     <table tableName="save" domainObjectName="Save" />
     <table tableName="user" domainObjectName="User" >
     </table>

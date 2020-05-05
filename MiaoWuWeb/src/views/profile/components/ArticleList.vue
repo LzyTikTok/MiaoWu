@@ -1,6 +1,9 @@
 <template>
   <div class="article-contains">
-    <div class="articles" v-for="article in articles" v-bind:key="article.id" >
+    <div v-if="JSON.stringify(articles) === '{}'">
+      <span>没有相关文章信息哦~</span>
+    </div>
+    <div class="articles" v-for="(article,index) in articles" v-bind:key="index" >
       <div class="post">
         <div class="user-block">
           <img class="img-circle"
@@ -27,8 +30,8 @@
           </li> -->
           <li>
           <span class="link-black text-sm">
-            {{article.thumpUp}}
-            <img src="@/static/like.jpg" @click="handleLike(article.id)" alt="" style="height:10px"/>
+            {{article.thumbUp}}
+            <img src="@/static/like.jpg" @click="handleLike(article)" alt="" style="height:10px"/>
           </span>
           </li>
         </ul>
@@ -44,6 +47,7 @@
   import {ResultCode} from '@/utils/ResultCode'
   import qs from 'querystring'
   import {parseTime} from "../../../utils";
+  import * as Vue from "autoprefixer/lib/declaration";
   const avatarPrefix = '?imageView2/1/w/80/h/80';
   const carouselPrefix = '?imageView2/2/h/440';
 
@@ -60,16 +64,19 @@
         type: Object,
         default: () => {
           return {
+            thumbUp: 0
           }
         }
       }
     },
     methods: {
-      handleLike(articleId) {
-        let url = settings.url + "article/thumbUpOrDown";
+      handleLike(article) {
+        debugger;
+        let self = this;
+        let url = settings.apiUrl + "article/thumbUpOrDown";
         let form = {
-          userId: self.$store.state.userInfo.id,
-          articleId: articleId
+          'userId': self.$store.state.userInfo.id,
+          'articleId': article.id
         };
          request.request({
           url,
@@ -80,12 +87,18 @@
           data: qs.stringify(form)
         }).then((result, error) => {
           if (error) {
-            this.loading = false;
             return;
           }
           if (result.code === ResultCode.SuccessCode) {
-            this.$store.state.clipArtilces = JSON.parse(result.data);
-          } else if (result.code === ResultCode.ServerInnerError) {
+            //todo 页面不能实时响应
+            self.$set(article, 'thumbUp', article.thumbUp + 1);
+            // article.thumbUp++;
+            // this.$message.success('点赞成功喵~');
+          } else if (result.code === ResultCode.ThumbDownCode){
+            self.$set(article, 'thumbUp', article.thumbUp - 1);
+            // article.thumbUp--;
+          }
+          else if (result.code === ResultCode.ServerInnerError) {
             this.$message.error('服务器出错喵~');
             this.loading = false;
           }

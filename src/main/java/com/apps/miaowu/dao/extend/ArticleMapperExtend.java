@@ -9,7 +9,7 @@ public interface ArticleMapperExtend {
 
     Integer selectLastUpdate();
 
-    List<Article> selectAllArticleOrderByUpdateDesc();
+    List<ArticleExtend> selectAllByUserIdOrderByUpdateDesc(Long userId);
 
     List<ArticleExtend> selectArticleWithAnimal();
 

@@ -160,13 +160,18 @@ export default {
       })
     },
     handleLogin() {
+      debugger;
       var self = this;
       this.loading = true;
       this.$store.dispatch('user/login', this.loginForm);
       this.$refs.loginForm.validate(valid => {
         if(settings.isDebug){
           this.loading = false;
+          this.$message.info("开发者模式");
           this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
+          this.userInfo = {
+
+          };
           return ;
         }
         if (valid) {
@@ -185,6 +190,7 @@ export default {
             }
             if(result.code === ResultCode.SuccessCode){
                 this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
+                this.$message.success("登录成功啦喵")
                 self.$store.state.userInfo = result.data;
                 this.loading = false;
             } else if (result.code === 400){

@@ -22,7 +22,7 @@
           name="phone"
           type="text"
           tabindex="1"
-          maxlength="13"
+          maxlength="11"
         />
       </el-form-item>
 
@@ -270,12 +270,13 @@
       this.loading = true;
       this.$store.dispatch('user/register', this.registerForm);
       //test
-      // this.registerForm = {
-      //   name: '小小',
-      //   password: 'icelzy6942231',
-      //   phone: '18378980522',
-      //   idCode: '450881199708081173',
-      // }
+      this.registerForm = {
+        name: '小小',
+        password: 'icelzy6942231',
+        phone: '18378980122',
+        idCode: '450881199708081173',
+      }
+      debugger;
       if(Object.keys(this.registerForm).length !== 4 && this.cpwd !== ''){
         this.$message.error('请完善信息后再注册喵~');
         this.loading = false;

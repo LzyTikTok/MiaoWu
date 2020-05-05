@@ -1,7 +1,8 @@
 <template>
   <el-container v-loading="loading" class="post-article">
     <el-header class="header">
-      <el-select v-model="article.cid" placeholder="请选择文章栏目" style="width: 150px;">
+<!--      换成动物-->
+      <el-select v-model="article.cid" placeholder="请选择要申请救助的动物" style="width: 200px;">
         <el-option
           v-for="item in categories"
           :key="item.id"
@@ -141,44 +142,24 @@
       },
       submit() {
         let self = this;
+        self.loading = true;
         self.submitArticle().then((res,rej) => {
           let articleId = res;
-          self.submitTags(articleId);
+          self.submitTags(articleId).then((res, rej)=>{
+            this.$message.success("发布文章成功啦喵");
+          });
         });
-        let form = {
-          id: self.article.id,
-          title: self.article.title,
-          mdContent: self.article.mdContent,
-          htmlContent: self.$refs.md.d_render,
-          cid: self.article.cid,
-          state: state,
-          dynamicTags: self.article.dynamicTags
-        };
-        request.request({
-          url,
-          method: "post",
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          data: form
-        }).then((result, error) => {
-          if (error) {
-            this.loading = false;
-            return;
-          }
-          if (result.code === ResultCode.SuccessCode) {
-            this.$store.state.clipArtilces = result.data;
-          } else if (result.code === ResultCode.ServerInnerError) {
-            this.$message.error('服务器出错喵~');
-            this.loading = false;
-          }
-        })
       },
       submitArticle(){
         //todo form
-        let url = settings.url + "article/addArticle";
+        let self = this;
+        let url = settings.apiUrl + "article/addArticle";
         let form = {
-
+          'title': self.article.title,
+          'content': self.article.mdContent,
+          'source': self.$refs.md.d_render,
+          'authorId': self.$store.state.userInfo.id,
+          'type': 1
         };
         return new Promise((result,reject)=>{
           request.request({
@@ -187,7 +168,7 @@
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
               },
-              data: form
+              data: qs.stringify(form)
             }).then((res, error) => {
               if (error) {
                 this.loading = false;
@@ -195,16 +176,52 @@
               }
               if (res.code === ResultCode.SuccessCode) {
                  result(res.data);
-              } else if (res.code === ResultCode.ServerInnerError) {
+              } else if(res.code === ResultCode.BadRequest){
+                 self.$message.error(res.message);
+              }
+              else if (res.code === ResultCode.ServerInnerError) {
                 this.$message.error('服务器出错喵~');
                 reject();
-                this.loading = false;
               }
           })
         })
       },
       submitTags(articleId){
         //todo 提交tag form
+        let url = settings.apiUrl + "Label/addLabel";
+        let self = this;
+        let form = {
+          'articleId': articleId,
+          'labelNames': self.article.dynamicTags
+        };
+        return new Promise((resolve,reject)=>{
+          request.request({
+            url,
+            method: "post",
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify(form)
+          }).then((res, error) => {
+            if (error) {a
+              this.loading = false;
+              return;
+            }
+            if (res.code === ResultCode.SuccessCode) {
+              resolve();
+              this.loading = false;
+            } else if(res.code === ResultCode.BadRequest){
+              self.$message.error(res.message);
+              this.loading = false;
+              reject();
+            }
+            else if (res.code === ResultCode.ServerInnerError) {
+              this.$message.error('服务器出错喵~');
+              reject();
+              this.loading = false;
+            }
+          })
+        })
       }
     },
     data() {

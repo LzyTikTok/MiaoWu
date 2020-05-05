@@ -10,7 +10,7 @@ import java.util.List;
 public interface ArticleService {
     APIResult findAll();
 
-    APIResult findAllArticleOrderByUpdateDesc();
+    APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId);
 
     APIResult findArticleByAuthorIdOrderByUpdateDesc(Long authorId);
 

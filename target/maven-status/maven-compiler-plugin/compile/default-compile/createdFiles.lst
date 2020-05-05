@@ -53,6 +53,7 @@ com\apps\miaowu\bean\CountryExample$Criterion.class
 com\apps\miaowu\bean\Label.class
 com\apps\miaowu\service\impl\AnimalServiceImpl.class
 com\apps\miaowu\bean\ArticleWithBLOBs.class
+com\apps\miaowu\dao\extend\CommentMapperExtend.class
 com\apps\miaowu\bean\AnimalExample$Criteria.class
 com\apps\miaowu\bean\ThumbUpExample$Criterion.class
 com\apps\miaowu\bean\ClipExample$Criterion.class
@@ -73,6 +74,7 @@ com\apps\miaowu\bean\CountryExample$GeneratedCriteria.class
 com\apps\miaowu\bean\ArticleLabelExample$Criteria.class
 com\apps\miaowu\bean\LabelExample$Criteria.class
 com\apps\miaowu\bean\UserExample.class
+com\apps\miaowu\service\LabelService.class
 com\apps\miaowu\utils\DateEditor.class
 com\apps\miaowu\bean\Country.class
 com\apps\miaowu\bean\CountryExample.class
@@ -86,8 +88,11 @@ com\apps\miaowu\bean\result\APIResult.class
 com\apps\miaowu\bean\ClipExample$GeneratedCriteria.class
 com\apps\miaowu\service\impl\UserServiceImpl.class
 com\apps\miaowu\bean\CommentExample$GeneratedCriteria.class
+com\apps\miaowu\service\impl\LabelServiceImpl.class
 com\apps\miaowu\bean\Save.class
+com\apps\miaowu\bean\extend\CommentExtend.class
 com\apps\miaowu\web\controller\AnimalController.class
+com\apps\miaowu\web\controller\LabelController.class
 com\apps\miaowu\MiaowuApplication.class
 com\apps\miaowu\service\ClipService.class
 com\apps\miaowu\bean\ArticleLabel.class

@@ -17,8 +17,8 @@ public class CommentController {
     CommentService commentService;
 
     @PostMapping(value = "addComment")
-    public APIResult addComment(User user, String comment){
-        return commentService.addComment(user, comment);
+    public APIResult addComment(Long userId, Long articleId, String comment){
+        return commentService.addComment(userId, articleId, comment);
     }
 
     @PostMapping(value = "deleteComment")

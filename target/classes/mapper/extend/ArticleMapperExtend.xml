@@ -10,6 +10,9 @@
         <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
     </resultMap>
 
+    <resultMap id="clipResultMap" type="com.apps.miaowu.bean.Clip">
+        <id column="clip_id" jdbcType="BIGINT" property="id"/>
+    </resultMap>
     <resultMap id="ArticleLabelResultMap" type="com.apps.miaowu.bean.ArticleLabel">
         <id column="article_label_id" jdbcType="BIGINT" property="id"/>
         <result column="label_id" jdbcType="BIGINT" property="labelId"/>
@@ -51,9 +54,14 @@
     <resultMap id="articleWithCommentResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
                extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
         <!--        todo 可能会因为id列同名而导致出错-->
-        <collection property="comments" resultMap="com.apps.miaowu.dao.CommentMapper.BaseResultMap"/>
+        <collection property="commentExtends" resultMap="com.apps.miaowu.dao.extend.CommentMapperExtend.CommentWithUserResultMap"/>
 
 <!--        <result column="user_name" jdbcType="VARCHAR" property="authorName"/>-->
+    </resultMap>
+
+    <resultMap id="articleWithClipResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+            <association property="clip" resultMap="clipResultMap" />
     </resultMap>
 
     <resultMap id="articleWithAuthorNameResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
@@ -61,13 +69,13 @@
         <result column="user_name" jdbcType="VARCHAR" property="authorName"/>
     </resultMap>
 
-    <select id="selectArticleById" resultMap="articleWithCommentResultMap">
-        SELECT art.*,c.comment_content, u.name, u.id user_id
-        FROM comment_table c
-        LEFT JOIN article art
-        ON c.article_id = art.id
-        LEFT JOIN user u
-        ON u.id = c.user_id
+    <resultMap id="BaseResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+    </resultMap>
+
+    <select id="selectArticleById" resultMap="BaseResultMap">
+        SELECT art.*
+        FROM article art
         WHERE art.id = #{id,jdbcType=BIGINT};
     </select>
 
@@ -135,13 +143,14 @@
         ORDER BY art.last_update desc
     </select>
 
-    <select id="selectAllArticleOrderByUpdateDesc" resultMap="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
-        SELECT  art.*
-        FROM article art
-        ORDER BY art.last_update desc
+    <select id="selectAllByUserIdOrderByUpdateDesc" resultMap="articleWithClipResultMap" parameterType="java.lang.Long">
+        SELECT a.*, c.id clip_id
+        FROM article a
+        LEFT JOIN clip c
+        on a.id = c.article_id AND user_id = #{id.jdbcType=BIGINT}
     </select>
 
-    <select id="selectArticleWithCommentById" resultType="com.apps.miaowu.bean.extend.ArticleExtend">
+    <select id="selectArticleWithCommentById" resultType="com.apps.miaowu.bean.extend.ArticleExtend" >
         SELECT c.*, a.*
         FROM comment_table c
         LEFT JOIN article a

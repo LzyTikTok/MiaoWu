@@ -23,17 +23,18 @@ public class CommentServiceImpl implements CommentService {
     CommentMapper commentMapper;
 
     @Override
-    public APIResult addComment(User user, String content) {
+    public APIResult addComment(Long userId, Long articleId, String content) {
         //默认只要没有身份证号码则没有完善个人信息
         //
         //则不能评论
-        if (user.getIdCode() == null) {
+        if (userId == null) {
             return APIResult.newResult(ResultCode.BadRequest, "Parameters are missing", null);
 //            return "完善个人信息后才能评论哦~";
         } else {
             Comment comment = new Comment();
             comment.setCommentContent(content);
-            comment.setUserId(user.getId());
+            comment.setArticleId(articleId);
+            comment.setUserId(userId);
 
 //            comment.setDate(LocalDateTime.now());
             comment.setDate(new Date());

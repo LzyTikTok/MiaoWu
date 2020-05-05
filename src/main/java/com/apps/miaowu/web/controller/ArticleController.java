@@ -39,12 +39,11 @@ public class ArticleController {
             @ApiImplicitParam(name = "title", value = "", required = true),
             @ApiImplicitParam(name = "authorId", value = "", required = true),
             @ApiImplicitParam(name = "content", value = "", required = false),
-            @ApiImplicitParam(name = "write_date", value = "", required = false),
-            @ApiImplicitParam(name = "last_update", value = "", required = false),
-            @ApiImplicitParam(name = "thumb_up", value = "0", required = false),
-            @ApiImplicitParam(name = "animal_id", value = "", required = false),
-            //1是空间，2是救助文？？？
-            //todo 救助文与空间文分开两个接口去添加？
+            @ApiImplicitParam(name = "writeDate", value = "", required = false),
+            @ApiImplicitParam(name = "lastUpdate", value = "", required = false),
+            @ApiImplicitParam(name = "thumbUp", value = "0", required = false),
+            @ApiImplicitParam(name = "animalId", value = "", required = false),
+            //1是空间，2是救助文
             @ApiImplicitParam(name = "type", value = "", required = true),
     })
     public APIResult addArticle(ArticleWithBLOBs article){
@@ -59,8 +58,8 @@ public class ArticleController {
         return articleService.findAll();
     }
 
-    @GetMapping(value = "findAllArticleOrderByUpdateDesc")
-    public APIResult findAllArticleOrderByUpdateDesc() {return articleService.findAllArticleOrderByUpdateDesc();}
+    @GetMapping(value = "findAllWithClipByUserIdOrderByUpdateDesc")
+    public APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId) {return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);}
 
     @GetMapping(value = "findAllArticleWithAnimal")
     public APIResult findAllArticleWithAnimal(){
@@ -101,6 +100,6 @@ public class ArticleController {
     APIResult cascadeFindById(Long articleId) {return articleService.cascadeFindById(articleId);}
 
 
-    @GetMapping(value = "findArtcileByAuthorIdOrderByUpdateDesc")
-    APIResult findArtcileByAuthorIdOrderByUpdateDesc(long authorId){return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);}
+    @GetMapping(value = "findByAuthorIdOrderByUpdateDesc")
+    APIResult findByAuthorIdOrderByUpdateDesc(long authorId){return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);}
 }

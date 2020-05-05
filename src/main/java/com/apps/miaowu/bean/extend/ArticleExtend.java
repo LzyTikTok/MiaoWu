@@ -11,9 +11,19 @@ public class ArticleExtend extends ArticleWithBLOBs {
 
     List<Label> labels;
 
-    List<Comment> comments;
+    List<CommentExtend> commentExtends;
 
     String authorName;
+
+    Clip clip;
+
+    public Clip getClip() {
+        return clip;
+    }
+
+    public void setClip(Clip clip) {
+        this.clip = clip;
+    }
 
     public String getAuthorName() {
         return authorName;
@@ -25,14 +35,6 @@ public class ArticleExtend extends ArticleWithBLOBs {
 
     public List<Animal> getAnimals() {
         return animals;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public void setAnimals(List<Animal> animals) {
@@ -55,5 +57,11 @@ public class ArticleExtend extends ArticleWithBLOBs {
         this.labels = labels;
     }
 
+    public List<CommentExtend> getCommentExtends() {
+        return commentExtends;
+    }
 
+    public void setCommentExtends(List<CommentExtend> commentExtends) {
+        this.commentExtends = commentExtends;
+    }
 }

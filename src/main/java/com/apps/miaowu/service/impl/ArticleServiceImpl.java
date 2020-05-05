@@ -2,6 +2,7 @@ package com.apps.miaowu.service.impl;
 
 import com.apps.miaowu.bean.*;
 import com.apps.miaowu.bean.extend.ArticleExtend;
+import com.apps.miaowu.bean.extend.CommentExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
 import com.apps.miaowu.dao.ArticleMapper;
@@ -9,6 +10,7 @@ import com.apps.miaowu.dao.CommentMapper;
 import com.apps.miaowu.dao.LabelMapper;
 import com.apps.miaowu.dao.ThumbUpMapper;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
+import com.apps.miaowu.dao.extend.CommentMapperExtend;
 import com.apps.miaowu.dao.extend.LabelMapperExtend;
 import com.apps.miaowu.service.ArticleService;
 import com.apps.miaowu.web.controller.ArticleController;
@@ -42,6 +44,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     CommentMapper commentMapper;
 
+    @Resource
+    CommentMapperExtend commentMapperExtend;
+
     @Override
     public APIResult findAll() {
         ArticleExample example = new ArticleExample();
@@ -53,7 +58,7 @@ public class ArticleServiceImpl implements ArticleService {
     public APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId) {
         List<ArticleExtend> articles = articleMapperExtend.selectClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);
         if (articles.size() == 0) {
-            return APIResult.newResult(ResultCode.ServerInnerError, "no Clip Article", null);
+            return APIResult.newResult(ResultCode.BadRequest, "no Clip Article", null);
         } else {
             return APIResult.newResult(ResultCode.SuccessCode, "success", articles);
         }
@@ -145,15 +150,14 @@ public class ArticleServiceImpl implements ArticleService {
 
             ArticleExtend articleExtend = articleMapperExtend.selectArticleById(id);
 
-            articleExtend.setComments(comments);
-            
-//            ArticleWithBLOBs articleWithBLOBs = new ArticleExtend();
-//            articleWithBLOBs = articleMapper.selectByPrimaryKey(id);
-            //此处强转有问题
-//            articleExtend = (ArticleExtend)articleMapper.selectByPrimaryKey(id);
+            if(!comments.isEmpty()){
+                List<CommentExtend> commentExtends = commentMapperExtend.findByArticleIdWithUser(id);
+                articleExtend.setCommentExtends(commentExtends);
+            }
+
             List<Label> labels = labelMapperExtend.findLabelByArticleId(id);
 
-//            articleExtend.setLabels(labels);
+            articleExtend.setLabels(labels);
 //         ArticleWithBLOBs articleWithBLOBs = articleMapper.selectByPrimaryKey(id);
             return APIResult.newResult(ResultCode.SuccessCode, "success", articleExtend);
         } catch (Exception e){
@@ -199,25 +203,25 @@ public class ArticleServiceImpl implements ArticleService {
             thumbUpMapper.insert(thumbUp);
             //部分更新
             if (article == null) {
-                return APIResult.newResult(ResultCode.BadRequest, "不存在该文章", null);
+                return APIResult.newResult(ResultCode.BadRequest, "article not exist", null);
 //                return "不存在该文章";
             }
-            if (article.getThumpUp() == null) {
-                article.setThumpUp(1L);
+            if (article.getThumbUp() == null) {
+                article.setThumbUp(1L);
             } else {
-                article.setThumpUp(article.getThumpUp() + 1L);
+                article.setThumbUp(article.getThumbUp() + 1L);
             }
             articleMapper.updateByPrimaryKey(article);
-            return APIResult.newResult(ResultCode.SuccessCode, "ThumbUp succefully", null);
+            return APIResult.newResult(ResultCode.SuccessCode, "ThumbUp successfully", null);
 //            return "点赞成功";
         } else {
             //首先要把thumbUp表中的删除掉，但是上文并没有获取到准确的字段。
             thumbUpMapper.deleteByPrimaryKey(find.getId());
             //此处判断点赞数为不为null，主要是防黑客，系统运行正常下，此时的点赞数必定≥1
-            if (article.getThumpUp() != null) {
-                article.setThumpUp(article.getThumpUp() - 1L);
+            if (article.getThumbUp() != null) {
+                article.setThumbUp(article.getThumbUp() - 1L);
                 articleMapper.updateByPrimaryKey(article);
-                return APIResult.newResult(ResultCode.SuccessCode, "ThumbDown successfully", null);
+                return APIResult.newResult(ResultCode.ThumbDownCode, "ThumbDown successfully", null);
 //                return "取消点赞成功";
             } else {
                 return APIResult.newResult(ResultCode.ServerInnerError, "Server Inner Error, thumb up number is zero", null);
@@ -232,7 +236,8 @@ public class ArticleServiceImpl implements ArticleService {
 //        if(articleWithBLOBs != null){
         article.setWriteDate(new Date());
         article.setLastUpdate(new Date());
-        article.setThumpUp(0L);
+        article.setThumbUp(0L);
+        articleMapper.insert(article);
         //todo 处理blob
         return APIResult.newResult(ResultCode.SuccessCode, "insert successfully", article.getId());
 //        }
@@ -250,9 +255,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public APIResult findAllArticleOrderByUpdateDesc() {
+    public APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId) {
         ArticleExample example = new ArticleExample();
-        List<Article> results = articleMapperExtend.selectAllArticleOrderByUpdateDesc();
+        List<ArticleExtend> results = articleMapperExtend.selectAllByUserIdOrderByUpdateDesc(userId);
         return APIResult.newResult(ResultCode.SuccessCode, "Find all article successfully", results);
     }
 

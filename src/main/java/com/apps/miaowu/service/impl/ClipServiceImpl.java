@@ -13,6 +13,8 @@ import io.swagger.annotations.Example;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class ClipServiceImpl implements ClipService {
@@ -31,15 +33,16 @@ public class ClipServiceImpl implements ClipService {
         // todo 一些意外情况的处理
         ClipExample clipExample = new ClipExample();
         clipExample.createCriteria().andUserIdEqualTo(userId).andArticleIdEqualTo(articleId);
-        clipMapper.selectByExample(clipExample);
+        List<Clip> clips = clipMapper.selectByExample(clipExample);
         if(userId == null || articleId == null){
             return APIResult.newResult(ResultCode.BadRequest,"Invalid parameters",null);
-        } else if (clipMapper.selectByExample(clipExample) != null){
+        } else if (!clips.isEmpty()){
             return APIResult.newResult(ResultCode.DATA_ALREADY_EXISTEDINT,"clip Already exist",null);
         }
         Clip clip = new Clip();
         clip.setArticleId(articleId);
         clip.setUserId(userId);
+        clip.setDate(new Date());
         clipMapper.insert(clip);
         return APIResult.newResult(ResultCode.SuccessCode, "Clip article successfully", clip);
     }

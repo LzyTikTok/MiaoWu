@@ -445,63 +445,63 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpIsNull() {
-            addCriterion("thump_up is null");
+        public Criteria andThumbUpIsNull() {
+            addCriterion("thumb_up is null");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpIsNotNull() {
-            addCriterion("thump_up is not null");
+        public Criteria andThumbUpIsNotNull() {
+            addCriterion("thumb_up is not null");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpEqualTo(Long value) {
-            addCriterion("thump_up =", value, "thumpUp");
+        public Criteria andThumbUpEqualTo(Long value) {
+            addCriterion("thumb_up =", value, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpNotEqualTo(Long value) {
-            addCriterion("thump_up <>", value, "thumpUp");
+        public Criteria andThumbUpNotEqualTo(Long value) {
+            addCriterion("thumb_up <>", value, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpGreaterThan(Long value) {
-            addCriterion("thump_up >", value, "thumpUp");
+        public Criteria andThumbUpGreaterThan(Long value) {
+            addCriterion("thumb_up >", value, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpGreaterThanOrEqualTo(Long value) {
-            addCriterion("thump_up >=", value, "thumpUp");
+        public Criteria andThumbUpGreaterThanOrEqualTo(Long value) {
+            addCriterion("thumb_up >=", value, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpLessThan(Long value) {
-            addCriterion("thump_up <", value, "thumpUp");
+        public Criteria andThumbUpLessThan(Long value) {
+            addCriterion("thumb_up <", value, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpLessThanOrEqualTo(Long value) {
-            addCriterion("thump_up <=", value, "thumpUp");
+        public Criteria andThumbUpLessThanOrEqualTo(Long value) {
+            addCriterion("thumb_up <=", value, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpIn(List<Long> values) {
-            addCriterion("thump_up in", values, "thumpUp");
+        public Criteria andThumbUpIn(List<Long> values) {
+            addCriterion("thumb_up in", values, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpNotIn(List<Long> values) {
-            addCriterion("thump_up not in", values, "thumpUp");
+        public Criteria andThumbUpNotIn(List<Long> values) {
+            addCriterion("thumb_up not in", values, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpBetween(Long value1, Long value2) {
-            addCriterion("thump_up between", value1, value2, "thumpUp");
+        public Criteria andThumbUpBetween(Long value1, Long value2) {
+            addCriterion("thumb_up between", value1, value2, "thumbUp");
             return (Criteria) this;
         }
 
-        public Criteria andThumpUpNotBetween(Long value1, Long value2) {
-            addCriterion("thump_up not between", value1, value2, "thumpUp");
+        public Criteria andThumbUpNotBetween(Long value1, Long value2) {
+            addCriterion("thumb_up not between", value1, value2, "thumbUp");
             return (Criteria) this;
         }
 
