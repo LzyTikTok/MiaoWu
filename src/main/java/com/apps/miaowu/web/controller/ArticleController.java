@@ -99,7 +99,10 @@ public class ArticleController {
     @GetMapping(value = "cascadeFindById")
     APIResult cascadeFindById(Long articleId) {return articleService.cascadeFindById(articleId);}
 
-
     @GetMapping(value = "findByAuthorIdOrderByUpdateDesc")
     APIResult findByAuthorIdOrderByUpdateDesc(long authorId){return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);}
+
+    @GetMapping(value = "findFollowsArticleByUserIdOrderByUpdateDesc")
+    APIResult findFollowsArticleByUserIdOrderByUpdateDesc(long userId){return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(userId);}
+
 }

@@ -12,6 +12,9 @@
 <!--          <span class="title">{{article.title}}</span>-->
           <span class="description">{{article.authorName}}     {{new Date(article.lastUpdate).getTime() | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
           <!-- <span class="description">Shared publicly - 7:30 PM today</span> -->
+<!--          todo 未测试 删除文章的逻辑，需要文章列表返回userId-->
+          <el-button v-if="article.user.id === this.$store.state.userInfo.id" class="button-new-tag" type="primary" size="small" @click="delArticle(article.id)">删除文章</el-button>
+
         </div>
         <p>
           {{article.content}}
@@ -94,13 +97,40 @@
             self.$set(article, 'thumbUp', article.thumbUp + 1);
             // article.thumbUp++;
             // this.$message.success('点赞成功喵~');
-          } else if (result.code === ResultCode.ThumbDownCode){
+          } else if (result.code === ResultCode.CancelSuccessCode){
             self.$set(article, 'thumbUp', article.thumbUp - 1);
             // article.thumbUp--;
           }
           else if (result.code === ResultCode.ServerInnerError) {
             this.$message.error('服务器出错喵~');
             this.loading = false;
+          }
+        })
+      },
+      delArticle(articleId){
+        //todo 确认删除
+        let self = this;
+        let url = settings.apiUrl + "article/deleteArticleById";
+        let form = {
+          'id': articleId,
+        };
+        request.request({
+          url,
+          //todo delete? 未测试
+          method: "post",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          data: qs.stringify(form)
+        }).then((result, error) => {
+          if (error) {
+            return;
+          }
+          if (result.code === ResultCode.SuccessCode) {
+            this.$message.success('删除文章成功喵~');
+          }
+          else if (result.code === ResultCode.ServerInnerError) {
+            this.$message.error('服务器出错喵~');
           }
         })
       }

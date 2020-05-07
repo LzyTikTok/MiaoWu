@@ -42,4 +42,6 @@ public interface ArticleService {
 
     APIResult thumbUpOrDown(Long articleId, Long userId);
 
+    APIResult findFollowsArticleByUserIdOrderByUpdateDesc(Long UserId);
+
 }

@@ -19,6 +19,9 @@
                 <el-tab-pane label="我发布的文章" name="myArticles">
                 <ArticleList :articles="this.myArticles"/>
               </el-tab-pane>
+              <el-tab-pane label="我关注的人的动态" name="myArticles">
+                <ArticleList :articles="this.followArticles"/>
+              </el-tab-pane>
             </el-tabs>
           </el-card>
         </el-col>
@@ -119,7 +122,29 @@
           if (result.code === ResultCode.SuccessCode) {
             self.myArticles = result.data;
           } else if (result.code === ResultCode.ServerInnerError) {
-            debugger;
+            this.$message.error('服务器出错喵~');
+            this.loading = false;
+          }
+        })
+      },
+      //todo 未测试
+      getfollowArticles(){
+        let self = this;
+        let url = settings.apiUrl + 'article/findFollowsArticleByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.state.userInfo.id ;
+        request.request({
+          url,
+          method: "get",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        }).then((result, error) => {
+          if (error) {
+            this.loading = false;
+            return;
+          }
+          if (result.code === ResultCode.SuccessCode) {
+            self.myArticles = result.data;
+          } else if (result.code === ResultCode.ServerInnerError) {
             this.$message.error('服务器出错喵~');
             this.loading = false;
           }

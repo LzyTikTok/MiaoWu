@@ -10,6 +10,8 @@
     <el-col :span="24">
       <div>
         <div><h3 style="margin-top: 0px;margin-bottom: 0px">{{article.title}}</h3></div>
+<!--todo 用户名  关注按钮状态      -->
+        <el-button type="primary" @click="handleFollow" style="margin-top: 10px">关注</el-button>
         <div style="width: 100%;margin-top: 5px;display: flex;justify-content: flex-end;align-items: center">
 <!--          <div style="display: inline; color: #20a0ff;margin-left: 50px;margin-right:20px;font-size: 12px;">-->
 <!--            {{article.nickname}}-->
@@ -134,7 +136,41 @@
             reject();
           }
         })
-      }
+      },
+      handleFollow(){
+        let self = this;
+        let url = settings.apiUrl + "comment/addOrDelFollow"
+        let form = {
+          'userId': self.$store.state.userInfo.id,
+          //todo 著作者id
+          'followerId': 1,
+        }
+        request.request({
+          url,
+          method: "post",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          data: qs.stringify(form)
+        }).then((res, error) => {
+          if (error) {
+            return;
+          }
+          if (res.code === ResultCode.SuccessCode) {
+            self.$message.success("关注成功~");
+          } else if (res.code === ResultCode.CancelSuccessCode){
+            self.$message.success("取消关注成功~");
+
+          }
+          else if(res.code === ResultCode.BadRequest){
+            self.$message.error(res.message);
+          }
+          else if (res.code === ResultCode.ServerInnerError) {
+            this.$message.error('服务器出错喵~');
+            reject();
+          }
+        })
+      },
     },
   }
 </script>

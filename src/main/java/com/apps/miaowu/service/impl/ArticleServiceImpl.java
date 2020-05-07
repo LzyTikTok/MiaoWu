@@ -5,10 +5,7 @@ import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.extend.CommentExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
-import com.apps.miaowu.dao.ArticleMapper;
-import com.apps.miaowu.dao.CommentMapper;
-import com.apps.miaowu.dao.LabelMapper;
-import com.apps.miaowu.dao.ThumbUpMapper;
+import com.apps.miaowu.dao.*;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.dao.extend.CommentMapperExtend;
 import com.apps.miaowu.dao.extend.LabelMapperExtend;
@@ -46,6 +43,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     CommentMapperExtend commentMapperExtend;
+
+    @Resource
+    FollowMapper followMapper;
+
+    @Resource
+    UserMapper userMapper;
 
     @Override
     public APIResult findAll() {
@@ -221,7 +224,7 @@ public class ArticleServiceImpl implements ArticleService {
             if (article.getThumbUp() != null) {
                 article.setThumbUp(article.getThumbUp() - 1L);
                 articleMapper.updateByPrimaryKey(article);
-                return APIResult.newResult(ResultCode.ThumbDownCode, "ThumbDown successfully", null);
+                return APIResult.newResult(ResultCode.CancelSuccessCode, "ThumbDown successfully", null);
 //                return "取消点赞成功";
             } else {
                 return APIResult.newResult(ResultCode.ServerInnerError, "Server Inner Error, thumb up number is zero", null);
@@ -269,7 +272,20 @@ public class ArticleServiceImpl implements ArticleService {
         if(!lists.isEmpty()){
             return APIResult.newResult(ResultCode.SuccessCode, "success", lists);
         } else{
-            return APIResult.newResult(ResultCode.BadRequest, "no artilces", null);
+            return APIResult.newResult(ResultCode.BadRequest, "no articles", null);
         }
+    }
+
+//todo 未测试
+    @Override
+    public APIResult findFollowsArticleByUserIdOrderByUpdateDesc(Long userId) {
+        if(userMapper.selectByPrimaryKey(userId) == null){
+            return APIResult.newResult(ResultCode.BadRequest,"user not exist",null);
+        }
+        List<ArticleExtend> articleExtends = articleMapperExtend.selectFollowsArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);
+        if(articleExtends.isEmpty()){
+            return APIResult.newResult(ResultCode.BadRequest,"no articles",null);
+        }
+        return APIResult.newResult(ResultCode.SuccessCode,"success",articleExtends);
     }
 }

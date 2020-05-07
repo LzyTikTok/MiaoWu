@@ -1,15 +1,14 @@
 package com.apps.miaowu.bean.extend;
 
-import com.apps.miaowu.bean.Article;
-import com.apps.miaowu.bean.Found;
-import com.apps.miaowu.bean.Save;
-import com.apps.miaowu.bean.User;
+import com.apps.miaowu.bean.*;
 
 import java.util.List;
 
 public class UserExtend extends User {
-    List<Found> found;
-    List<Save> save;
+    //todo 救助的动物
+    //todo 发现的动物
+    List<Animal> foundAnimals;
+    List<Save> saveAnimals;
 
     public List<Article> getArticles() {
         return articles;
@@ -21,19 +20,19 @@ public class UserExtend extends User {
 
     List<Article> articles;
 
-    public List<Found> getFound() {
-        return found;
+    public List<Animal> getFoundAnimals() {
+        return foundAnimals;
     }
 
-    public void setFound(List<Found> found) {
-        this.found = found;
+    public void setFoundAnimals(List<Animal> foundAnimals) {
+        this.foundAnimals = foundAnimals;
     }
 
-    public List<Save> getSave() {
-        return save;
+    public List<Save> getSaveAnimals() {
+        return saveAnimals;
     }
 
-    public void setSave(List<Save> save) {
-        this.save = save;
+    public void setSaveAnimals(List<Save> saveAnimals) {
+        this.saveAnimals = saveAnimals;
     }
 }

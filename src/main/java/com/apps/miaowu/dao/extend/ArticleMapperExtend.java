@@ -30,6 +30,8 @@ public interface ArticleMapperExtend {
 //todo 未测试
     List<ArticleExtend> selectAllArticleWithLabelByIdAndPage(Integer page);
 
+    List<ArticleExtend> selectFollowsArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId);
+
     ArticleExtend selectArticleById(Long id);
 
 }

@@ -20,8 +20,9 @@ public class FollowServiceImpl implements FollowService {
     @Resource
     FollowMapper followMapper;
 
+    //关注用户
     @Override
-    public APIResult addFollow(Long userId, Long fansId) {
+    public APIResult addOrDelFollow(Long userId, Long fansId) {
         //todo 参照此模板进行其他Service类的异常情况处理
         Follow follow = new Follow();
         follow.setUserId(userId);
@@ -30,7 +31,7 @@ public class FollowServiceImpl implements FollowService {
         followExample.createCriteria().andFansIdEqualTo(fansId).andUserIdEqualTo(userId);
         //找不到user和article
         if(userId == null || fansId == null){
-            return APIResult.newResult(ResultCode.BadRequest,"Parameter missing",null);
+            return APIResult.newResult(ResultCode.BadRequest,"invalid params",null);
         }
         //用户不存在
         else if(userMapper.selectByPrimaryKey(userId) == null || userMapper.selectByPrimaryKey(fansId) == null) {
@@ -38,7 +39,13 @@ public class FollowServiceImpl implements FollowService {
         }
         //重复关注
         else if(followMapper.selectByExample(followExample) != null){
-            return APIResult.newResult(ResultCode.BadRequest,"Already follow",null);
+            //取消关注 todo 未测试
+            try {
+                followMapper.deleteByExample(followExample);
+                return APIResult.newResult(ResultCode.CancelSuccessCode, "Cancel follow successfully", null);
+            } catch (Exception e) {
+                return APIResult.newResult(ResultCode.ServerInnerError, e.toString(), null);
+            }
         } else{
             try{
                 followMapper.insert(follow);
@@ -49,22 +56,4 @@ public class FollowServiceImpl implements FollowService {
         }
     }
 
-    @Override
-    public APIResult deleteFollow(Long userId, Long fansId) {
-        //todo userId和fansId为空的判断
-        FollowExample followExample = new FollowExample();
-        followExample.createCriteria().andUserIdEqualTo(userId).andFansIdEqualTo(fansId);
-        if(followMapper.selectByExample(followExample) != null){
-            try {
-                followMapper.deleteByExample(followExample);
-                return APIResult.newResult(ResultCode.SuccessCode, "Cancel follow successfully", null);
-            } catch (Exception e) {
-                return APIResult.newResult(ResultCode.ServerInnerError, e.toString(), null);
-            }
-        } else {
-            return APIResult.newResult(ResultCode.BadRequest, "follow not exist", null);
-        }
-    }
-
-    //todo findAllFollow
 }

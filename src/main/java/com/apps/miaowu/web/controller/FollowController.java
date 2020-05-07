@@ -15,13 +15,9 @@ public class FollowController {
     @Autowired
     FollowService followService;
 
-    @PostMapping(value = "addFollow")
-    public APIResult addFollow(Long userId, Long followerId){
-        return followService.addFollow(userId, followerId);
+    @PostMapping(value = "addOrDelFollow")
+    public APIResult addOrDelFollow(Long userId, Long followerId){
+        return followService.addOrDelFollow(userId, followerId);
     }
 
-    @DeleteMapping(value = "deleteFollow")
-    public APIResult deleteFollow(Long userId, Long followerId){
-        return followService.deleteFollow(userId, followerId);
-    }
 }
