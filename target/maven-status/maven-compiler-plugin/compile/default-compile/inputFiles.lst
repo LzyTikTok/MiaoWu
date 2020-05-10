@@ -9,6 +9,7 @@ D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\AnimalMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\ArticleExample.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\UserService.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\config\MybatisConfig.java
+D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\web\controller\LabelController.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\Clip.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\Article.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\CommentExample.java
@@ -28,6 +29,7 @@ D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\config\Swagger2.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\extend\LabelMapperExtend.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\ClipExample.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\utils\MiaoWuUtil.java
+D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\impl\LabelServiceImpl.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\impl\CommentServiceImpl.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\extend\UserMapperExtend.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\web\controller\CommentController.java
@@ -63,6 +65,7 @@ D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\UserMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\result\APIResult.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\ClipMapper.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\FoundMapper.java
+D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\service\LabelService.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\Found.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\bean\FoundExample.java
 D:\code\git\MiaoWu\src\main\java\com\apps\miaowu\dao\extend\ArticleLabelExtend.java

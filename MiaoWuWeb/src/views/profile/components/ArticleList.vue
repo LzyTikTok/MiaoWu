@@ -9,28 +9,22 @@
           <img class="img-circle"
                :src="'https://wpimg.wallstcn.com/57ed425a-c71e-4201-9428-68760c0537c4.jpg'+avatarPrefix">
            <span class="username text-muted">{{article.title}}</span>
-<!--          <span class="title">{{article.title}}</span>-->
+          
           <span class="description">{{article.authorName}}     {{new Date(article.lastUpdate).getTime() | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
-          <!-- <span class="description">Shared publicly - 7:30 PM today</span> -->
-<!--          todo 未测试 删除文章的逻辑，需要文章列表返回userId-->
-          <el-button v-if="article.user.id === this.$store.state.userInfo.id" class="button-new-tag" type="primary" size="small" @click="delArticle(article.id)">删除文章</el-button>
-
+<el-popconfirm
+  confirmButtonText='删除'
+  cancelButtonText='手滑了'
+  icon="el-icon-info"
+  iconColor="red"
+  title="确定删除文章吗？"
+  @onConfirm="delArticle(article.id)"
+><el-button v-if="article.authorId === userId" slot="reference"  type="danger" icon="el-icon-delete" circle style="right: 0px; position: absolute"></el-button>
+</el-popconfirm>
         </div>
         <p>
           {{article.content}}
-          <!-- Lorem ipsum represents a long-held tradition for designers,
-          typographers and the like. Some people hate it and argue for
-          its demise, but others ignore the hate as they create awesome
-          tools to help create filler text for everyone from bacon lovers
-          to Charlie Sheen fans. -->
         </p>
         <ul class="list-inline">
-          <!-- <li>
-            <span class="link-black text-sm">
-              <i class="el-icon-share"/>
-              Share
-            </span>
-          </li> -->
           <li>
           <span class="link-black text-sm">
             {{article.thumbUp}}
@@ -64,12 +58,17 @@
     },
     props: {
       articles: {
-        type: Object,
+        type: Array,
         default: () => {
           return {
             thumbUp: 0
           }
         }
+      }
+    },
+    computed: {
+      userId(){
+        return this.$store.state.userInfo.id;
       }
     },
     methods: {
@@ -108,16 +107,15 @@
         })
       },
       delArticle(articleId){
-        //todo 确认删除
         let self = this;
-        let url = settings.apiUrl + "article/deleteArticleById";
+        let url = settings.apiUrl + "article/deleteById";
         let form = {
           'id': articleId,
         };
         request.request({
           url,
-          //todo delete? 未测试
-          method: "post",
+          //todo 页面未响应
+          method: "delete",
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },

@@ -81,8 +81,8 @@ public class ArticleController {
         return articleService.findArticleWithLabelById(id);
     }
 
-    @DeleteMapping(value = "deleteArticleById")
-    public APIResult deleteArticleById(Long id){return articleService.deleteById(id);}
+    @DeleteMapping(value = "deleteById")
+    public APIResult deleteById(Long id){return articleService.deleteById(id);}
 
     @GetMapping(value = "findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc")
     public APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId){return articleService.findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);}

@@ -5,17 +5,18 @@ import com.apps.miaowu.bean.*;
 import java.util.List;
 
 public class ArticleExtend extends ArticleWithBLOBs {
-    List<Animal> animals;
-
-    List<ArticleLabel> articleLabels;
+    Animal animal;
 
     List<Label> labels;
 
     List<CommentExtend> commentExtends;
 
+    User user;
+
     String authorName;
 
     Clip clip;
+
 
     public Clip getClip() {
         return clip;
@@ -33,22 +34,6 @@ public class ArticleExtend extends ArticleWithBLOBs {
         this.authorName = authorName;
     }
 
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
-    }
-
-    public List<ArticleLabel> getArticleLabels() {
-        return articleLabels;
-    }
-
-    public void setArticleLabels(List<ArticleLabel> articleLabels) {
-        this.articleLabels = articleLabels;
-    }
-
     public List<Label> getLabels() {
         return labels;
     }
@@ -64,4 +49,21 @@ public class ArticleExtend extends ArticleWithBLOBs {
     public void setCommentExtends(List<CommentExtend> commentExtends) {
         this.commentExtends = commentExtends;
     }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
 }

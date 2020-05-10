@@ -78,13 +78,13 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/article',
     children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      {  
+        path: 'article',
+        component: () => import('@/pages/article/index'),
+        name: 'Article',
+        meta: { title: '主界面', icon: 'documentation', affix: true }
       }]
   },
   // {
@@ -134,12 +134,12 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/article',
+    path: '/',
     component: Layout,
     name: 'article',
     // alwaysShow: true, // will always show the root menu
     meta: {
-      title: '文章页面',
+      title: '文章中心',
       icon: 'documentation',
     },
     children: [

@@ -143,6 +143,17 @@
         ORDER BY art.last_update desc
     </select>
 
+<!--todo 未测试 获取userId，封装成user对象-->
+    <select id="selectFollowsArticleWithAuthorNameByUserIdOrderByUpdateDesc" parameterType="java.lang.Long"
+            resultMap="articleWithAuthorNameResultMap">
+        SELECT  art.*, u.name user_name
+        FROM article art, user u
+        WHERE art.author_id IN (SELECT user_id FROM follow WHERE fans_id = #{id.jdbcType=BIGINT})
+        AND u.id = art.author_id
+        ORDER BY art.last_update desc
+    </select>
+
+
     <select id="selectAllByUserIdOrderByUpdateDesc" resultMap="articleWithClipResultMap" parameterType="java.lang.Long">
         SELECT a.*, c.id clip_id
         FROM article a

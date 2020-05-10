@@ -145,8 +145,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public APIResult cascadeFindById(Long id) {
         try{
-//            ArticleWithBLOBs articleWithBLOBs = articleMapper.selectByPrimaryKey(id);
-            Comment comment = commentMapper.selectByPrimaryKey(1L);
             CommentExample commentExample = new CommentExample();
             commentExample.createCriteria().andArticleIdEqualTo(id);
             List<Comment> comments = commentMapper.selectByExample(commentExample);
@@ -161,7 +159,10 @@ public class ArticleServiceImpl implements ArticleService {
             List<Label> labels = labelMapperExtend.findLabelByArticleId(id);
 
             articleExtend.setLabels(labels);
-//         ArticleWithBLOBs articleWithBLOBs = articleMapper.selectByPrimaryKey(id);
+            User user = userMapper.selectByPrimaryKey(articleExtend.getAuthorId());
+            articleExtend.setUser(user);
+
+
             return APIResult.newResult(ResultCode.SuccessCode, "success", articleExtend);
         } catch (Exception e){
             System.out.println(e);

@@ -7,12 +7,16 @@ import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.service.ArticleService;
 import com.apps.miaowu.utils.RedisUtil;
 
+import redis.clients.jedis.Jedis;
+
 //import org.junit.Test;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
@@ -20,11 +24,15 @@ import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = {MiaowuApplication.class})
 class MiaowuApplicationTests {
 
     @Autowired
     ArticleService articleService;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @Test
     void contextLoads() {
@@ -52,12 +60,13 @@ class MiaowuApplicationTests {
 
     @Test
     void testRedis(){
-//        redisUtil.set("key","123");
-//        System.out.println(redisUtil.get("key"));
-//        Jedis jedis = new Jedis("localhost");
-//        System.out.println("连接成功");
+       redisUtil.set("key","123");
+       System.out.println(redisUtil.get("key"));
+    //    System.out.println(redisUtil.get("key"));
+    //    Jedis jedis = new Jedis("localhost");
+       System.out.println("连接成功");
 //        //查看服务是否运行
-//        System.out.println("服务正在运行: "+jedis.ping());
+    //    System.out.println("服务正在运行: "+jedis.ping());
     }
 
     @Test
@@ -80,4 +89,5 @@ class MiaowuApplicationTests {
         APIResult apiResult = articleService.cascadeFindById(1L);
         System.out.println(apiResult);
     }
+
 }

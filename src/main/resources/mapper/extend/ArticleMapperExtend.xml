@@ -148,7 +148,8 @@
             resultMap="articleWithAuthorNameResultMap">
         SELECT  art.*, u.name user_name
         FROM article art, user u
-        WHERE art.author_id IN (SELECT follow_id FROM follow WHERE fans_id = #{id.jdbcType=BIGINT})
+        WHERE art.author_id IN (SELECT user_id FROM follow WHERE fans_id = #{id.jdbcType=BIGINT})
+        AND u.id = art.author_id
         ORDER BY art.last_update desc
     </select>
 

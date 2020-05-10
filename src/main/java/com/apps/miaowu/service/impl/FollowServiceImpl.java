@@ -2,6 +2,7 @@ package com.apps.miaowu.service.impl;
 
 import com.apps.miaowu.bean.Follow;
 import com.apps.miaowu.bean.FollowExample;
+import com.apps.miaowu.bean.FollowExample.Criteria;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
 import com.apps.miaowu.dao.FollowMapper;
@@ -38,7 +39,7 @@ public class FollowServiceImpl implements FollowService {
             return APIResult.newResult(ResultCode.BadRequest,"Parameter Error",null);
         }
         //重复关注
-        else if(followMapper.selectByExample(followExample) != null){
+        else if(!followMapper.selectByExample(followExample).isEmpty()){
             //取消关注 todo 未测试
             try {
                 followMapper.deleteByExample(followExample);
