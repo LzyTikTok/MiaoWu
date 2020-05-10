@@ -1,12 +1,12 @@
 <template>
   <el-container v-loading="loading" class="post-article">
     <el-header class="header">
-<!--      换成动物-->
-      <el-select v-model="article.cid" placeholder="请选择要申请救助的动物" style="width: 200px;">
+      <!--      换成动物-->
+      <el-select v-model="article.animalId" placeholder="请选择要申请救助的动物" style="width: 200px;">
         <el-option
-          v-for="item in categories"
+          v-for="item in foundAnimals"
           :key="item.id"
-          :label="item.cateName"
+          :label="item.name"
           :value="item.id">
         </el-option>
       </el-select>
@@ -64,7 +64,7 @@
 
   export default {
     mounted: function () {
-      // this.getCategories();
+      this.getFoundAnimals();
       var from = this.$route.query.from;
       this.from = from;
       var _this = this;
@@ -143,15 +143,18 @@
       submit() {
         let self = this;
         self.loading = true;
-        self.submitArticle().then((res,rej) => {
+        self.submitArticle().then((res, rej) => {
           let articleId = res;
-          self.submitTags(articleId).then((res, rej)=>{
+          self.submitTags(articleId).then((res, rej) => {
             this.$message.success("发布文章成功啦喵");
           });
         });
       },
-      submitArticle(){
-        //todo form
+      submitArticle() {
+        if(self.article.animalId === null){
+          self.$message.error("还没有选择动物哦~");
+          return ;
+        }
         let self = this;
         let url = settings.apiUrl + "article/addArticle";
         let form = {
@@ -159,42 +162,10 @@
           'content': self.article.mdContent,
           'source': self.$refs.md.d_render,
           'authorId': self.$store.state.userInfo.id,
+          'animalId': self.article.animalId,
           'type': 1
         };
-        return new Promise((result,reject)=>{
-          request.request({
-              url,
-              method: "post",
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              data: qs.stringify(form)
-            }).then((res, error) => {
-              if (error) {
-                this.loading = false;
-                return;
-              }
-              if (res.code === ResultCode.SuccessCode) {
-                 result(res.data);
-              } else if(res.code === ResultCode.BadRequest){
-                 self.$message.error(res.message);
-              }
-              else if (res.code === ResultCode.ServerInnerError) {
-                this.$message.error('服务器出错喵~');
-                reject();
-              }
-          })
-        })
-      },
-      submitTags(articleId){
-        //todo 提交tag form
-        let url = settings.apiUrl + "Label/addLabel";
-        let self = this;
-        let form = {
-          'articleId': articleId,
-          'labelNames': self.article.dynamicTags
-        };
-        return new Promise((resolve,reject)=>{
+        return new Promise((result, reject) => {
           request.request({
             url,
             method: "post",
@@ -203,30 +174,87 @@
             },
             data: qs.stringify(form)
           }).then((res, error) => {
-            if (error) {a
+            if (error) {
+              this.loading = false;
+              return;
+            }
+            if (res.code === ResultCode.SuccessCode) {
+              result(res.data);
+            } else if (res.code === ResultCode.BadRequest) {
+              self.$message.error(res.message);
+            } else if (res.code === ResultCode.ServerInnerError) {
+              this.$message.error('服务器出错喵~');
+              reject();
+            }
+          })
+        })
+      },
+      submitTags(articleId) {
+        let url = settings.apiUrl + "Label/addLabel";
+        let self = this;
+        let form = {
+          'articleId': articleId,
+          'labelNames': self.article.dynamicTags
+        };
+        return new Promise((resolve, reject) => {
+          request.request({
+            url,
+            method: "post",
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify(form)
+          }).then((res, error) => {
+            if (error) {
               this.loading = false;
               return;
             }
             if (res.code === ResultCode.SuccessCode) {
               resolve();
               this.loading = false;
-            } else if(res.code === ResultCode.BadRequest){
+            } else if (res.code === ResultCode.BadRequest) {
               self.$message.error(res.message);
               this.loading = false;
               reject();
-            }
-            else if (res.code === ResultCode.ServerInnerError) {
+            } else if (res.code === ResultCode.ServerInnerError) {
               this.$message.error('服务器出错喵~');
               reject();
               this.loading = false;
             }
           })
         })
+      },
+      getFoundAnimals() {
+        let url = settings.apiUrl + "animal/findFoundAnimalByUserId?userId=" + this.$store.state.userInfo.id;
+        let self = this;
+        request.request({
+          url,
+          method: "get",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        }).then((res, error) => {
+          if (error) {
+            this.loading = false;
+            return;
+          }
+          if (res.code === ResultCode.SuccessCode) {
+            this.foundAnimals = res.data;
+            this.loading = false;
+          } else if (res.code === ResultCode.BadRequest) {
+            self.$message.error(res.message);
+            this.loading = false;
+            reject();
+          } else if (res.code === ResultCode.ServerInnerError) {
+            this.$message.error('服务器出错喵~');
+            this.loading = false;
+          }
+        })
       }
     },
     data() {
       return {
-        categories: [],
+        foundAnimals: [],
         tagInputVisible: false,
         tagValue: '',
         loading: false,

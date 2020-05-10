@@ -28,9 +28,14 @@ public class AnimalController {
         return animalService.findById(id);
     }
 
-    @PostMapping(value = "saveOrUpdate")
-    APIResult saveOrUpdate(Animal animal){
-        return animalService.saveOrUpdate(animal);
+    @PostMapping(value = "add")
+    APIResult saveOrUpdate(Animal animal, Long userId){
+        return animalService.add(animal, userId);
+    }
+
+    @GetMapping(value = "findFoundAnimalByUserId")
+    APIResult findFoundAnimalByUserId(Long userId){
+        return animalService.findFoundAnimalByUserId(userId);
     }
 
 }

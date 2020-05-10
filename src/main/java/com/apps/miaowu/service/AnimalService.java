@@ -10,8 +10,10 @@ public interface AnimalService {
 
     APIResult findById(Long id);
 
-    APIResult saveOrUpdate(Animal animal);
+    APIResult add(Animal animal, Long userId);
 
     APIResult findAllSaveAnimalByUserId(Long UserId);
+
+    APIResult findFoundAnimalByUserId(Long userId);
 
 }

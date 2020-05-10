@@ -17,4 +17,11 @@
         WHERE s.user_id = #{id,jdbcType=BIGINT}
     </select>
 
+    <select id="selectFoundAnimalByUserId" resultType="com.apps.miaowu.bean.Animal">
+        select a.*
+        from animal a, found_table f
+        WHERE f.user_id = #{id,jdbcType=BIGINT}
+        AND a.id = f.animal_id;
+    </select>
+
 </mapper>

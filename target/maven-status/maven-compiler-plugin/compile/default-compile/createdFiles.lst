@@ -4,10 +4,12 @@ com\apps\miaowu\bean\AnimalExample$GeneratedCriteria.class
 com\apps\miaowu\bean\ArticleExample$Criteria.class
 com\apps\miaowu\service\ArticleService.class
 com\apps\miaowu\dao\ArticleLabelMapper.class
+com\apps\miaowu\dao\extend\LabelMapperExtend.class
 com\apps\miaowu\bean\Comment.class
 com\apps\miaowu\bean\LabelExample$Criterion.class
 com\apps\miaowu\bean\FoundExample.class
 com\apps\miaowu\web\controller\CommentController.class
+com\apps\miaowu\utils\MiaoWuUtil.class
 com\apps\miaowu\service\impl\ArticleServiceImpl.class
 com\apps\miaowu\dao\extend\ArticleMapperExtend.class
 com\apps\miaowu\dao\CommentMapper.class
@@ -21,6 +23,7 @@ com\apps\miaowu\config\MybatisConfig.class
 com\apps\miaowu\service\UserService.class
 com\apps\miaowu\bean\ArticleLabelExample$Criterion.class
 com\apps\miaowu\bean\FollowExample$Criterion.class
+com\apps\miaowu\config\SpringConfig.class
 com\apps\miaowu\dao\extend\AnimalMapperExtend.class
 com\apps\miaowu\service\impl\ClipServiceImpl.class
 com\apps\miaowu\bean\FoundExample$Criteria.class
@@ -37,6 +40,7 @@ com\apps\miaowu\dao\UserMapper.class
 com\apps\miaowu\bean\AnimalExample.class
 com\apps\miaowu\bean\ThumbUpExample$GeneratedCriteria.class
 com\apps\miaowu\dao\FoundMapper.class
+com\apps\miaowu\config\RedisConfig.class
 com\apps\miaowu\bean\Article.class
 com\apps\miaowu\bean\ArticleLabelExample$GeneratedCriteria.class
 com\apps\miaowu\bean\SaveExample$GeneratedCriteria.class
@@ -106,6 +110,7 @@ com\apps\miaowu\bean\extend\UserExtend.class
 com\apps\miaowu\dao\ArticleMapper.class
 com\apps\miaowu\bean\Found.class
 com\apps\miaowu\dao\AnimalMapper.class
+com\apps\miaowu\web\controller\SaveController.class
 com\apps\miaowu\bean\CommentExample.class
 com\apps\miaowu\bean\SaveExample.class
 com\apps\miaowu\bean\User.class

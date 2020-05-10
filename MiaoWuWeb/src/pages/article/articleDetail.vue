@@ -59,6 +59,12 @@
           <span
             style="color: #20a0ff;margin-right:20px;font-size: 12px;"
           >{{new Date(comment.date).getTime() | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
+          <el-button
+            type="primary"
+            @click="handleFollow"
+            style="margin-top: 10px"
+            v-if="userId !== comment.user.id"
+          >关注</el-button>
         </div>
         <div style="text-align: left">{{comment.commentContent}}</div>
       </div>

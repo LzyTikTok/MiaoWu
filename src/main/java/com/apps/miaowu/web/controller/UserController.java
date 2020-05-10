@@ -112,7 +112,7 @@ public class UserController {
 
     @GetMapping(value = "findUserWithSaveById")
     public APIResult findUserWithSaveById(Long id){
-        return userService.findUserWithSaveById(id);
+        return userService.findUserWithSasveById(id);
     }
 
     @GetMapping(value = "cascadeFindAllUser")
@@ -124,6 +124,9 @@ public class UserController {
     public APIResult cascadeFindUserById(Long id){
         return userService.cascadeFindUserById(id);
     }
+
+    @GetMapping(value = "getAllFollowByUserId")
+    public APIResult getAllFollowByUserId(Long userId){return userService.findAllFollows(userId);}
 
     @DeleteMapping(value = "deleteUserById")
     public APIResult deleteById(long id){return userService.deleteUserById(id);}

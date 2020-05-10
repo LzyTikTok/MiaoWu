@@ -160,6 +160,7 @@ export default {
       })
     },
     handleLogin() {
+      // this.redirect = '@/pages/article/List';
       debugger;
       var self = this;
       this.loading = true;

@@ -61,7 +61,7 @@
         'roles'
       ])
     },
-    created() {
+    mounted() {
       this.getUser();
       this.getClipArticle();
       this.getMyArticles();
