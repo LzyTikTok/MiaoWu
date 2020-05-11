@@ -65,6 +65,16 @@
             style="margin-top: 10px"
             v-if="userId !== comment.user.id"
           >关注</el-button>
+    <el-popconfirm
+      confirmButtonText='提交'
+      cancelButtonText='手滑了'
+      icon="el-icon-info"
+      iconColor="red"
+      title="确定提交救助动物吗？"
+      @onConfirm="postSave(comment.user.id)"
+    >
+      <el-button v-if="article.authorId === userId" slot="reference" type="danger" icon="el-icon-delete" circle
+                 style="right: 0px; position: absolute">提交救助动物</el-button>
         </div>
         <div style="text-align: left">{{comment.commentContent}}</div>
       </div>
@@ -185,7 +195,6 @@ export default {
       }
       let form = {
         userId: this.article.authorId,
-        //todo 著作者id
         fansId: self.$store.state.userInfo.id
       };
       request
@@ -212,6 +221,39 @@ export default {
             reject();
           }
         });
+    },
+    postSave(userId){
+      //未测试
+          let url = settings.apiUrl + "save/add";
+          let self = this;
+          let form = {
+            'userId': userId,
+            'animalId': article.animalId,
+          };
+          request.request({
+            url,
+            method: "post",
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify(form)
+          }).then((res, error) => {
+            if (error) {
+              this.loading = false;
+              return;
+            }
+            if (res.code === ResultCode.SuccessCode) {
+              this.$message.success("提交救助成功啦喵");
+              this.loading = false;
+            } else if (res.code === ResultCode.BadRequest) {
+              self.$message.error(res.message);
+              this.loading = false;
+              reject();
+            } else if (res.code === ResultCode.ServerInnerError) {
+              this.$message.error('服务器出错喵~');
+              this.loading = false;
+            }
+          })
     }
   }
 };
