@@ -180,12 +180,12 @@ export const asyncRoutes = [
         name: 'article_list',
         meta: { title: '发现动物', icon: 'documentation'}
       },
-      {
-        path: 'postSave',
-        component: () => import('@/pages/animal/postSave'),
-        name: 'postSave',
-        meta: { title: '提交救助动物', icon: 'documentation'}
-      },
+      // {
+      //   path: 'postSave',
+      //   component: () => import('@/pages/animal/postSave'),
+      //   name: 'postSave',
+      //   meta: { title: '提交救助动物', icon: 'documentation'}
+      // },
     ]
   },
   // {

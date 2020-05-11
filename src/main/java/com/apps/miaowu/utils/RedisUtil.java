@@ -28,8 +28,10 @@ import java.util.concurrent.TimeUnit;
  @Component
 public class RedisUtil {
 
+    public static final long TOKEN_EXPIRES_SECOND = 1800;
+
     @Autowired
-    private StringRedisTemplate redisTemplate;
+    private StringRedisTemplate redisTemplate;    
 
     public void setRedisTemplate(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;

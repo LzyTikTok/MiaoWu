@@ -10,6 +10,8 @@ public class UserExtend extends User {
     List<Animal> foundAnimals;
     List<Save> saveAnimals;
 
+    //todo token
+
     public List<Article> getArticles() {
         return articles;
     }

@@ -112,7 +112,7 @@ public class UserController {
 
     @GetMapping(value = "findUserWithSaveById")
     public APIResult findUserWithSaveById(Long id){
-        return userService.findUserWithSasveById(id);
+        return userService.findUserWithSaveById(id);
     }
 
     @GetMapping(value = "cascadeFindAllUser")

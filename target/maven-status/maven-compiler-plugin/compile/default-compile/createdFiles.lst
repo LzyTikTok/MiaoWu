@@ -1,5 +1,4 @@
 com\apps\miaowu\bean\CommentExample$Criteria.class
-com\apps\miaowu\utils\RedisUtil.class
 com\apps\miaowu\bean\AnimalExample$GeneratedCriteria.class
 com\apps\miaowu\bean\ArticleExample$Criteria.class
 com\apps\miaowu\service\ArticleService.class

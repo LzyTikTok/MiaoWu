@@ -8,6 +8,9 @@ import com.apps.miaowu.dao.FollowMapper;
 import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.dao.extend.UserMapperExtend;
 import com.apps.miaowu.service.UserService;
+import com.apps.miaowu.utils.token.TokenHelper;
+import com.apps.miaowu.utils.token.TokenModel;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private FollowMapper followMapper;
+
+    @Resource
+    private TokenHelper tokenHelper;
 
     @Override
     public APIResult findAll() {
@@ -70,9 +76,9 @@ public class UserServiceImpl implements UserService {
             return APIResult.newResult(400, "Incorrect password", null);
         } else {
         //用户名密码验证通过后，生成token
-        //todo 未验证
-//        TokenModel model = tokenHelper.create(user.getId());
-//        return JsonData.buildSuccess(model);
+       TokenModel model = tokenHelper.create(Integer.valueOf(users.get(0).getId().toString()));
+        System.out.println(model);
+        //todo 返回token
         return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", users.get(0));
         }
 

@@ -7,7 +7,9 @@ import com.apps.miaowu.utils.RedisUtil;
 import com.mysql.jdbc.StringUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RedisTokenHelper implements TokenHelper {
 
     @Autowired
@@ -33,7 +35,7 @@ public class RedisTokenHelper implements TokenHelper {
     public TokenModel create(Integer id) {
         String token = UUID.randomUUID().toString().replace("-", "");
         TokenModel tokenModel = new TokenModel(id, token);
-        redisUtil.set(id == null ? null : String.valueOf(id), token);
+        redisUtil.set(token, id == null ? null : String.valueOf(id));
         return tokenModel;
     }
 

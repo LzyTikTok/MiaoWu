@@ -9,7 +9,7 @@
           <img class="img-circle"
                :src="'https://wpimg.wallstcn.com/57ed425a-c71e-4201-9428-68760c0537c4.jpg'+avatarPrefix">
 <!--          <span class="username text-muted">{{article.title}}</span>-->
-          <el-link type="primary" @click="toArticleDetail(article.id)">{{article.title}}</el-link>
+          <el-link type="primary" @click="toArticleDetail(article.id)" style="left:10px; position:inherit">{{article.title}}</el-link>
           <span class="description">{{article.authorName}}     {{new Date(article.lastUpdate).getTime() | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
           <el-popconfirm
             confirmButtonText='删除'
