@@ -120,6 +120,8 @@
             if (error) {
               this.$message.error('服务器出错喵~');
             }else if (result.code === ResultCode.SuccessCode) {
+              //todo 未测试
+              this.$set(article, "clip", null);
               this.$message.success("删除收藏成功喵~");
             } else if (result.code === ResultCode.ServerInnerError) {
               this.$message.error('服务器出错喵~');

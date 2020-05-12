@@ -7,14 +7,14 @@ public interface TokenHelper {
      * @param id
      * @return
      */
-    TokenModel create(Integer id);
+    TokenModel create(String id);
     
     /**
      * 检查是否存在该token
-     * @param model
+     * @param token
      * @return
      */
-    boolean check(TokenModel model);
+    boolean check(String token);
     
     /**
      * 从前端返回的校验字符串中获取token
@@ -28,5 +28,5 @@ public interface TokenHelper {
      * @param mode
      * @return
      */
-    boolean delete(Integer id);
+    boolean delete(String id);
 }

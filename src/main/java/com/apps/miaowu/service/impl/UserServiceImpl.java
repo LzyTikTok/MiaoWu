@@ -44,44 +44,37 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public APIResult updateUserInfo(User user) {
-        //todo 检查是否逻辑有错
+        // todo 检查是否逻辑有错
         if (user.getId() != null) {
-            Pattern p = Pattern.compile("^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$");
+            Pattern p = Pattern.compile(
+                    "^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$");
             Matcher m = p.matcher(user.getPhone());
             if (!m.matches()) {
-                //密码必须在8位以上且至少包含密码和字母
+                // 密码必须在8位以上且至少包含密码和字母
                 return APIResult.newResult(400, "Illegal phone", null);
             }
-            //用户修改信息，此时进行密码的判断
+            // 用户修改信息，此时进行密码的判断
             // todo 测试
-            else{
+            else {
                 userMapper.updateByPrimaryKeySelective(user);
-                return APIResult.newResult(ResultCode.SuccessCode,"update successfully", null);
+                return APIResult.newResult(ResultCode.SuccessCode, "update successfully", null);
             }
         } else {
             return APIResult.newResult(400, "can't find the user", null);
         }
-        //save
+        // save
     }
 
     @Override
-    public APIResult login(User user) {
-        UserExample example = new UserExample();
-        example.createCriteria().andPhoneEqualTo(user.getPhone());
-        List<User> users = userMapper.selectByExample(example);
-//        System.out.println(users.get(0).getPhone() + " " + users.get(0).getPassword());
-        if (users.size() == 0) {
-            return APIResult.newResult(500, "User not exist", null);
-        } else if (!user.getPassword().equals(users.get(0).getPassword())) {
-            return APIResult.newResult(400, "Incorrect password", null);
-        } else {
-        //用户名密码验证通过后，生成token
-       TokenModel model = tokenHelper.create(Integer.valueOf(users.get(0).getId().toString()));
-        System.out.println(model);
-        //todo 返回token
-        return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", users.get(0));
-        }
+    public APIResult login(String token) {
+        if(tokenHelper.check(token)){
+            TokenModel tokenModel = tokenHelper.get(token);
+            User user = userMapper.selectByPrimaryKey(Long.valueOf(tokenModel.getUserId()));
+            return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", user);
 
+        } else{
+            return APIResult.newResult(ResultCode.BadRequest, "token out of date", null);
+        }
     }
 
     @Override
@@ -139,57 +132,78 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//todo 以下两个接口未测试
+    // todo 以下两个接口未测试
     @Override
     public APIResult findAllFans(Long userId) {
         FollowExample example = new FollowExample();
-        //找到自己的所有粉丝
+        // 找到自己的所有粉丝
         example.createCriteria().andUserIdEqualTo(userId);
         List<Follow> follows = followMapper.selectByExample(example);
         ArrayList<User> users = new ArrayList<>();
-        for (Follow follow:
-                follows) {
+        for (Follow follow : follows) {
             users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
         }
-        if(users.isEmpty()){
+        if (users.isEmpty()) {
             return APIResult.newResult(ResultCode.BadRequest, "can't find the fans", null);
         }
-        return APIResult.newResult(ResultCode.SuccessCode,"success", users);
+        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
     }
-
 
     @Override
     public APIResult findAllFollows(Long userId) {
         FollowExample example = new FollowExample();
-        //找到自己关注的所有user
+        // 找到自己关注的所有user
         example.createCriteria().andFansIdEqualTo(userId);
         List<Follow> follows = followMapper.selectByExample(example);
         ArrayList<User> users = new ArrayList<>();
-        for (Follow follow:
-                follows) {
+        for (Follow follow : follows) {
             users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
         }
-        if(users.isEmpty()){
+        if (users.isEmpty()) {
             return APIResult.newResult(ResultCode.BadRequest, "can't find the follows", null);
         }
-        return APIResult.newResult(ResultCode.SuccessCode,"success", users);
+        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
     }
 
-    //todo logout
-
+    // todo logout
 
     @Override
     public APIResult addUser(User user) {
         UserExample example = new UserExample();
         example.createCriteria().andPhoneEqualTo(user.getPhone());
         List<User> users = userMapper.selectByExample(example);
-        if(users.isEmpty()) {
-//            user.setCreateDate(LocalDateTime.now());
+        if (users.isEmpty()) {
+            // user.setCreateDate(LocalDateTime.now());
             user.setCreateDate(new Date());
             userMapper.insert(user);
-            return APIResult.newResult(ResultCode.SuccessCode,"add user successfully", null);
+            return APIResult.newResult(ResultCode.SuccessCode, "add user successfully", null);
         } else {
-            return APIResult.newResult(ResultCode.DATA_ALREADY_EXISTEDINT,"user exist", null);
+            return APIResult.newResult(ResultCode.DATA_ALREADY_EXISTEDINT, "user exist", null);
         }
     }
+
+    @Override
+    public APIResult token(String phone, String password) {
+        UserExample example = new UserExample();
+        example.createCriteria().andPhoneEqualTo(phone);
+        List<User> users = userMapper.selectByExample(example);
+        if (users.size() == 0) {
+            return APIResult.newResult(500, "User not exist", null);
+        } else if (users.size() == 1) {
+            User user = users.get(0);
+            if(user.getPassword().equals(password)){
+            // 用户名密码验证通过后，生成token
+            TokenModel model = tokenHelper.create(user.getId().toString());
+            System.out.println(model);
+            // todo 返回token
+                return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", model.getToken());
+            } else{
+                return APIResult.newResult(ResultCode.BadRequest, "Incorrect password", null);
+            }
+        } else {
+            return APIResult.newResult(ResultCode.BadRequest, "too many users", null);
+        }
+    }
+
+    
 }

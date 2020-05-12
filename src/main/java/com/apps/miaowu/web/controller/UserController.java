@@ -72,22 +72,14 @@ public class UserController {
         return userService.updateUserInfo(user);
     }
 
-    @PostMapping(value = "login")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "", required = false),
-            @ApiImplicitParam(name = "name", value = "", required = false),
-            //身份证号码可以先不需要，注册的门槛尽量放低
-            @ApiImplicitParam(name = "idCode", value = "", required = false),
-//          思考 归属地的问题 可不可以通过号码直接判断
-            //前端传送数据过来的时候 直接加上国际区号。
-            @ApiImplicitParam(name = "contry_id", value = "", required = false),
-            @ApiImplicitParam(name = "phone", value = "", required = true),
-            @ApiImplicitParam(name = "create_date", value = "", required = false),
-            @ApiImplicitParam(name = "birthday", value = "", required = false),
-            @ApiImplicitParam(name = "password", value = "", required = true)
-    })
-    public APIResult login(User user) {
-        return userService.login(user);
+    @GetMapping(value = "login")
+    public APIResult login(String token) {
+        return userService.login(token);
+    }
+
+    @PostMapping(value = "token")
+    public APIResult token(String phone, String password) {
+        return userService.token(phone, password);
     }
 
     @GetMapping(value = "findById")

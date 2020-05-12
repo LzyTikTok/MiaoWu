@@ -176,10 +176,10 @@ export default {
           return ;
         }
         if (valid) {
-          let url = settings.apiUrl + 'user/login';
+          let url = settings.apiUrl + 'user/token';
           request.request({
             url,
-            method: "post",
+            method: "get",
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -192,7 +192,8 @@ export default {
             if(result.code === ResultCode.SuccessCode){
                 this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
                 this.$message.success("登录成功啦喵")
-                self.$store.state.userInfo = result.data;
+                // self.$store.state.userInfo = result.data;
+                window.localStorage.setItem("auth",result.data);
                 this.loading = false;
             } else if (result.code === 400){
               this.$message.error('账号或密码错误');

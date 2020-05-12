@@ -71,6 +71,7 @@
     methods: {
       getUser() {
         this.user = {
+          // name: this.$store.state.userInfo.name,
           name: this.name,
           role: this.roles.join(' | '),
           email: 'admin@test.com',
@@ -103,7 +104,6 @@
           if (result.code === ResultCode.SuccessCode) {
             self.clipArticles = result.data;
           } else if (result.code === ResultCode.ServerInnerError) {
-            debugger;
             this.$message.error('服务器出错喵~');
             this.loading = false;
           }
