@@ -24,6 +24,10 @@
 </template>
 
 <script>
+  import request from '@/utils/request'
+  import settings from '@/settings'
+  import {ResultCode} from '@/utils/ResultCode'
+  import qs from 'querystring'
     export default {
       name: "userInfo",
       props: {
@@ -31,9 +35,7 @@
           type: Object,
           default: () => {
             return {
-              name: '',
-              birthday: "",
-              id: Number,
+              name: "",
               idCode: "",
               password: "",
               phone: "",
@@ -42,12 +44,31 @@
         }
       },
       methods: {
-        //todo 更新用户信息
         submit() {
-          this.$message({
-            message: 'User information has been updated successfully',
-            type: 'success',
-            duration: 5 * 1000
+          //todo invalidate 未测试
+          let url = settings.apiUrl + 'user/updateUserInfo';
+          request.request({
+            url,
+            method: "post",
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify(this.user)
+          }).then((result,error)=>{
+            if(error){
+              this.loading = false;
+              return ;
+            }
+            if(result.code === ResultCode.SuccessCode){
+              // this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
+              this.$message.success("更新信息成功啦喵");
+              // self.$store.state.userInfo = result.data;
+              // window.localStorage.setItem("auth",result.data);
+              this.loading = false;
+            } else if (result.code === ResultCode.BadRequest){
+              this.$message.error('参数错误');
+              this.loading = false;
+            }
           })
         }
       }

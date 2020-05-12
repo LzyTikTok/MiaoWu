@@ -1,9 +1,6 @@
 <template>
   <div>
     <h5>欢迎来到喵呜</h5>
-    <h5>{{testObject}}</h5>
-    <el-button @click="change">改变</el-button>
-    <h5 v-show="this.testObject.age === 15">等于15</h5>
   </div>
 </template>
 
@@ -20,10 +17,6 @@ export default {
       restaurants: [],
       state: "",
       timeout: null,
-      testObject: {
-        name: "小王",
-        age: "12",
-      }
     };
   },
   created() {
@@ -50,9 +43,6 @@ export default {
           this.$message.error('服务器出错喵~');
         }
       })
-    },
-    change(){
-        this.testObject.age = "15";
     }
   },
   mounted() {}
