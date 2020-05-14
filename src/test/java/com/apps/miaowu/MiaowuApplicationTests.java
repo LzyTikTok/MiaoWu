@@ -5,7 +5,9 @@ import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.dao.ArticleMapper;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.service.ArticleService;
+import com.apps.miaowu.service.UserService;
 import com.apps.miaowu.utils.RedisUtil;
+import com.apps.miaowu.utils.token.TokenModel;
 
 import redis.clients.jedis.Jedis;
 
@@ -33,6 +35,9 @@ class MiaowuApplicationTests {
 
     @Autowired
     RedisUtil redisUtil;
+
+    @Autowired
+    UserService userService;
 
     @Test
     void contextLoads() {
@@ -89,5 +94,13 @@ class MiaowuApplicationTests {
         APIResult apiResult = articleService.cascadeFindById(1L);
         System.out.println(apiResult);
     }
+
+    @Test
+    void testLogin(){
+        // APIResult apiResult = userService.token("18378980517", "test6942231");
+        // System.out.println(apiResult);
+        APIResult login = userService.login("bbbf5f4e72284f048404bdcc44a39556");
+        System.out.println(login);
+    }   
 
 }

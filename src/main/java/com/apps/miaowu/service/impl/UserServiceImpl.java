@@ -71,7 +71,6 @@ public class UserServiceImpl implements UserService {
             TokenModel tokenModel = tokenHelper.get(token);
             User user = userMapper.selectByPrimaryKey(Long.valueOf(tokenModel.getUserId()));
             return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", user);
-
         } else{
             return APIResult.newResult(ResultCode.BadRequest, "token out of date", null);
         }

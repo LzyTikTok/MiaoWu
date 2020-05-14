@@ -21,10 +21,11 @@ public class RedisTokenHelper implements TokenHelper {
     public boolean check(String token) {
         boolean result = false;
         if(token != null || token.length() != 0){
-            String authenticatedToken = redisUtil.get(token);
-            if(authenticatedToken != null && authenticatedToken.equals(token)){
+            String userId = redisUtil.get(token);
+            if(userId != null){
                 //已使用TimeUnit，未测试
                 redisUtil.expire(token, RedisUtil.TOKEN_EXPIRES_SECOND, TimeUnit.SECONDS);
+                return true;
             }
         }
         // TODO Auto-generated method stub
@@ -48,15 +49,16 @@ public class RedisTokenHelper implements TokenHelper {
 
     @Override
     public TokenModel get(String authStr) {
-        TokenModel tokenModel = null;
-        if(StringUtils.isNullOrEmpty(authStr)){
-            String[] modelArr = authStr.split("_");
-            if(modelArr.length == 2){
-                String userId = modelArr[0];
-                String token = modelArr[1];
-                tokenModel = new TokenModel(userId, token);
-            }
-        }
+        String res = redisUtil.get(authStr);
+        TokenModel tokenModel = new TokenModel(res, authStr);
+        // if(StringUtils.isNullOrEmpty(authStr)){
+        //     String[] modelArr = authStr.split("_");
+        //     if(modelArr.length == 2){
+        //         String userId = modelArr[0];
+        //         String token = modelArr[1];
+        //         tokenModel = new TokenModel(userId, token);
+        //     }
+        // }
         return tokenModel;
     }
     
