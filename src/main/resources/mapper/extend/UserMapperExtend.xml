@@ -47,6 +47,13 @@
         <collection property="save" resultMap="SaveResultMap" />
     </resultMap>
 
+    <resultMap id="UserWithFollowsAndFansMap" type="com.apps.miaowu.bean.extend.UserExtend"
+               extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
+        <collection property="follows" resultMap="com.apps.miaowu.dao.UserMapper.BaseResultMap" />
+        <collection property="fans" resultMap="com.apps.miaowu.dao.UserMapper.BaseResultMap" />
+    </resultMap>
+
+
     <select id="selectUserWithFound" resultMap="UserWithFoundResultMap">
     SELECT u.*, f.*
     FROM user u LEFT JOIN found_table f
@@ -88,6 +95,12 @@
 	LEFT JOIN found_table f
 	ON u.id = f.user_id
 	where u.id = #{id};
+    </select>
+
+    <select id="selectUserWithFollowsAndFansById" resultMap="UserWithFollowsAndFansMap" parameterType="java.lang.Long">
+
+
+
     </select>
 
 </mapper>

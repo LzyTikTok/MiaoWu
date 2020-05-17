@@ -6,9 +6,7 @@
 
     <div class="user-profile">
       <div class="box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
-          <div>你好</div>
-        </pan-thumb>
+        <img src="@/static/profile.jpg" :height="'100px'" :width="'100px'" :hoverable="false">
       </div>
       <div class="box-center">
         <div class="user-name text-center">{{ user.name }}</div>

@@ -71,7 +71,7 @@
     },
     computed: {
       userId() {
-        return this.$store.state.userInfo.id;
+        return this.$store.getters.id;
       }
     },
     methods: {
@@ -80,14 +80,15 @@
         let self = this;
         let url = settings.apiUrl + "article/thumbUpOrDown";
         let form = {
-          'userId': self.$store.state.userInfo.id,
+          'userId': self.$store.getters.id,
           'articleId': article.id
         };
         request.request({
           url,
           method: "post",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
           },
           data: qs.stringify(form)
         }).then((result, error) => {
@@ -119,7 +120,8 @@
           //todo 页面未响应
           method: "delete",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
           },
           data: qs.stringify(form)
         }).then((result, error) => {

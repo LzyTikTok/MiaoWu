@@ -37,7 +37,7 @@
       }
     },
     created() {
-      request.get(settings.apiUrl + 'article/findAllWithClipByUserIdOrderByUpdateDesc' + '?userId=' + this.$store.state.userInfo.id).then((result) => {
+      request.get(settings.apiUrl + 'article/findAllWithClipByUserIdOrderByUpdateDesc' + '?userId=' + this.$store.getters.id).then((result) => {
         this.articles = result.data;
       })
     },
@@ -81,14 +81,15 @@
             self.$message.error("尚未登录");
           }
           let form = {
-            'userId': self.$store.state.userInfo.id,
+            'userId': self.$store.getters.id,
             'articleId': article.id
           }
           request.request({
             url,
             method: "post",
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+
             },
             data: qs.stringify(form)
           }).then((result, error) => {
@@ -106,14 +107,15 @@
           let self = this;
           let url = settings.apiUrl + "clip/deleteClipArticle"
           let form = {
-            'userId': self.$store.state.userInfo.id,
+            'userId': self.$store.getters.id,
             'articleId': article.id
           }
           request.request({
             url,
             method: "post",
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+
             },
             data: qs.stringify(form)
           }).then((result, error) => {

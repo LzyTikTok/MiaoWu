@@ -62,6 +62,7 @@
       ])
     },
     mounted() {
+      debugger;
       this.getUser();
       this.getClipArticle();
       this.getMyArticles();
@@ -89,12 +90,13 @@
           return;
         }
         let self = this;
-        let url = settings.apiUrl + 'article/findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.state.userInfo.id ;
+        let url = settings.apiUrl + 'article/findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id ;
         request.request({
           url,
           method: "get",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
           },
         }).then((result, error) => {
           if (error) {
@@ -111,12 +113,13 @@
       },
       getMyArticles(){
         let self = this;
-        let url = settings.apiUrl + 'article/findByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.state.userInfo.id ;
+        let url = settings.apiUrl + 'article/findByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.getters.id ;
         request.request({
           url,
           method: "get",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
           },
         }).then((result, error) => {
           if (error) {
@@ -133,12 +136,13 @@
       },
       getfollowArticles(){
         let self = this;
-        let url = settings.apiUrl + 'article/findFollowsArticleByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.state.userInfo.id ;
+        let url = settings.apiUrl + 'article/findFollowsArticleByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id ;
         request.request({
           url,
           method: "get",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
           },
         }).then((result, error) => {
           if (error) {

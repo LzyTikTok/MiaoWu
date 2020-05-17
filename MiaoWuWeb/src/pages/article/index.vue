@@ -25,20 +25,23 @@ export default {
   methods: {
     login(){
       let self = this;
-      let url = settings.apiUrl + 'user/login';
+      let url = settings.apiUrl + 'user/info' + '?token=' + window.localStorage.getItem('token');
       request.request({
         url,
-        method: "post",
+        method: "get",
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'auth': window.localStorage.getItem('auth')
+
         },
       }).then((result, error) => {
+        debugger;
         if (error) {
           return;
         }
         if (result.code === ResultCode.SuccessCode) {
+          debugger;
           self.$store.state.userInfo = result.data;
+          console.log(self.$store.state.userInfo);
         } else if (result.code === ResultCode.ServerInnerError) {
           this.$message.error('服务器出错喵~');
         }

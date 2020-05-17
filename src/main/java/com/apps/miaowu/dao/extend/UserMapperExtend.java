@@ -13,6 +13,8 @@ public interface UserMapperExtend {
 
   List<UserExtend> selectUserWithSaveById(Long id);
 
+  UserExtend selectUserWithFollowsAndFansById(Long id);
+
   List<UserExtend> cascadeFindAllUser();
 
   List<UserExtend> cascadeFindUserById(Long id);

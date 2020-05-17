@@ -25,19 +25,35 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_USERINFO: (state, userInfo) =>{
+    state.userInfo = userInfo
+  },
+  SET_PASSWORD: (state, password) =>{
+    state.password = password
+  },
+  SET_IDCODE: (state, idCode) =>{
+    state.idCode = idCode
+  },
+  SET_PHONE: (state, phone) =>{
+    state.phone = phone
+  },
+  SET_USERID: (state,id) =>{
+    state.id = id
   }
 }
 
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
+    const { phone, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ phone: phone.trim(), password: password }).then(response => {
         const { data } = response
+        // const data = qs.parse(response.data);
         commit('SET_TOKEN', data.token)
         setToken(data.token)
-        resolve()
+        resolve(response)
       }).catch(error => {
         reject(error)
       })
@@ -46,25 +62,35 @@ const actions = {
 
   // get user info
   getInfo({ commit, state }) {
+    var self = this;
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response
-
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-
-        const { roles, name, avatar, introduction } = data
-
+        // data.roles = ['admin'];
+        // data.avatar = [];
+        // data.introduction = [];
+        const {id, password, phone, idCode, name, introduction } = data
+        let roles = ['admin'];
+        let avatar = "@/static/profile.jpg";
+        commit('SET_USERINFO',data)
+        debugger;
+        // self.$store.state.userInfo = data;
         // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
+        // if (!roles || roles.length <= 0) {
+        //   reject('getInfo: roles must be a non-null array!')
+        // }
 
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
+        commit('SET_IDCODE', idCode)
+        commit('SET_PASSWORD', password)
+        commit('SET_PHONE', phone)
+        commit('SET_USERID', id)
+        // commit('SET_INTRODUCTION', introduction)
         resolve(data)
       }).catch(error => {
         reject(error)

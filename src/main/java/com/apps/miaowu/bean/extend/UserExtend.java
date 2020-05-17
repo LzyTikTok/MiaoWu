@@ -8,9 +8,28 @@ public class UserExtend extends User {
     //todo 救助的动物
     //todo 发现的动物
     List<Animal> foundAnimals;
+
     List<Save> saveAnimals;
 
-    //todo token
+    List<User> follows;
+
+    List<User> fans;
+
+    public List<User> getFollows() {
+        return follows;
+    }
+
+    public void setFollows(List<User> follows) {
+        this.follows = follows;
+    }
+
+    public List<User> getFans() {
+        return fans;
+    }
+
+    public void setFans(List<User> fans) {
+        this.fans = fans;
+    }
 
     public List<Article> getArticles() {
         return articles;

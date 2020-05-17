@@ -15,7 +15,7 @@ public interface UserService {
 
     APIResult addUser(User user);
 
-    APIResult login(String token);
+    APIResult getInfo(String token);
 
     APIResult findById(Long id);
 
@@ -37,6 +37,6 @@ public interface UserService {
 
     APIResult findAllFollows(Long id);
 
-    APIResult token(String phone, String password);
+    APIResult login(String phone, String password);
 
 }

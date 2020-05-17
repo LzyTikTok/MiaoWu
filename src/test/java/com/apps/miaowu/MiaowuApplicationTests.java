@@ -1,6 +1,9 @@
 package com.apps.miaowu;
 
+import com.alibaba.fastjson.JSON;
 import com.apps.miaowu.bean.Animal;
+import com.apps.miaowu.bean.User;
+import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.dao.ArticleMapper;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
@@ -97,10 +100,13 @@ class MiaowuApplicationTests {
 
     @Test
     void testLogin(){
-        // APIResult apiResult = userService.token("18378980517", "test6942231");
-        // System.out.println(apiResult);
-        APIResult login = userService.login("bbbf5f4e72284f048404bdcc44a39556");
-        System.out.println(login);
+        APIResult apiResult = userService.login("18378980517", "test6942231");
+        String str = apiResult.getData().toString();
+        System.out.println(str);
+        TokenModel tokenModel = JSON.parseObject(str, TokenModel.class);
+        APIResult login = userService.getInfo(tokenModel.getToken());
+        User user = JSON.parseObject((String) login.getData(), User.class);
+        System.out.println(user);
     }   
 
 }

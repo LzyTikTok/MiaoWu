@@ -1,5 +1,6 @@
 package com.apps.miaowu.web.controller;
 
+import com.apps.miaowu.annotation.NoneAuth;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
@@ -72,14 +73,16 @@ public class UserController {
         return userService.updateUserInfo(user);
     }
 
-    @GetMapping(value = "login")
-    public APIResult login(String token) {
-        return userService.login(token);
+    @GetMapping(value = "info")
+    @NoneAuth
+    public APIResult info(String token) {
+        return userService.getInfo(token);
     }
 
-    @PostMapping(value = "token")
-    public APIResult token(String phone, String password) {
-        return userService.token(phone, password);
+    @PostMapping(value = "login")
+    @NoneAuth
+    public APIResult login(String phone, String password) {
+        return userService.login(phone, password);
     }
 
     @GetMapping(value = "findById")
