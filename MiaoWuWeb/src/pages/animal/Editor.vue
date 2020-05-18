@@ -58,7 +58,8 @@
               url,
               method: "post",
               headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+
               },
               data: qs.stringify(form)
             }).then((res, error) => {

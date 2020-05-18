@@ -161,7 +161,7 @@
           'title': self.article.title,
           'content': self.article.mdContent,
           'source': self.$refs.md.d_render,
-          'authorId': self.$store.state.userInfo.id,
+          'authorId': self.$store.getters.id,
           'animalId': self.article.animalId,
           'type': 1
         };
@@ -170,7 +170,8 @@
             url,
             method: "post",
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+
             },
             data: qs.stringify(form)
           }).then((res, error) => {
@@ -201,7 +202,8 @@
             url,
             method: "post",
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+
             },
             data: qs.stringify(form)
           }).then((res, error) => {
@@ -225,13 +227,14 @@
         })
       },
       getFoundAnimals() {
-        let url = settings.apiUrl + "animal/findFoundAnimalByUserId?userId=" + this.$store.state.userInfo.id;
+        let url = settings.apiUrl + "animal/findFoundAnimalByUserId?userId=" + this.$store.getters.id;
         let self = this;
         request.request({
           url,
           method: "get",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
           },
         }).then((res, error) => {
           if (error) {

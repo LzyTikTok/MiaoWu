@@ -1,5 +1,7 @@
 package com.apps.miaowu.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.apps.miaowu.annotation.NoneAuth;
 import com.apps.miaowu.bean.*;
 import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
@@ -66,10 +68,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public APIResult login(String token) {
+    public APIResult getInfo(String token) {
         if(tokenHelper.check(token)){
             TokenModel tokenModel = tokenHelper.get(token);
-            User user = userMapper.selectByPrimaryKey(Long.valueOf(tokenModel.getUserId()));
+            Long userId = Long.valueOf(tokenModel.getUserId());
+
+            User user = userMapper.selectByPrimaryKey(userId);
+//            String res = JSON.toJSONString(user);
             return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", user);
         } else{
             return APIResult.newResult(ResultCode.BadRequest, "token out of date", null);
@@ -182,7 +187,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public APIResult token(String phone, String password) {
+    public APIResult login(String phone, String password) {
+        if(phone == null || password == null){
+            return APIResult.newResult(ResultCode.BadRequest, "params invalid", null);
+        }
         UserExample example = new UserExample();
         example.createCriteria().andPhoneEqualTo(phone);
         List<User> users = userMapper.selectByExample(example);
@@ -193,9 +201,9 @@ public class UserServiceImpl implements UserService {
             if(user.getPassword().equals(password)){
             // 用户名密码验证通过后，生成token
             TokenModel model = tokenHelper.create(user.getId().toString());
-            System.out.println(model);
-            // todo 返回token
-                return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", model.getToken());
+//            System.out.println(model);
+//            String jsonString = JSON.toJSONString(model);
+                return APIResult.newResult(ResultCode.SuccessCode, "get token successfully", model);
             } else{
                 return APIResult.newResult(ResultCode.BadRequest, "Incorrect password", null);
             }

@@ -2,17 +2,17 @@
 <!--todo 过滤器 <-->
   <el-form>
   <el-form-item label="昵称">
-    <el-input v-model="user.name" />
+    <el-input v-model="this.$store.getters.name" />
   </el-form-item>
     <el-form-item label="密码">
-      <el-input v-model="user.password" />
+      <el-input v-model="this.$store.getters.password" />
     </el-form-item>
     <el-form-item label="身份证">
-      <el-input v-model="user.idCode" :disable="false"
+      <el-input v-model="this.$store.getters.idCode" :disable="false"
       />
     </el-form-item>
     <el-form-item label="电话号码">
-      <el-input v-model="user.phone" />
+      <el-input v-model="this.$store.getters.phone" />
     </el-form-item>
 <!--  <el-form-item label="Email">-->
 <!--    <el-input v-model.trim="user.email" />-->
@@ -51,7 +51,8 @@
             url,
             method: "post",
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+
             },
             data: qs.stringify(this.user)
           }).then((result,error)=>{

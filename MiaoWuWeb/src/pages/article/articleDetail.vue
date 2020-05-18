@@ -122,7 +122,7 @@
     },
     computed: {
       userId() {
-        return this.$store.state.userInfo.id;
+        return this.$store.getters.id;
       }
     },
     methods: {
@@ -161,7 +161,7 @@
         self.commentLoading = true;
         let url = settings.apiUrl + "comment/addComment";
         let form = {
-          userId: self.$store.state.userInfo.id,
+          userId: self.$store.getters.id,
           articleId: self.article.id,
           comment: self.textarea
         };
@@ -197,12 +197,12 @@
         let self = this;
         let url = settings.apiUrl + "follow/addOrDelFollow";
         //双重保险
-        if (this.article.authorId === self.$store.state.userInfo.id) {
+        if (this.article.authorId === self.$store.getters.id) {
           this.$message.error("不能关注自己~");
         }
         let form = {
           userId: this.article.authorId,
-          fansId: self.$store.state.userInfo.id
+          fansId: self.$store.getters.id
         };
         request
           .request({
@@ -241,7 +241,8 @@
           url,
           method: "post",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
           },
           data: qs.stringify(form)
         }).then((res, error) => {

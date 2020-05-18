@@ -1,7 +1,10 @@
 package com.apps.miaowu.utils.token;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class TokenModel {
 
+	@JSONField(serialize=false)
 	private String userId;
 
 	private String token;
