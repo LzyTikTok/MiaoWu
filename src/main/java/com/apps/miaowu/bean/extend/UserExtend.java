@@ -5,8 +5,6 @@ import com.apps.miaowu.bean.*;
 import java.util.List;
 
 public class UserExtend extends User {
-    //todo 救助的动物
-    //todo 发现的动物
     List<Animal> foundAnimals;
 
     List<Save> saveAnimals;

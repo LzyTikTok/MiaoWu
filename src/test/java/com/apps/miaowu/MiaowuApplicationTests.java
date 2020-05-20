@@ -107,6 +107,17 @@ class MiaowuApplicationTests {
         APIResult login = userService.getInfo(tokenModel.getToken());
         User user = JSON.parseObject((String) login.getData(), User.class);
         System.out.println(user);
-    }   
+    }
+
+    @Test
+    void TestJson(){
+        User user = new User();
+        user.setName("测试");
+        User user2 = new User();
+        user2.setName("测试2号");
+        String res = JSON.toJSONString(user) + JSON.toJSONString(user2);
+        System.out.println(JSON.toJSONString(user));
+        System.out.println(res);
+    }
 
 }

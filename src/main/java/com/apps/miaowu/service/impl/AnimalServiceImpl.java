@@ -35,6 +35,9 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public APIResult findById(Long id) {
+        if(id == null){
+            return APIResult.newResult(ResultCode.BadRequest, "params invalid", null);
+        }
         AnimalExample example = new AnimalExample();
         example.createCriteria().andIdEqualTo(id);
         List<Animal> animals = animalMapper.selectByExample(example);

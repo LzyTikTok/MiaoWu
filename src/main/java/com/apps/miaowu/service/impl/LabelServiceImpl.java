@@ -24,6 +24,9 @@ public class LabelServiceImpl implements LabelService {
 
     @Override
     public APIResult addLabels(Long articleId, String[] labelNames) {
+        if(articleId == null || labelNames == null){
+            return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
+        }
         for (String labelName:
                 labelNames ) {
             LabelExample labelExample =  new LabelExample();

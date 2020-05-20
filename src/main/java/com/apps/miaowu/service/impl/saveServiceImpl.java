@@ -1,6 +1,7 @@
 package com.apps.miaowu.service.impl;
 
 import com.apps.miaowu.bean.Save;
+import com.apps.miaowu.bean.SaveExample;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
 import com.apps.miaowu.dao.SaveMapper;
@@ -8,8 +9,8 @@ import com.apps.miaowu.service.SaveService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class saveServiceImpl implements SaveService {
@@ -19,6 +20,16 @@ public class saveServiceImpl implements SaveService {
 
     @Override
     public APIResult addSave(Long userId, Long animalId) {
+        if(userId == null || animalId == null){
+            return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
+        }
+        SaveExample example = new SaveExample();
+        example.createCriteria().andUserIdEqualTo(userId).andAnimalIdEqualTo(animalId);
+        List<Save> saves = saveMapper.selectByExample(example);
+        if(!saves.isEmpty()){
+            return APIResult.newResult(ResultCode.DATA_ALREADY_EXISTEDINT, "DATA_ALREADY_EXIST", null);
+        }
+
         Save save = new Save();
         save.setAnimalId(animalId);
         save.setUserId(userId);

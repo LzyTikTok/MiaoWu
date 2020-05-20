@@ -62,6 +62,22 @@
           <span
             style="color: #20a0ff;margin-right:20px;font-size: 12px;"
           >{{new Date(comment.date).getTime() | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
+          <el-popconfirm
+            confirmButtonText='提交'
+            cancelButtonText='手滑了'
+            icon="el-icon-info"
+            iconColor="red"
+            title="确定取消关注吗？"
+            @onConfirm="postSave(comment.user.id)"
+          >
+            <el-button
+              type="primary"
+              @click="handleFollow"
+              style="margin-top: 10px"
+              v-if="userId !== comment.user.id"
+            >取消关注
+            </el-button>
+          </el-popconfirm>
           <el-button
             type="primary"
             @click="handleFollow"
