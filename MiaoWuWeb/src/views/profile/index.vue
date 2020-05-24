@@ -11,7 +11,7 @@
           <el-card>
             <el-tabs v-model="activeTab">
               <el-tab-pane label="我的信息" name="userInfo">
-                <userInfo :user="this.$store.state.userInfo"/>
+                <userInfo :userInfo="this.$store.state.userInfo"/>
               </el-tab-pane>
               <el-tab-pane label="收藏文章列表" name="clipArticles">
                 <ArticleList :articles="this.clipArticles"/>
@@ -62,7 +62,6 @@
       ])
     },
     mounted() {
-      debugger;
       this.getUser();
       this.getClipArticle();
       this.getMyArticles();

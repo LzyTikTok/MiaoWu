@@ -34,14 +34,12 @@ export default {
 
         },
       }).then((result, error) => {
-        debugger;
         if (error) {
           return;
         }
         if (result.code === ResultCode.SuccessCode) {
-          debugger;
-          self.$store.state.userInfo = result.data;
-          console.log(self.$store.state.userInfo);
+          // debugger;
+          // self.$store.state.userInfo = JSON.parse(result.data);
         } else if (result.code === ResultCode.ServerInnerError) {
           this.$message.error('服务器出错喵~');
         }

@@ -24,7 +24,6 @@ public class FollowServiceImpl implements FollowService {
     //关注用户
     @Override
     public APIResult addOrDelFollow(Long userId, Long fansId) {
-        //todo 参照此模板进行其他Service类的异常情况处理
         Follow follow = new Follow();
         follow.setUserId(userId);
         follow.setFansId(fansId);

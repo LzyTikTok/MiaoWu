@@ -11,7 +11,6 @@
           </a>
           <div class="bottom clearfix" style="font-size: 11px">
             <time class="time">{{new Date(article.lastUpdate).getTime() | parseTime('{y}-{m}-{d} {h}:{i}')}}</time>
-<!--            todo 收藏文章-->
           </div>
         </div>
       </el-card>
@@ -77,7 +76,7 @@
         if (article.clip === null) {
           let self = this;
           let url = settings.apiUrl + "clip/addClipArticle"
-          if(!self.$store.state.userInfo){
+          if(!self.$store.state.user){
             self.$message.error("尚未登录");
           }
           let form = {
@@ -122,7 +121,6 @@
             if (error) {
               this.$message.error('服务器出错喵~');
             }else if (result.code === ResultCode.SuccessCode) {
-              //todo 未测试
               this.$set(article, "clip", null);
               this.$message.success("删除收藏成功喵~");
             } else if (result.code === ResultCode.ServerInnerError) {

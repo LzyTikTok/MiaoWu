@@ -17,9 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,37 +44,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public APIResult updateUserInfo(User user) {
-        // todo 检查是否逻辑有错
         if (user.getId() != null) {
-            Pattern p = Pattern.compile(
-                    "^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$");
-            Matcher m = p.matcher(user.getPhone());
-            if (!m.matches()) {
-                // 密码必须在8位以上且至少包含密码和字母
-                return APIResult.newResult(400, "Illegal phone", null);
-            }
-            // 用户修改信息，此时进行密码的判断
-            // todo 测试
-            else {
-                userMapper.updateByPrimaryKeySelective(user);
-                return APIResult.newResult(ResultCode.SuccessCode, "update successfully", null);
-            }
+            userMapper.updateByPrimaryKeySelective(user);
+            return APIResult.newResult(ResultCode.SuccessCode, "update successfully", null);
         } else {
-            return APIResult.newResult(400, "can't find the user", null);
+            return APIResult.newResult(ResultCode.BadRequest, "can't find the user", null);
         }
         // save
     }
 
     @Override
     public APIResult getInfo(String token) {
-        if(tokenHelper.check(token)){
+        if (tokenHelper.check(token)) {
             TokenModel tokenModel = tokenHelper.get(token);
             Long userId = Long.valueOf(tokenModel.getUserId());
 
             User user = userMapper.selectByPrimaryKey(userId);
-//            String res = JSON.toJSONString(user);
-            return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", user);
-        } else{
+            Map<String, Object> res = new HashMap<>();
+
+            APIResult follows = this.findAllFollows(userId);
+            APIResult fans = this.findAllFans(userId);
+            res.put("user", user);
+            res.put("follows", follows.getData());
+            res.put("fans", fans.getData());
+
+            String resString = JSON.toJSONString(res);
+            return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", resString);
+        } else {
             return APIResult.newResult(ResultCode.BadRequest, "token out of date", null);
         }
     }
@@ -174,7 +168,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public APIResult addUser(User user) {
         UserExample example = new UserExample();
-        example.createCriteria().andPhoneEqualTo(user.getPhone());
+        example.createCriteria().andIdCodeEqualTo(user.getIdCode());
         List<User> users = userMapper.selectByExample(example);
         if (users.isEmpty()) {
             // user.setCreateDate(LocalDateTime.now());
@@ -188,7 +182,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public APIResult login(String phone, String password) {
-        if(phone == null || password == null){
+        if (phone == null || password == null) {
             return APIResult.newResult(ResultCode.BadRequest, "params invalid", null);
         }
         UserExample example = new UserExample();
@@ -198,13 +192,13 @@ public class UserServiceImpl implements UserService {
             return APIResult.newResult(500, "User not exist", null);
         } else if (users.size() == 1) {
             User user = users.get(0);
-            if(user.getPassword().equals(password)){
-            // 用户名密码验证通过后，生成token
-            TokenModel model = tokenHelper.create(user.getId().toString());
+            if (user.getPassword().equals(password)) {
+                // 用户名密码验证通过后，生成token
+                TokenModel model = tokenHelper.create(user.getId().toString());
 //            System.out.println(model);
-//            String jsonString = JSON.toJSONString(model);
+                String jsonString = JSON.toJSONString(model);
                 return APIResult.newResult(ResultCode.SuccessCode, "get token successfully", model);
-            } else{
+            } else {
                 return APIResult.newResult(ResultCode.BadRequest, "Incorrect password", null);
             }
         } else {
@@ -212,5 +206,5 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    
+
 }

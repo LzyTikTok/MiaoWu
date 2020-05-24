@@ -104,27 +104,6 @@
         />
       </el-form-item>
 
-<!--      <el-form-item prop="gender">-->
-<!--        <span class="demonstration" style="color: white; margin:10px">性别</span>-->
-<!--        <el-radio v-model="registerForm.gender" label="man">男</el-radio>-->
-<!--        <el-radio v-model="registerForm.gender" label="woman">女</el-radio>-->
-<!--      </el-form-item>-->
-
-      <!--todo 生日      -->
-      <!--      <el-form-item prop="birthday">-->
-      <!--      <div class="block">-->
-      <!--        <el-date-picker-->
-      <!--          v-model="registerForm.birthday"-->
-      <!--          type="datetime"-->
-      <!--          placeholder="生日"-->
-      <!--          tabindex="7"-->
-      <!--          align="center"-->
-      <!--          :default-value="defaultDate"-->
-      <!--          >-->
-      <!--        </el-date-picker>-->
-      <!--      </div>-->
-      <!--      </el-form-item>-->
-
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
                  @click.native.prevent="handleRegister">注册
       </el-button>

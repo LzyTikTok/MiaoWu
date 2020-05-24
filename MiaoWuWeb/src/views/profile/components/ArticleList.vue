@@ -96,12 +96,12 @@
             return;
           }
           if (result.code === ResultCode.SuccessCode) {
-            //todo 页面不能实时响应
             self.$set(article, 'thumbUp', article.thumbUp + 1);
             // article.thumbUp++;
-            // this.$message.success('点赞成功喵~');
+            this.$message.success('点赞成功喵~');
           } else if (result.code === ResultCode.CancelSuccessCode) {
             self.$set(article, 'thumbUp', article.thumbUp - 1);
+            this.$message.success('取消点赞成功喵~');
             // article.thumbUp--;
           } else if (result.code === ResultCode.ServerInnerError) {
             this.$message.error('服务器出错喵~');

@@ -28,6 +28,8 @@ import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {MiaowuApplication.class})
@@ -101,12 +103,11 @@ class MiaowuApplicationTests {
     @Test
     void testLogin(){
         APIResult apiResult = userService.login("18378980517", "test6942231");
-        String str = apiResult.getData().toString();
-        System.out.println(str);
-        TokenModel tokenModel = JSON.parseObject(str, TokenModel.class);
+        TokenModel tokenModel = (TokenModel)apiResult.getData();
+//        System.out.println(str);
+//        TokenModel tokenModel = JSON.parseObject(str, TokenModel.class);
         APIResult login = userService.getInfo(tokenModel.getToken());
-        User user = JSON.parseObject((String) login.getData(), User.class);
-        System.out.println(user);
+        System.out.println(login.getData());
     }
 
     @Test
@@ -115,6 +116,11 @@ class MiaowuApplicationTests {
         user.setName("测试");
         User user2 = new User();
         user2.setName("测试2号");
+        Map<String,Object> map = new HashMap<>();
+        map.put("user", user);
+        map.put("follow", user2);
+        String jsonString = JSON.toJSONString(map);
+        System.out.println(jsonString);
         String res = JSON.toJSONString(user) + JSON.toJSONString(user2);
         System.out.println(JSON.toJSONString(user));
         System.out.println(res);

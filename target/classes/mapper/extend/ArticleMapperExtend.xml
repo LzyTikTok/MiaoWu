@@ -53,7 +53,6 @@
 
     <resultMap id="articleWithCommentResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
                extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
-        <!--        todo 可能会因为id列同名而导致出错-->
         <collection property="commentExtends" resultMap="com.apps.miaowu.dao.extend.CommentMapperExtend.CommentWithUserResultMap"/>
 
 <!--        <result column="user_name" jdbcType="VARCHAR" property="authorName"/>-->
@@ -143,7 +142,6 @@
         ORDER BY art.last_update desc
     </select>
 
-<!--todo 未测试 获取userId，封装成user对象-->
     <select id="selectFollowsArticleWithAuthorNameByUserIdOrderByUpdateDesc" parameterType="java.lang.Long"
             resultMap="articleWithAuthorNameResultMap">
         SELECT  art.*, u.name user_name

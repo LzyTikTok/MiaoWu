@@ -1,6 +1,7 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
+import {ResultCode} from "../../utils/ResultCode";
 
 const state = {
   token: getToken(),
@@ -51,9 +52,15 @@ const actions = {
       login({ phone: phone.trim(), password: password }).then(response => {
         const { data } = response
         // const data = qs.parse(response.data);
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-        resolve(response)
+        debugger;
+        if(response.code === ResultCode.SuccessCode){
+          commit('SET_TOKEN', data.token)
+          setToken(data.token)
+          resolve(response)
+        } else{
+          //登录失败，ui处理
+          resolve(response)
+        }
       }).catch(error => {
         reject(error)
       })
@@ -72,11 +79,11 @@ const actions = {
         // data.roles = ['admin'];
         // data.avatar = [];
         // data.introduction = [];
-        const {id, password, phone, idCode, name, introduction } = data
+        let dataModel =  JSON.parse(data);
+        const {id, password, phone, idCode, name, introduction } = dataModel.user;
         let roles = ['admin'];
         let avatar = "@/static/profile.jpg";
-        commit('SET_USERINFO',data)
-        debugger;
+        commit('SET_USERINFO',dataModel)
         // self.$store.state.userInfo = data;
         // roles must be a non-empty array
         // if (!roles || roles.length <= 0) {

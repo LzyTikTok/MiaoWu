@@ -17,9 +17,7 @@ public class RedisTokenHelper implements TokenHelper {
     RedisUtil redisUtil;
 
     @Override
-    //todo 未测试
     public boolean check(String token) {
-        boolean result = false;
         if(token != null || token.length() != 0){
             String userId = redisUtil.get(token);
             if(userId != null){
@@ -28,7 +26,6 @@ public class RedisTokenHelper implements TokenHelper {
                 return true;
             }
         }
-        // TODO Auto-generated method stub
         return false;
     }
 

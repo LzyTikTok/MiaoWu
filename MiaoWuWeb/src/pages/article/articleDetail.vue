@@ -16,15 +16,15 @@
         <el-col :span="24">
           <div>
             <div>
-              <h3 style="margin-top: 0px;margin-bottom: 0px">{{this.article.title}}</h3>
-              <span class="description"> 作者: {{this.article.user.name}}</span>
+              <h3 style="margin-top: 0px;margin-bottom: 0px">{{article.title}}</h3>
+              <span class="description"> 作者: {{article.user.name}}</span>
             </div>
             <!--todo 用户名  关注按钮状态      -->
             <el-button
               type="primary"
               @click="handleFollow"
               style="margin-top: 10px"
-              v-if="userId !== this.article.authorId"
+              v-if="userId !== article.authorId"
             >关注
             </el-button>
             <div
@@ -74,7 +74,7 @@
               type="primary"
               @click="handleFollow"
               style="margin-top: 10px"
-              v-if="userId !== comment.user.id"
+              v-if="userId !== comment.userId"
             >取消关注
             </el-button>
           </el-popconfirm>
@@ -122,6 +122,8 @@
   import {ResultCode} from "@/utils/ResultCode";
   import {parseTime} from "../../utils";
   import qs from "querystring";
+  import { objectsContains } from '@/utils/miaoWuUtils';
+
 
   export default {
     name: "articleDetail",
@@ -130,7 +132,9 @@
     },
     data() {
       return {
-        article: {},
+        article: {
+          user:{}
+        },
         loading: "",
         commentLoading: "",
         textarea: ""
@@ -139,7 +143,13 @@
     computed: {
       userId() {
         return this.$store.getters.id;
-      }
+      },
+      userInfo(){
+        return this.$store.state.user.userInfo
+      },
+      // article(){
+      //   return this.article;
+      // }
     },
     methods: {
       getArticle() {
@@ -279,6 +289,9 @@
           }
         })
       }
+    },
+    mounted() {
+      // objectsContains(userInfo.follows);
     }
   };
 </script>

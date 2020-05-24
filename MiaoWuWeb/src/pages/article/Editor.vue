@@ -245,7 +245,8 @@
             this.foundAnimals = res.data;
             this.loading = false;
           } else if (res.code === ResultCode.BadRequest) {
-            self.$message.error(res.message);
+            self.$message.error("还没有发现动物哦~")
+            // self.$message.error(res.message);
             this.loading = false;
             reject();
           } else if (res.code === ResultCode.ServerInnerError) {

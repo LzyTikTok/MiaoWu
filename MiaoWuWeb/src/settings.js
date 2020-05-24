@@ -36,7 +36,7 @@ module.exports = {
   /**
    *  debug mode, develop without request server
    */
-  isDebug: true,
+  isDebug: false,
 
   /**
    *

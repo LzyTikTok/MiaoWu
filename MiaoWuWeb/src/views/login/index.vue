@@ -165,7 +165,6 @@
       },
       handleLogin() {
         // this.redirect = '@/pages/article/List';
-        debugger;
         var self = this;
         this.loading = true;
         this.$refs.loginForm.validate(valid => {
@@ -205,7 +204,7 @@
               } else {
                 this.$message.error('账号或密码不能为空~');
               }
-              return true;
+              this.loading = false;
             })
           } else {
             console.log('error submit!!');
