@@ -152,7 +152,7 @@ export const asyncRoutes = [
       {
         path: 'editor',
         component: () => import('@/pages/article/Editor'),
-        name: 'article_list',
+        name: 'article_editor',
         meta: { title: '编辑文章', icon: 'documentation'}
       },
       {

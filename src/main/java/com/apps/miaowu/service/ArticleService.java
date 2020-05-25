@@ -5,7 +5,11 @@ import com.apps.miaowu.bean.ArticleWithBLOBs;
 import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.result.APIResult;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 public interface ArticleService {
     APIResult findAll();
@@ -43,5 +47,7 @@ public interface ArticleService {
     APIResult thumbUpOrDown(Long articleId, Long userId);
 
     APIResult findFollowsArticleByUserIdOrderByUpdateDesc(Long UserId);
+    
+    APIResult uploadImg(HttpServletRequest req, MultipartFile image);
 
 }

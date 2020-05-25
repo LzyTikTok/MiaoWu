@@ -11,10 +11,19 @@ import com.apps.miaowu.dao.extend.CommentMapperExtend;
 import com.apps.miaowu.dao.extend.LabelMapperExtend;
 import com.apps.miaowu.service.ArticleService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.io.IOUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -44,6 +53,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     UserMapper userMapper;
+
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
     @Override
     public APIResult findAll() {
@@ -301,4 +312,34 @@ public class ArticleServiceImpl implements ArticleService {
         }
         return APIResult.newResult(ResultCode.SuccessCode, "success", articleExtends);
     }
+
+    @Override
+    public APIResult uploadImg(HttpServletRequest req, MultipartFile image) {
+        StringBuffer url = new StringBuffer();
+        String filePath = "/blogimg/" + sdf.format(new Date());
+        String imgFolderPath = req.getServletContext().getRealPath(filePath);
+        File imgFolder = new File(imgFolderPath);
+        if (!imgFolder.exists()) {
+            imgFolder.mkdirs();
+        }
+        url.append(req.getScheme())
+                .append("://")
+                .append(req.getServerName())
+                .append(":")
+                .append(req.getServerPort())
+                .append(req.getContextPath())
+                .append(filePath);
+        String imgName = UUID.randomUUID() + "_" + image.getOriginalFilename().replaceAll(" ", "");
+        try {
+            IOUtils.write(image.getBytes(), new FileOutputStream(new File(imgFolder, imgName)));
+            url.append("/").append(imgName);
+            return APIResult.newResult(ResultCode.SuccessCode, "success", null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return APIResult.newResult(ResultCode.BadRequest, "upload fail", null);
+    }
+
+
+
 }

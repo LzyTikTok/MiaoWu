@@ -16,11 +16,17 @@
               <el-tab-pane label="收藏文章列表" name="clipArticles">
                 <ArticleList :articles="this.clipArticles"/>
               </el-tab-pane>
-                <el-tab-pane label="我发布的文章" name="myArticles">
+              <el-tab-pane label="我发布的文章" name="myArticles">
                 <ArticleList :articles="this.myArticles"/>
               </el-tab-pane>
               <el-tab-pane label="我关注的人的动态" name="followArticles">
                 <ArticleList :articles="this.followArticles"/>
+              </el-tab-pane>
+              <el-tab-pane label="我关注的人" name="follows">
+                <UserList :users="this.followArticles"/>
+              </el-tab-pane>
+              <el-tab-pane label="我的粉丝" name="fans">
+                <UserList :users="this.followArticles"/>
               </el-tab-pane>
             </el-tabs>
           </el-card>
@@ -39,12 +45,13 @@
   import request from '@/utils/request'
   import settings from '../../settings'
   import {ResultCode} from '@/utils/ResultCode'
+  import UserList from './components/UserList'
   import qs from 'querystring'
 
 
   export default {
     name: 'Profile',
-    components: {UserCard, UserInfo, ArticleList},
+    components: {UserCard, UserInfo, ArticleList, UserList},
     data() {
       return {
         user: {},
@@ -52,6 +59,8 @@
         myArticles: [],
         clipArticles: [],
         followArticles: [],
+        follows: [],
+        fans: []
       }
     },
     computed: {
@@ -65,7 +74,9 @@
       this.getUser();
       this.getClipArticle();
       this.getMyArticles();
-      this.getfollowArticles();
+      this.getFollowArticles();
+      this.getFollows();
+      this.getFans();
       // this.getUserInfo();
     },
     methods: {
@@ -89,7 +100,7 @@
           return;
         }
         let self = this;
-        let url = settings.apiUrl + 'article/findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id ;
+        let url = settings.apiUrl + 'article/findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id;
         request.request({
           url,
           method: "get",
@@ -110,9 +121,9 @@
           }
         })
       },
-      getMyArticles(){
+      getMyArticles() {
         let self = this;
-        let url = settings.apiUrl + 'article/findByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.getters.id ;
+        let url = settings.apiUrl + 'article/findByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.getters.id;
         request.request({
           url,
           method: "get",
@@ -133,9 +144,9 @@
           }
         })
       },
-      getfollowArticles(){
+      getFollowArticles() {
         let self = this;
-        let url = settings.apiUrl + 'article/findFollowsArticleByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id ;
+        let url = settings.apiUrl + 'article/findFollowsArticleByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id;
         request.request({
           url,
           method: "get",
@@ -155,7 +166,18 @@
             this.loading = false;
           }
         })
+      },
+      getFollows(userId) {
+        request.get(settings.apiUrl + "getAllFollows?" + "userId=" + userId).then(result => {
+          this.follows = result.data
+        });
+      },
+      getFans(userId) {
+        request.get(settings.apiUrl + "getAllFans?" + "userId=" + userId).then(result => {
+          this.fans = result.data
+        })
       }
+
     }
   }
 </script>
