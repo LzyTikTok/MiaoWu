@@ -12,7 +12,7 @@
           <el-link type="primary" @click="toArticleDetail(article.id)" style="left:10px; position:inherit">{{article.title}}</el-link>
           <span class="description">{{article.authorName}}     {{new Date(article.lastUpdate).getTime() | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
           <el-button v-if="article.authorId === userId" slot="reference" type="primary"
-                     style="right: 0px; position: absolute" @click="updateArticle(article.id)">修改文章</el-button>
+                     style="right: 50px; position: absolute" @click="updateArticle(article.id)">修改文章</el-button>
           <el-popconfirm
             confirmButtonText='删除'
             cancelButtonText='手滑了'

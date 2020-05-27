@@ -23,10 +23,10 @@
                 <ArticleList :articles="this.followArticles"/>
               </el-tab-pane>
               <el-tab-pane label="我关注的人" name="follows">
-                <UserList :users="this.followArticles"/>
+                <UserList :follows="this.follows"/>
               </el-tab-pane>
               <el-tab-pane label="我的粉丝" name="fans">
-                <UserList :users="this.followArticles"/>
+                <UserList :fans="this.fans"/>
               </el-tab-pane>
             </el-tabs>
           </el-card>
@@ -167,13 +167,13 @@
           }
         })
       },
-      getFollows(userId) {
-        request.get(settings.apiUrl + "getAllFollows?" + "userId=" + userId).then(result => {
+      getFollows() {
+        request.get(settings.apiUrl + "user/getAllFollowByUserId?" + "userId=" + this.$store.state.user.id).then(result => {
           this.follows = result.data
         });
       },
-      getFans(userId) {
-        request.get(settings.apiUrl + "getAllFans?" + "userId=" + userId).then(result => {
+      getFans() {
+        request.get(settings.apiUrl + "user/getAllFansByUserId?" + "userId=" + this.$store.state.user.id).then(result => {
           this.fans = result.data
         })
       }
