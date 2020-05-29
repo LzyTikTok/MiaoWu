@@ -5,11 +5,15 @@ import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.extend.CommentExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
+import com.apps.miaowu.constant.NormalConstant;
 import com.apps.miaowu.dao.*;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.dao.extend.CommentMapperExtend;
 import com.apps.miaowu.dao.extend.LabelMapperExtend;
 import com.apps.miaowu.service.ArticleService;
+import com.apps.miaowu.utils.token.TokenHelper;
+import com.apps.miaowu.utils.token.TokenModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.IOUtils;
@@ -53,6 +57,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     UserMapper userMapper;
+
+    @Resource
+    private TokenHelper tokenHelper;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
@@ -109,6 +116,7 @@ public class ArticleServiceImpl implements ArticleService {
         return APIResult.newResult(ResultCode.SuccessCode, "Find all article with animal successfully", results);
     }
 
+
     @Override
     public APIResult<List<ArticleExtend>> findArticleWithAnimalById(Long id) {
         if (id == null) {
@@ -152,10 +160,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public APIResult cascadeFindById(Long id) {
         try {
+            //获取评论信息
             CommentExample commentExample = new CommentExample();
             commentExample.createCriteria().andArticleIdEqualTo(id);
             List<Comment> comments = commentMapper.selectByExample(commentExample);
 
+            //获取文章信息
             ArticleExtend articleExtend = articleMapperExtend.selectArticleById(id);
 
             if (!comments.isEmpty()) {
@@ -163,8 +173,10 @@ public class ArticleServiceImpl implements ArticleService {
                 articleExtend.setCommentExtends(commentExtends);
             }
 
+            //获取标签信息
             List<Label> labels = labelMapperExtend.findLabelByArticleId(id);
 
+            //处理返回的数据
             articleExtend.setLabels(labels);
             User user = userMapper.selectByPrimaryKey(articleExtend.getAuthorId());
             articleExtend.setUser(user);
@@ -191,45 +203,54 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public APIResult thumbUpOrDown(Long articleId, Long userId) {
+        //请求不合法
         if(articleId == null || userId == null){
             return APIResult.newResult(ResultCode.BadRequest, "params invalid", null);
         }
-        // 不清楚这样写会不会擦除文章原有的信息
-        // 点赞
+
+        //获取用户所有的点赞信息
         ThumbUpExample example = new ThumbUpExample();
         example.createCriteria().andUserIdEqualTo(userId);
         List<ThumbUp> thumbUps = thumbUpMapper.selectByExample(example);
 
+        //获取文章信息
         Article article = articleMapper.selectByPrimaryKey(articleId);
         ThumbUp find = new ThumbUp();
 
+        //查找该用户是否已经点赞过文章
         for (ThumbUp thumbUp : thumbUps) {
             if (thumbUp.getArticleId().equals(articleId)) {
                 find = thumbUp;
                 break;
             }
         }
+
+        //用户未点赞过该文章
         if (find.getId() == null) {
+            //插入点赞信息
             ThumbUp thumbUp = new ThumbUp();
             thumbUp.setArticleId(articleId);
             thumbUp.setUserId(userId);
             thumbUpMapper.insert(thumbUp);
-            // 部分更新
+
             if (article == null) {
                 return APIResult.newResult(ResultCode.BadRequest, "article not exist", null);
             }
+
+            //初始化文章点赞
             if (article.getThumbUp() == null) {
                 article.setThumbUp(1L);
             } else {
                 article.setThumbUp(article.getThumbUp() + 1L);
             }
+            //更新文章表
             articleMapper.updateByPrimaryKey(article);
             return APIResult.newResult(ResultCode.SuccessCode, "ThumbUp successfully", null);
-        } else {
-            // 首先要把thumbUp表中的删除掉，但是上文并没有获取到准确的字段。
+        } else { //用户已点赞过该文章，取消点赞
             thumbUpMapper.deleteByPrimaryKey(find.getId());
             // 此处判断点赞数为不为null，主要是防黑客，系统运行正常下，此时的点赞数必定≥1
             if (article.getThumbUp() != null) {
+                //点赞数-1
                 article.setThumbUp(article.getThumbUp() - 1L);
                 articleMapper.updateByPrimaryKey(article);
                 return APIResult.newResult(ResultCode.CancelSuccessCode, "ThumbDown successfully", null);
@@ -261,7 +282,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public APIResult updateArticle(ArticleWithBLOBs article) {
+    public APIResult updateArticle(HttpServletRequest request, ArticleWithBLOBs article) {
+        // token验证
+        String authStr = request.getHeader(NormalConstant.AUTHORIZATION);
+        TokenModel model = tokenHelper.get(authStr);
+        String userId = model.getUserId();
+        if(Long.valueOf(userId) != article.getAuthorId()){
+            return APIResult.newResult(ResultCode.NO_AUTH,"no auth", null);
+        }
         if(article == null){
             return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
         }
@@ -340,6 +368,15 @@ public class ArticleServiceImpl implements ArticleService {
         return APIResult.newResult(ResultCode.BadRequest, "upload fail", null);
     }
 
+    @Override
+    public APIResult findById(Long articleId) {
+        Article article = articleMapper.selectByPrimaryKey(articleId);
+        if(article != null){
+            return APIResult.newResult(ResultCode.SuccessCode, "success", article);
+        } else{
+            return APIResult.newResult(ResultCode.BadRequest, "no Article", null);
+        }
 
 
+    }
 }

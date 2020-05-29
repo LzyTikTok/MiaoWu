@@ -21,9 +21,13 @@ export function getInfo(token) {
   })
 }
 
-export function logout() {
+export function logout(token) {
+  let form = {
+    token: token
+  }
   return request({
-    url: '/vue-element-admin/user/logout',
-    method: 'post'
+    url: settings.apiUrl + '/user/logout',
+    method: 'post',
+    data: qs.stringify(form)
   })
 }

@@ -2,19 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d8f2c42-92aa-487b-958a-710036ac5cd0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.factorypath" beforeDir="false" afterPath="$PROJECT_DIR$/.factorypath" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/MiaoWu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MiaoWu.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/pages/article/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/pages/article/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/miaowu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/miaowu.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/bean/result/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/bean/result/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/utils/token/RedisTokenHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/utils/token/RedisTokenHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/ArticleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/src/test/java/com/apps/miaowu/MiaowuApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/src/test/java/com/apps/miaowu/MiaowuApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuServer/target/test-classes/com/apps/miaowu/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/pages/article/Editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/pages/article/Editor.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/pages/article/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/pages/article/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/login/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/ArticleList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/ArticleList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/components/UserList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/MiaoWuWeb/src/views/profile/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/ArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/MiaoWuServer/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,24 +46,74 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/UserController.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="125" column="45" selection-start-line="125" selection-start-column="45" selection-end-line="125" selection-end-column="45" />
-              <folding>
-                <element signature="e#3105#3106#0" expanded="true" />
-                <element signature="e#3154#3155#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="83">
+              <caret line="45" column="48" lean-forward="true" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/UserService.java">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/resources/generatorConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1102">
-              <caret line="35" column="25" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="25" />
+            <state relative-caret-position="76">
+              <caret line="56" column="53" lean-forward="true" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/dao/UserMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="86" column="49" lean-forward="true" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/utils/token/RedisTokenHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="290" column="75" selection-start-line="290" selection-start-column="75" selection-end-line="290" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/bean/result/ResultCode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/ArticleController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/interceptor/LoginInterceptor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="20" selection-start-line="20" selection-end-line="21" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -63,26 +130,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
-      <find>insert</find>
-      <find>selectkey</find>
-      <find>authorname</find>
-      <find>base</find>
-      <find>extend</find>
-      <find>articleextend</find>
-      <find>findallarti</find>
-      <find>findAllWithClipByUserIdOrderByUpdateDesc</find>
-      <find>findall</find>
-      <find>withclip</find>
-      <find>clip</find>
-      <find>thumbup</find>
-      <find>get</find>
-      <find>ogin</find>
       <find>follow</find>
       <find>user</find>
       <find>token</find>
       <find>token(</find>
-      <find>login</find>
       <find>phone</find>
       <find>getuser</find>
       <find>getinfo</find>
@@ -93,6 +144,22 @@
       <find>uploadimg</find>
       <find>getall</find>
       <find>findallfans</find>
+      <find>login</find>
+      <find>userinfo</find>
+      <find>findallarticle</find>
+      <find>page</find>
+      <find>limit</find>
+      <find>findall</find>
+      <find>f</find>
+      <find>cas</find>
+      <find>logout</find>
+      <find>try {</find>
+      <find>byid</find>
+      <find>updatea</find>
+      <find>findbyid</find>
+      <find>update</find>
+      <find>updateArticle</find>
+      <find>updatearticle</find>
     </findStrings>
     <replaceStrings>
       <replace>id</replace>
@@ -105,6 +172,7 @@
     <dirStrings>
       <dir>D:\code\git\MiaoWu\src\main\resources\mapper</dir>
       <dir>D:\code\git\MiaoWu\src</dir>
+      <dir>D:\code\git\MiaoWu\MiaoWuServer</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -113,15 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/filter/convertDate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/config/WebConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/utils/DateEditor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/config/WebBindingInitializerConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/saveServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/ThumbUpServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/ThumbUpController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/dao/extend/LabelMapperExtend.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/extend/LabelMapperExtend.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/extend/CommentExtend.java" />
@@ -164,6 +223,15 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/ArticleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/UserService.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/test/java/com/apps/miaowu/MiaowuApplicationTests.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/utils/token/RedisTokenHelper.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/ArticleService.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/ArticleController.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/bean/result/ResultCode.java" />
+        <option value="$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -179,33 +247,36 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="1" />
-    <option name="width" value="1934" />
-    <option name="height" value="1046" />
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="miaowu" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="miaowu" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="696" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="MiaoWu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MiaoWu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MiaoWu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -235,6 +306,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="MiaoWu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MiaoWu" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -248,14 +331,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MiaoWuServer" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="com.alibabacloud.intellij.config.EdasConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -275,7 +358,78 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MiaowuApplicationTests.testLogin">
+  <component name="RunManager" selected="Spring Boot.MiaowuApplication">
+    <configuration name="Deploy to Host" type="DEPLOY_HOST_RUN_CONFIGURATION" factoryName="Deploy to Host">
+      <option name="accountModel" />
+      <option name="address" value="139.196.169.178" />
+      <option name="afterCommand" value="" />
+      <option name="alreadyReset" value="true" />
+      <option name="autoOpen" value="false" />
+      <option name="beforeCommand" value="" />
+      <option name="defaultTabIdx" value="0" />
+      <option name="ecsInstance">
+        <EcsInstance>
+          <option name="OSType" />
+          <option name="instanceId" />
+          <option name="instanceName" />
+          <option name="netType" />
+          <option name="privateIps" />
+          <option name="publicIps" />
+          <option name="regionId" />
+          <option name="tags" />
+        </EcsInstance>
+      </option>
+      <option name="hostTagId" value="0" />
+      <option name="location" value="/usr/local/project/miaowu" />
+      <option name="pathOrUrl" value="D:\code\git\MiaoWu\MiaoWuServer" />
+      <option name="tagId" value="0" />
+      <option name="terminalCommand" />
+      <option name="type" value="HOST" />
+      <option name="uploadType" value="FILE" />
+      <method v="2">
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/MiaoWuServer/pom.xml" goal="clean install" />
+      </method>
+    </configuration>
+    <configuration name="ECS on Alibaba Cloud" type="ECS_RUN_CONFIGRATION" factoryName="Ecs configuration factory">
+      <option name="accountModel">
+        <AccountModel>
+          <option name="ak" value="LTAI4G85jMjgVhVGUjsWSoFG" />
+          <option name="profileName" value="喵呜" />
+          <option name="secret" value="0V5ch0tb3erqEzGDG3Jyl2hBkGAwZr" />
+          <option name="show" value="false" />
+        </AccountModel>
+      </option>
+      <option name="address" />
+      <option name="afterCommand" value="" />
+      <option name="alreadyReset" value="true" />
+      <option name="autoOpen" value="false" />
+      <option name="beforeCommand" />
+      <option name="defaultTabIdx" value="0" />
+      <option name="ecsInstance">
+        <EcsInstance>
+          <option name="OSType" value="linux" />
+          <option name="instanceId" value="i-uf67f4ukknlh5fkuxxnl" />
+          <option name="instanceName" value="iZuf67f4ukknlh5fkuxxnlZ" />
+          <option name="netType" value="vpc" />
+          <option name="privateIps" value="172.19.97.1" />
+          <option name="publicIps" value="139.196.169.178" />
+          <option name="regionId" value="cn-shanghai" />
+          <option name="tags">
+            <list />
+          </option>
+        </EcsInstance>
+      </option>
+      <option name="hostTagId" value="0" />
+      <option name="location" value="/usr/local/project/miaowu" />
+      <option name="pathOrUrl" />
+      <option name="tagId" value="0" />
+      <option name="terminalCommand" />
+      <option name="type" value="ECS" />
+      <option name="uploadType" value="MAVEN" />
+      <method v="2">
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/../MiaoWu\pom.xml" goal="clean install" />
+      </method>
+    </configuration>
     <configuration name="MiaowuApplicationTests.TestJson" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiaoWu" />
       <extension name="coverage">
@@ -308,6 +462,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MiaowuApplicationTests.testLogOut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="miaowu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.apps.miaowu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.apps.miaowu" />
+      <option name="MAIN_CLASS_NAME" value="com.apps.miaowu.MiaowuApplicationTests" />
+      <option name="METHOD_NAME" value="testLogOut" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MiaowuApplicationTests.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiaoWu" />
       <extension name="coverage">
@@ -319,22 +489,6 @@
       <option name="PACKAGE_NAME" value="com.apps.miaowu" />
       <option name="MAIN_CLASS_NAME" value="com.apps.miaowu.MiaowuApplicationTests" />
       <option name="METHOD_NAME" value="testLogin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MiaowuApplicationTests.testRedis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MiaoWu" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.apps.miaowu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.apps.miaowu" />
-      <option name="MAIN_CLASS_NAME" value="com.apps.miaowu.MiaowuApplicationTests" />
-      <option name="METHOD_NAME" value="testRedis" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -357,7 +511,7 @@
       </method>
     </configuration>
     <configuration name="MiaowuApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="MiaoWu" />
+      <module name="miaowu" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.apps.miaowu.MiaowuApplication" />
       <option name="WORKING_DIRECTORY" value="file://$MAVEN_REPOSITORY$" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -374,15 +528,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Deploy to Host.Deploy to Host" />
+      <item itemvalue="ECS on Alibaba Cloud.ECS on Alibaba Cloud" />
+      <item itemvalue="JUnit.MiaowuApplicationTests.testHtml" />
+      <item itemvalue="JUnit.MiaowuApplicationTests.TestJson" />
+      <item itemvalue="JUnit.MiaowuApplicationTests.testLogin" />
+      <item itemvalue="JUnit.MiaowuApplicationTests.testLogOut" />
+      <item itemvalue="JUnit.MiaowuApplicationTests.testSelect2" />
+      <item itemvalue="Spring Boot.MiaowuApplication" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MiaowuApplicationTests.testLogOut" />
         <item itemvalue="JUnit.MiaowuApplicationTests.testLogin" />
         <item itemvalue="JUnit.MiaowuApplicationTests.TestJson" />
         <item itemvalue="JUnit.MiaowuApplicationTests.testSelect2" />
         <item itemvalue="JUnit.MiaowuApplicationTests.testHtml" />
-        <item itemvalue="JUnit.MiaowuApplicationTests.testRedis" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -453,28 +620,16 @@
       <workItem from="1590333702319" duration="1438000" />
       <workItem from="1590494503532" duration="1959000" />
       <workItem from="1590583534773" duration="260000" />
+      <workItem from="1590596458471" duration="144000" />
+      <workItem from="1590596647837" duration="1575000" />
+      <workItem from="1590689116812" duration="2592000" />
+      <workItem from="1590738957754" duration="1632000" />
+      <workItem from="1590753309984" duration="410000" />
+      <workItem from="1590771011333" duration="3064000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.16 at 10h 45m 53s.xml">
-      <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.20 at 23h 02m 45s.xml">
-      <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.20 at 23h 03m 17s.xml">
-      <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.20 at 23h 03m 53s.xml">
-      <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.20 at 23h 04m 23s.xml">
-      <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.20 at 23h 06m 53s.xml">
-      <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.20 at 23h 08m 57s.xml">
       <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
     </history-entry>
@@ -487,9 +642,27 @@
     <history-entry file="MiaowuApplicationTests_testLogin - 2020.05.21 at 00h 12m 11s.xml">
       <configuration name="MiaowuApplicationTests.testLogin" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MiaowuApplicationTests_testLogOut - 2020.05.29 at 16h 04m 35s.xml">
+      <configuration name="MiaowuApplicationTests.testLogOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MiaowuApplicationTests_testLogOut - 2020.05.29 at 16h 06m 05s.xml">
+      <configuration name="MiaowuApplicationTests.testLogOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MiaowuApplicationTests_testLogOut - 2020.05.29 at 16h 07m 16s.xml">
+      <configuration name="MiaowuApplicationTests.testLogOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MiaowuApplicationTests_testLogOut - 2020.05.29 at 16h 11m 18s.xml">
+      <configuration name="MiaowuApplicationTests.testLogOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MiaowuApplicationTests_testLogOut - 2020.05.29 at 16h 12m 05s.xml">
+      <configuration name="MiaowuApplicationTests.testLogOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MiaowuApplicationTests_testLogOut - 2020.05.30 at 01h 31m 38s.xml">
+      <configuration name="MiaowuApplicationTests.testLogOut" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164445000" />
+    <option name="totallyTimeSpent" value="173862000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -501,9 +674,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="1" width="1934" height="1046" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21291356" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22453333" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -511,32 +685,36 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.33182845" />
+      <window_info id="Alibaba Cloud Explorer" order="8" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.3314732" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32924107" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.43453723" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.44582394" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.4341518" />
+      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.4453125" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32844242" />
-      <window_info anchor="bottom" id="Spring" order="8" weight="0.3295711" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29571107" />
+      <window_info anchor="bottom" id="Spring" order="8" weight="0.32924107" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.36160713" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3295711" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.32936078" />
       <window_info anchor="bottom" id="Problems" order="15" />
+      <window_info anchor="bottom" id="Alibaba Cloud View" order="16" weight="0.32589287" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.1856" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Alibaba Function Compute" order="10" />
+      <window_info anchor="right" id="Alibaba Log Console" order="11" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,6 +752,12 @@
           <line>106</line>
           <properties />
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java</url>
+          <line>297</line>
+          <properties />
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -630,240 +814,17 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/dao/extend/LabelMapperExtend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/SaveService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/FollowService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/LabelMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/LabelService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/LabelServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/CommentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="41" column="42" lean-forward="true" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/ClipController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/CommentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="6" column="33" lean-forward="true" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/ClipService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/ClipServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="35" column="64" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/result/ResultCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2774">
-          <caret line="73" column="54" selection-start-line="73" selection-start-column="54" selection-end-line="73" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/extend/ArticleExtend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/AnimalService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/AnimalController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/extend/AnimalMapperExtend.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/dao/extend/AnimalMapperExtend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/saveServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/SaveController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/ArticleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/FollowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="20" column="5" selection-start-line="17" selection-start-column="2" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#740#741#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/CommentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/extend/UserExtend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding>
-            <element signature="e#322#323#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
-            <element signature="e#440#441#0" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
-            <element signature="e#502#503#0" expanded="true" />
-            <element signature="e#546#547#0" expanded="true" />
-            <element signature="e#578#579#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/LabelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/extend/UserMapperExtend.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="95" column="23" lean-forward="true" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/dao/extend/UserMapperExtend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/utils/token/TokenModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/saveServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/SaveController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/ArticleService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/FollowController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/CommentController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/User.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/bean/extend/UserExtend.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/LabelController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/extend/UserMapperExtend.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/dao/extend/UserMapperExtend.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/utils/token/TokenModel.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-redis/2.2.5.RELEASE/spring-data-redis-2.2.5.RELEASE-sources.jar!/org/springframework/data/redis/core/RedisTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6384">
@@ -871,13 +832,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/constant/NormalConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/constant/NormalConstant.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.2.3.RELEASE/spring-webmvc-5.2.3.RELEASE.jar!/org/springframework/web/servlet/HandlerExecutionChain.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
@@ -903,37 +858,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/apps/miaowu/MiaowuApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/interceptor/LoginInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/extend/ArticleMapperExtend.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5472">
-          <caret line="144" selection-start-line="144" selection-end-line="144" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/apps/miaowu/MiaowuApplicationTests.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/interceptor/LoginInterceptor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/UserServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/extend/ArticleMapperExtend.xml" />
     <entry file="file://$PROJECT_DIR$/MiaoWuWeb/src/pages/article/articleDetail.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1330">
@@ -962,76 +890,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/dao/extend/ArticleMapperExtend.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/dao/extend/ArticleMapperExtend.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/AnimalServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/FollowServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/utils/token/RedisTokenHelper.java" />
+    <entry file="file://$PROJECT_DIR$/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/ArticleController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/UserController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/UserService.java" />
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/dao/extend/LabelMapperExtend.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="29" column="2" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
+        <state relative-caret-position="228">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/AnimalServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/resources/mapper/extend/LabelMapperExtend.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1824">
-          <caret line="60" column="12" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="12" />
+        <state relative-caret-position="114">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/FollowServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/dao/extend/ArticleMapperExtend.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1178">
-          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/utils/token/RedisTokenHelper.java">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/resources/mapper/extend/ArticleMapperExtend.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4560">
+          <caret line="120" column="33" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/utils/token/TokenHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1330">
+          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="132" column="34" lean-forward="true" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/utils/token/RedisTokenHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="45" column="48" lean-forward="true" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/dao/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+          <caret line="86" column="49" lean-forward="true" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/resources/generatorConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
+        <state relative-caret-position="76">
+          <caret line="56" column="53" lean-forward="true" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/ArticleController.java">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/ArticleService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="110" column="20" lean-forward="true" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
+        <state relative-caret-position="159">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/utils/RedisUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1350#1351#0" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/test/java/com/apps/miaowu/MiaowuApplicationTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="333" column="57" selection-start-line="333" selection-start-column="57" selection-end-line="333" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="173">
+          <caret line="130" column="74" lean-forward="true" selection-start-line="130" selection-start-column="74" selection-end-line="130" selection-end-column="74" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/web/controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/controller/ArticleController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="125" column="45" selection-start-line="125" selection-start-column="45" selection-end-line="125" selection-end-column="45" />
-          <folding>
-            <element signature="e#3105#3106#0" expanded="true" />
-            <element signature="e#3154#3155#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="114">
+          <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apps/miaowu/service/UserService.java">
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/web/interceptor/LoginInterceptor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="35" column="25" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="25" />
+        <state relative-caret-position="103">
+          <caret line="20" selection-start-line="20" selection-end-line="21" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/bean/result/ResultCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiaoWuServer/src/main/java/com/apps/miaowu/service/impl/ArticleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="290" column="75" selection-start-line="290" selection-start-column="75" selection-end-line="290" selection-end-column="75" />
         </state>
       </provider>
     </entry>

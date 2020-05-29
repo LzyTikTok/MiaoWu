@@ -39,9 +39,13 @@ public class RedisTokenHelper implements TokenHelper {
 
     @Override
     public boolean delete(String id) {
-        System.out.println("未完成");
-        return false;
-        // return redisUtil.delete(id == null ? null : St);
+        try {
+            redisUtil.delete(id) ;
+            return true;
+        } catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 
     @Override

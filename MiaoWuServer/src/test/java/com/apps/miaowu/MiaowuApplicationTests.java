@@ -126,4 +126,13 @@ class MiaowuApplicationTests {
         System.out.println(res);
     }
 
+    @Test
+    void testLogOut(){
+        APIResult login = userService.login("18378980517", "test6942231");
+        TokenModel tokenModel = (TokenModel)login.getData();
+        APIResult logout = userService.logout(tokenModel.getToken());
+        System.out.println(logout);
+
+    }
+
 }

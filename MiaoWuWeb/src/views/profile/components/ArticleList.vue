@@ -78,7 +78,6 @@
     },
     methods: {
       handleLike(article) {
-        debugger;
         let self = this;
         let url = settings.apiUrl + "article/thumbUpOrDown";
         let form = {
@@ -142,7 +141,7 @@
       },
       updateArticle(id){
         //编辑器中获取文章信息
-        this.$router.push({path: '/article/editor', query: {id: id}})
+        this.$router.push({path: '/article/editor', query: {articleId: id}})
       }
     },
     mounted() {

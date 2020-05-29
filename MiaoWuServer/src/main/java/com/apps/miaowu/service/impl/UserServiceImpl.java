@@ -55,22 +55,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public APIResult getInfo(String token) {
+        //redis中存在该token
         if (tokenHelper.check(token)) {
+            //获取用户id
             TokenModel tokenModel = tokenHelper.get(token);
             Long userId = Long.valueOf(tokenModel.getUserId());
 
+            //获取用户信息
             User user = userMapper.selectByPrimaryKey(userId);
-            Map<String, Object> res = new HashMap<>();
 
+            //获取关注信息和粉丝信息
             APIResult follows = this.findAllFollows(userId);
             APIResult fans = this.findAllFans(userId);
-            res.put("user", user);
-            res.put("follows", follows.getData());
-            res.put("fans", fans.getData());
+
+            Map<String, Object> res = new HashMap<>();
+            res.put("user", user);//用户信息
+            res.put("follows", follows.getData());//用户的关注信息
+            res.put("fans", fans.getData());//用户的粉丝信息
 
             String resString = JSON.toJSONString(res);
             return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", resString);
-        } else {
+        } else { //不存在该token
             return APIResult.newResult(ResultCode.BadRequest, "token out of date", null);
         }
     }
@@ -130,7 +135,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    // todo 以下两个接口未测试
     @Override
     public APIResult findAllFans(Long userId) {
         FollowExample example = new FollowExample();
@@ -169,9 +173,13 @@ public class UserServiceImpl implements UserService {
     public APIResult addUser(User user) {
         UserExample example = new UserExample();
         example.createCriteria().andIdCodeEqualTo(user.getIdCode());
-        List<User> users = userMapper.selectByExample(example);
-        if (users.isEmpty()) {
-            // user.setCreateDate(LocalDateTime.now());
+        List<User> idCodeUsers = userMapper.selectByExample(example);
+
+        UserExample example2 = new UserExample();
+        example2.createCriteria().andPhoneEqualTo(user.getPhone());
+        List<User> phoneUsers = userMapper.selectByExample(example2);
+
+        if (idCodeUsers.isEmpty() && phoneUsers.isEmpty()) {
             user.setCreateDate(new Date());
             userMapper.insert(user);
             return APIResult.newResult(ResultCode.SuccessCode, "add user successfully", null);
@@ -182,29 +190,41 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public APIResult login(String phone, String password) {
+        //输入不合法
         if (phone == null || password == null) {
             return APIResult.newResult(ResultCode.BadRequest, "params invalid", null);
         }
+
+        //查找用户
         UserExample example = new UserExample();
         example.createCriteria().andPhoneEqualTo(phone);
         List<User> users = userMapper.selectByExample(example);
+
+        //电话号码无对应账号
         if (users.size() == 0) {
             return APIResult.newResult(500, "User not exist", null);
         } else if (users.size() == 1) {
             User user = users.get(0);
+            //验证通过
             if (user.getPassword().equals(password)) {
                 // 用户名密码验证通过后，生成token
                 TokenModel model = tokenHelper.create(user.getId().toString());
-//            System.out.println(model);
-                String jsonString = JSON.toJSONString(model);
                 return APIResult.newResult(ResultCode.SuccessCode, "get token successfully", model);
-            } else {
+            } else { //密码不正确
                 return APIResult.newResult(ResultCode.BadRequest, "Incorrect password", null);
             }
-        } else {
+        } else {    //数据过多
             return APIResult.newResult(ResultCode.BadRequest, "too many users", null);
         }
     }
 
 
+    @Override
+    public APIResult logout(String token) {
+        if(tokenHelper.delete(token)){
+            return APIResult.newResult(ResultCode.SuccessCode,"success", null);
+        } else {
+            return APIResult.newResult(ResultCode.ServerInnerError, "fail",null);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.apps.miaowu.web.controller;
 
+import com.apps.miaowu.annotation.NoneAuth;
 import com.apps.miaowu.bean.ArticleWithBLOBs;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.ArticleService;
@@ -9,12 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
 
     @Autowired
     ArticleService articleService;
+
+    @Autowired
+    protected HttpServletRequest request;
 
     @PostMapping(value = "saveOrUpdate")
     @ApiImplicitParams({
@@ -30,7 +36,7 @@ public class ArticleController {
             //todo 救助文与空间文分开两个接口去添加？
             @ApiImplicitParam(name = "type", value = "", required = true),
     })
-    public APIResult saveOrUpdate(ArticleWithBLOBs article){
+    public APIResult saveOrUpdate(ArticleWithBLOBs article) {
         return articleService.saveOrUpdate(article);
     }
 
@@ -47,69 +53,93 @@ public class ArticleController {
             //1是空间，2是救助文
             @ApiImplicitParam(name = "type", value = "", required = true),
     })
-    public APIResult addArticle(ArticleWithBLOBs article){
+    public APIResult addArticle(ArticleWithBLOBs article) {
         return articleService.addArticle(article);
     }
 
     @PostMapping(value = "updateArticle")
-    public APIResult updateArticle(ArticleWithBLOBs article) { return articleService.updateArticle(article);}
+    public APIResult updateArticle(ArticleWithBLOBs article) {
+        return articleService.updateArticle(request, article);
+    }
 
+    @NoneAuth
     @GetMapping(value = "findAll")
-    public APIResult findAll(){
+    public APIResult findAll() {
         return articleService.findAll();
     }
 
     @GetMapping(value = "findAllWithClipByUserIdOrderByUpdateDesc")
-    public APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId) {return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);}
+    public APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId) {
+        return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);
+    }
 
     @GetMapping(value = "findAllArticleWithAnimal")
-    public APIResult findAllArticleWithAnimal(){
+    public APIResult findAllArticleWithAnimal() {
         return articleService.findAllArticleWithAnimal();
     }
 
     @GetMapping(value = "findArticleWithAnimalById")
-    public APIResult findArticleWithAnimalById(Long id){
+    public APIResult findArticleWithAnimalById(Long id) {
         return articleService.findArticleWithAnimalById(id);
     }
 
     @GetMapping(value = "findAllArticleWithLabel")
-    public APIResult findAllArticleWithLabel(){
+    public APIResult findAllArticleWithLabel() {
         return articleService.findAllArticleWithLabel();
     }
 
     @GetMapping(value = "findArticleWithLabelById")
-    public APIResult findArticleWithLabelById(Long id){
+    public APIResult findArticleWithLabelById(Long id) {
         return articleService.findArticleWithLabelById(id);
     }
 
     @DeleteMapping(value = "deleteById")
-    public APIResult deleteById(Long id){return articleService.deleteById(id);}
-
-    @GetMapping(value = "findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc")
-    public APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId){return articleService.findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);}
-
-//todo 未测试
-    @GetMapping(value = "findArticleWithTitleFuzzily")
-    public APIResult findArticleWithTitleFuzzily(String title){return articleService.findArticleWithTitleFuzzily(title);}
-
-    @PostMapping(value = "thumbUpOrDown")
-    APIResult thumbUpOrDown(Long articleId, Long userId){
-        return articleService.thumbUpOrDown(articleId,userId);
+    public APIResult deleteById(Long id) {
+        return articleService.deleteById(id);
     }
 
+    @GetMapping(value = "findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc")
+    public APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId) {
+        return articleService.findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);
+    }
+
+    //todo 未测试
+    @GetMapping(value = "findArticleWithTitleFuzzily")
+    public APIResult findArticleWithTitleFuzzily(String title) {
+        return articleService.findArticleWithTitleFuzzily(title);
+    }
+
+    @PostMapping(value = "thumbUpOrDown")
+    APIResult thumbUpOrDown(Long articleId, Long userId) {
+        return articleService.thumbUpOrDown(articleId, userId);
+    }
+
+    @NoneAuth
     @GetMapping(value = "cascadeFindById")
-    APIResult cascadeFindById(Long articleId) {return articleService.cascadeFindById(articleId);}
+    APIResult cascadeFindById(Long articleId) {
+        return articleService.cascadeFindById(articleId);
+    }
 
     @GetMapping(value = "findByAuthorIdOrderByUpdateDesc")
-    APIResult findByAuthorIdOrderByUpdateDesc(long authorId){return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);}
+    APIResult findByAuthorIdOrderByUpdateDesc(long authorId) {
+        return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);
+    }
 
     @GetMapping(value = "findFollowsArticleByUserIdOrderByUpdateDesc")
-    APIResult findFollowsArticleByUserIdOrderByUpdateDesc(long userId){return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(userId);}
+    APIResult findFollowsArticleByUserIdOrderByUpdateDesc(long userId) {
+        return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(userId);
+    }
 
     @PostMapping(value = "uploadImg")
-    APIResult uploadImg(MultipartFile image){
+    APIResult uploadImg(MultipartFile image) {
         return null;
 //        return articleService.uploadImg(request,image);
+    }
+
+    @GetMapping(value = "getById")
+    @NoneAuth
+    APIResult getById(Long id) {
+        return articleService.findById(id);
     }
 
 }

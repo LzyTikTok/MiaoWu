@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MiaoWu.iml" filepath="$PROJECT_DIR$/.idea/MiaoWu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiaoWuServer/miaowu.iml" filepath="$PROJECT_DIR$/MiaoWuServer/miaowu.iml" />
     </modules>
   </component>
 </project>

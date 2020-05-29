@@ -20,11 +20,13 @@ public interface ArticleService {
 
     APIResult cascadeFindById(Long articleId);
 
+    APIResult findById(Long articleId);
+
     APIResult saveOrUpdate(ArticleWithBLOBs article);
 
     APIResult addArticle(ArticleWithBLOBs article);
 
-    APIResult updateArticle(ArticleWithBLOBs article);
+    APIResult updateArticle(HttpServletRequest request,ArticleWithBLOBs article);
 
     APIResult deleteById(Long id);
 

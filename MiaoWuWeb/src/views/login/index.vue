@@ -62,21 +62,12 @@
         style="width:100%;margin-bottom:30px; margin-left:0px;"
         @click="toRegister"
       >注册</el-button>
+      <!-- <el-button
+              type="primary"
+              style="width:100%;margin-bottom:30px; margin-left:0px;"
+              @click="touristLogin"
+      >随便看看</el-button> -->
 
-      <!--      <div style="position:relative">-->
-      <!--        <div class="tips">-->
-      <!--          <span>Username : admin</span>-->
-      <!--          <span>Password : any</span>-->
-      <!--        </div>-->
-      <!--        <div class="tips">-->
-      <!--          <span style="margin-right:18px;">Username : editor</span>-->
-      <!--          <span>Password : any</span>-->
-      <!--        </div>-->
-
-      <!--        <el-button class="thirdparty-button" type="primary" @click="showDialog=true">-->
-      <!--          Or connect with-->
-      <!--        </el-button>-->
-      <!--      </div>-->
     </el-form>
 
     <!-- <el-dialog title="Or connect with" :visible.sync="showDialog">
@@ -191,18 +182,7 @@ export default {
           return;
         }
         if (valid) {
-          // let url = settings.apiUrl + 'user/token';
-
-          // request.request({
-          //   url,
-          //   method: "post",
-          //   headers: {
-          //     'Content-Type': 'application/x-www-form-urlencoded',
-          //   },
-          //   data: qs.stringify(this.loginForm)
-          // })
-          this.$store
-            .dispatch("user/login", this.loginForm)
+          this.$store.dispatch("user/login", this.loginForm)
             .then((result, error) => {
               if (error) {
                 this.loading = false;
@@ -240,25 +220,13 @@ export default {
     toRegister() {
       console.log("register");
       this.$router.push({ path: "/register" });
+    },
+    touristLogin(){
+      this.loading = false;
+      this.$store.dispatch("user/touristLogin").then(()=>{
+        this.$router.push({ path: this.redirect || "/" });
+      })
     }
-    // afterQRScan() {
-    //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue) reject(createError('Network Error', config, null, request));
-    //     const codeMap = {
-    //       wechat: 'code',
-    //       tencent: 'code'
-    //     }
-    //     const type = codeMap[this.auth_type]
-    //     const codeName = code[type]
-    //     if (codeName) {
-    //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       })
-    //     } else {
-    //       alert('第三方登录失败')
-    //     }
-    //   }
-    // }
   }
 };
 </script>

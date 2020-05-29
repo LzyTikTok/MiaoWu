@@ -51,8 +51,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ phone: phone.trim(), password: password }).then(response => {
         const { data } = response
-        // const data = qs.parse(response.data);
-        debugger;
         if(response.code === ResultCode.SuccessCode){
           commit('SET_TOKEN', data.token)
           setToken(data.token)
@@ -72,24 +70,18 @@ const actions = {
     var self = this;
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
+        if(state.token === 'visitor'){
+          reject("visitor");
+        }
         const { data } = response
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        // data.roles = ['admin'];
-        // data.avatar = [];
-        // data.introduction = [];
         let dataModel =  JSON.parse(data);
         const {id, password, phone, idCode, name, introduction } = dataModel.user;
         let roles = ['admin'];
         let avatar = "@/static/profile.jpg";
         commit('SET_USERINFO',dataModel)
-        // self.$store.state.userInfo = data;
-        // roles must be a non-empty array
-        // if (!roles || roles.length <= 0) {
-        //   reject('getInfo: roles must be a non-null array!')
-        // }
-
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
@@ -97,7 +89,6 @@ const actions = {
         commit('SET_PASSWORD', password)
         commit('SET_PHONE', phone)
         commit('SET_USERID', id)
-        // commit('SET_INTRODUCTION', introduction)
         resolve(data)
       }).catch(error => {
         reject(error)
@@ -157,6 +148,15 @@ const actions = {
       dispatch('tagsView/delAllViews', null, { root: true })
 
       resolve()
+    })
+  },
+
+  touristLogin({commit}){
+    return new Promise((resolve,rej) => {
+      commit('SET_ROLES', ['admin'])
+      commit('SET_TOKEN', "visitor")
+      setToken("visitor")
+      resolve();
     })
   }
 }

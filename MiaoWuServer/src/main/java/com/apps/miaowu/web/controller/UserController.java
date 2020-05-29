@@ -129,6 +129,11 @@ public class UserController {
     @DeleteMapping(value = "deleteUserById")
     public APIResult deleteById(long id){return userService.deleteUserById(id);}
 
+    @NoneAuth
+    @PostMapping(value = "logout")
+    public APIResult logout(String token){ return userService.logout(token);}
+
+
     //只需要加上下面这段即可，注意不能忘记注解
     @InitBinder
     protected void init(HttpServletRequest request, ServletRequestDataBinder binder) {

@@ -39,4 +39,6 @@ public interface UserService {
 
     APIResult login(String phone, String password);
 
+    APIResult logout(String token);
+
 }

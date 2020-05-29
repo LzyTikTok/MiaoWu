@@ -36,9 +36,16 @@
       }
     },
     created() {
-      request.get(settings.apiUrl + 'article/findAllWithClipByUserIdOrderByUpdateDesc' + '?userId=' + this.$store.getters.id).then((result) => {
-        this.articles = result.data;
-      })
+      if(this.$store.getters.id){
+        request.get(settings.apiUrl + 'article/findAllWithClipByUserIdOrderByUpdateDesc' + '?userId=' + this.$store.getters.id).then((result) => {
+          this.articles = result.data;
+        })
+      } else{ //游客
+        request.get(settings.apiUrl + 'article/findAll').then(result =>{
+          this.articles = result.data;
+        })
+      }
+
     },
     methods: {
       toPublishArticle() {
@@ -72,7 +79,6 @@
         this.$router.push({path: 'articleDetail', query: {articleId: articleId}})
       },
       clipArticle(article) {
-        debugger;
         if (article.clip === null) {
           let self = this;
           let url = settings.apiUrl + "clip/addClipArticle"
@@ -130,7 +136,6 @@
         }
       },
       mounted() {
-        debugger;
       },
     }
   }
