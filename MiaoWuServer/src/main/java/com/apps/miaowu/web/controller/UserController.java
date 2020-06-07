@@ -134,7 +134,6 @@ public class UserController {
     public APIResult logout(String token){ return userService.logout(token);}
 
 
-    //只需要加上下面这段即可，注意不能忘记注解
     @InitBinder
     protected void init(HttpServletRequest request, ServletRequestDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

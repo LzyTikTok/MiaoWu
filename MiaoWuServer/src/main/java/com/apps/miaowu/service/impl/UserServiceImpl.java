@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserService {
         List<Follow> follows = followMapper.selectByExample(example);
         ArrayList<User> users = new ArrayList<>();
         for (Follow follow : follows) {
-            users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
+            users.add(userMapper.selectByPrimaryKey(follow.getFansId()));
         }
         if (users.isEmpty()) {
             return APIResult.newResult(ResultCode.BadRequest, "can't find the fans", null);

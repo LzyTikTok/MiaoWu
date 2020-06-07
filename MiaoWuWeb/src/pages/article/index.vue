@@ -1,19 +1,16 @@
 <template>
     <div>
         <el-card :body-style="{ padding: '0px' }" style>
-            <img src="@/static/defaultCat.jpg" class="image" @click.native="toArticleListPage"/>
             <div style="padding: 14px;">
                 <el-link type="primary" @click="toArticleListPage">文章列表</el-link>
             </div>
         </el-card>
         <el-card :body-style="{ padding: '0px' }" style>
-            <img src="@/static/defaultCat.jpg" class="image" @click.native="toUserCenterPage"/>
             <div style="padding: 14px;">
                 <el-link type="primary" @click="toUserCenterPage">用户中心</el-link>
             </div>
         </el-card>
         <el-card :body-style="{ padding: '0px' }" style>
-            <img src="@/static/defaultCat.jpg" class="image" @click.native="toFindAnimalPage"/>
             <div style="padding: 14px;">
                 <el-link type="primary" @click="toFindAnimalPage">发现动物</el-link>
             </div>
@@ -39,7 +36,7 @@
             };
         },
         created() {
-            this.login();
+            // this.login();
         },
         methods: {
             login() {

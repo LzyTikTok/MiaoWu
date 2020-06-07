@@ -157,6 +157,7 @@
         FROM article a
         LEFT JOIN clip c
         on a.id = c.article_id AND user_id = #{id.jdbcType=BIGINT}
+        order by a.last_update desc
     </select>
 
     <select id="selectArticleWithCommentById" resultType="com.apps.miaowu.bean.extend.ArticleExtend" >

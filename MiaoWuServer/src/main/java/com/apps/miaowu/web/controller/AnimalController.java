@@ -29,7 +29,7 @@ public class AnimalController {
     }
 
     @PostMapping(value = "add")
-    APIResult saveOrUpdate(Animal animal, Long userId){
+    APIResult add(Animal animal, Long userId){
         return animalService.add(animal, userId);
     }
 

@@ -52,7 +52,8 @@
           'name': self.form.name,
           'gender': self.form.gender,
           'age': self.form.age,
-          'date': self.form.date
+          'date': self.form.date,
+          'userId': self.$store.getters.id
         };
           request.request({
               url,
