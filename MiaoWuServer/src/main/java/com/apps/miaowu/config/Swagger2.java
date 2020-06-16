@@ -1,12 +1,3 @@
-/**
- * Project Name:poll
- * File Name:Swagger2.java
- * Package Name:com.briup.apps.poll.config
- * Date:2018年6月10日下午6:22:51
- * Copyright (c) 2018, chenzhou1025@126.com All Rights Reserved.
- *
-*/
-
 package com.apps.miaowu.config;
 
 import org.springframework.context.annotation.Bean;
@@ -28,7 +19,7 @@ public class Swagger2 {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.apps.miaowu.web"))
+				.apis(RequestHandlerSelectors.basePackage("com.apps.miaowu.web.controller"))
 				.paths(PathSelectors.any())
 				.build();
 	}

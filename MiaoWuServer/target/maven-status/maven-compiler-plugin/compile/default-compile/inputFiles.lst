@@ -23,6 +23,7 @@ D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\utils\DateEditor.j
 D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\service\impl\CommentServiceImpl.java
 D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\bean\Follow.java
 D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\service\ArticleService.java
+D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\config\SecurityConfig.java
 D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\dao\ArticleMapper.java
 D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\dao\UserMapper.java
 D:\code\git\MiaoWu\MiaoWuServer\src\main\java\com\apps\miaowu\bean\ClipExample.java

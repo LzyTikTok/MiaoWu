@@ -5,6 +5,7 @@ import com.apps.miaowu.bean.ArticleWithBLOBs;
 import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.result.APIResult;
 
+import io.swagger.models.auth.In;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public interface ArticleService {
 
     APIResult addArticle(ArticleWithBLOBs article);
 
-    APIResult updateArticle(HttpServletRequest request,ArticleWithBLOBs article);
+    APIResult updateArticle(HttpServletRequest request, ArticleWithBLOBs article);
 
     APIResult deleteById(Long id);
 
@@ -44,12 +45,14 @@ public interface ArticleService {
 
     APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId);
 
+    APIResult findArticleWithLabelByPage(Integer count, Integer page);
+
     APIResult cascadeFindAll();
 
     APIResult thumbUpOrDown(Long articleId, Long userId);
 
     APIResult findFollowsArticleByUserIdOrderByUpdateDesc(Long UserId);
-    
+
     APIResult uploadImg(HttpServletRequest req, MultipartFile image);
 
 }

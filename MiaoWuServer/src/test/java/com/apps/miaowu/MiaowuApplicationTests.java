@@ -132,7 +132,12 @@ class MiaowuApplicationTests {
         TokenModel tokenModel = (TokenModel)login.getData();
         APIResult logout = userService.logout(tokenModel.getToken());
         System.out.println(logout);
-
     }
 
+    @Test
+    void testPage(){
+        Integer count = 5, page = 2;
+        APIResult articleWithLabelByPage = articleService.findArticleWithLabelByPage(count, page);
+        System.out.println(articleWithLabelByPage.getData());
+    }
 }

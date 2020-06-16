@@ -204,7 +204,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public APIResult thumbUpOrDown(Long articleId, Long userId) {
         //请求不合法
-        if(articleId == null || userId == null){
+        if (articleId == null || userId == null) {
             return APIResult.newResult(ResultCode.BadRequest, "params invalid", null);
         }
 
@@ -263,7 +263,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public APIResult addArticle(ArticleWithBLOBs article) {
-        if(article == null){
+        if (article == null) {
             return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
         }
         // ArticleWithBLOBs articleWithBLOBs =
@@ -287,10 +287,10 @@ public class ArticleServiceImpl implements ArticleService {
         String authStr = request.getHeader(NormalConstant.AUTHORIZATION);
         TokenModel model = tokenHelper.get(authStr);
         String userId = model.getUserId();
-        if(Long.valueOf(userId) != article.getAuthorId()){
-            return APIResult.newResult(ResultCode.NO_AUTH,"no auth", null);
+        if (Long.valueOf(userId) != article.getAuthorId()) {
+            return APIResult.newResult(ResultCode.NO_AUTH, "no auth", null);
         }
-        if(article == null){
+        if (article == null) {
             return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
         }
         article.setLastUpdate(new Date());
@@ -301,7 +301,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId) {
-        if(userId == null){
+        if (userId == null) {
             return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
         }
         ArticleExample example = new ArticleExample();
@@ -311,7 +311,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public APIResult findArticleByAuthorIdOrderByUpdateDesc(Long authorId) {
-        if(authorId == null){
+        if (authorId == null) {
             return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
         }
         ArticleExample example = new ArticleExample();
@@ -327,7 +327,7 @@ public class ArticleServiceImpl implements ArticleService {
     // todo 未测试
     @Override
     public APIResult findFollowsArticleByUserIdOrderByUpdateDesc(Long userId) {
-        if(userId == null){
+        if (userId == null) {
             return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
         }
         if (userMapper.selectByPrimaryKey(userId) == null) {
@@ -371,12 +371,18 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public APIResult findById(Long articleId) {
         Article article = articleMapper.selectByPrimaryKey(articleId);
-        if(article != null){
+        if (article != null) {
             return APIResult.newResult(ResultCode.SuccessCode, "success", article);
-        } else{
+        } else {
             return APIResult.newResult(ResultCode.BadRequest, "no Article", null);
         }
+    }
 
-
+    @Override
+    public APIResult findArticleWithLabelByPage(Integer count, Integer page) {
+        Integer start = count * (page - 1);
+        Integer end = count * (page);
+        List<ArticleExtend> articleExtends = articleMapperExtend.selectArticleWithLabelByPage(start, end);
+        return APIResult.newResult(ResultCode.SuccessCode, "success", articleExtends);
     }
 }

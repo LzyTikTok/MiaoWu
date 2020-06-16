@@ -27,8 +27,8 @@ public interface ArticleMapperExtend {
 
     List<ArticleExtend> selectCommentArticleByArticleId(Long articleId);
 
-//todo 未测试
-    List<ArticleExtend> selectAllArticleWithLabelByIdAndPage(Integer page);
+    //todo 未测试
+    List<ArticleExtend> selectArticleWithLabelByPage(Integer start, Integer end);
 
     List<ArticleExtend> selectFollowsArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId);
 
