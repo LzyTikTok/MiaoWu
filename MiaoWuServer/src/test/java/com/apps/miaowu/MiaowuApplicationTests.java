@@ -69,17 +69,6 @@ class MiaowuApplicationTests {
     }
 
     @Test
-    void testRedis(){
-       redisUtil.set("key","123");
-       System.out.println(redisUtil.get("key"));
-    //    System.out.println(redisUtil.get("key"));
-    //    Jedis jedis = new Jedis("localhost");
-       System.out.println("连接成功");
-//        //查看服务是否运行
-    //    System.out.println("服务正在运行: "+jedis.ping());
-    }
-
-    @Test
     void testSelect(){
 //        articleMapperExtend.
     }

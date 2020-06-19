@@ -106,11 +106,11 @@
         WHERE art.id = #{id,jdbcType=BIGINT};
     </select>
 
-<!--todo  未测试 -->
+<!--    todo 增加标签-->
     <select id="selectArticleWithLabelByPage" parameterType="java.lang.Integer" resultMap="com.apps.miaowu.dao.ArticleMapper.BaseResultMap" >
         SELECT a.*
         FROM article a
-        LIMIT #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER};
+        LIMIT #{start},#{end};
     </select>
 
     <select id="cascadeFindAll" resultMap="cascadeResultMap">

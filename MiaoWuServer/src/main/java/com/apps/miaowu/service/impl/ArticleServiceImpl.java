@@ -90,7 +90,6 @@ public class ArticleServiceImpl implements ArticleService {
         } else {
             article.setWriteDate(new Date());
             article.setLastUpdate(new Date());
-            // todo 处理blob
             articleMapper.insert(article);
             return APIResult.newResult(ResultCode.SuccessCode, "insert successfully", null);
         }
@@ -191,6 +190,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public APIResult findArticleWithTitleFuzzily(String title) {
         ArticleExample example = new ArticleExample();
+        StringBuilder sb = new StringBuilder();
+        sb.append("%");
+        sb.append(title);
+        sb.append("%");
+        title = sb.toString();
         example.createCriteria().andTitleLike(title);
         List<Article> articles = articleMapper.selectByExample(example);
         if (!articles.isEmpty()) {
@@ -273,7 +277,6 @@ public class ArticleServiceImpl implements ArticleService {
         article.setLastUpdate(new Date());
         article.setThumbUp(0L);
         articleMapper.insert(article);
-        // todo 处理blob
         return APIResult.newResult(ResultCode.SuccessCode, "insert successfully", article.getId());
         // }
         // else{
@@ -288,7 +291,7 @@ public class ArticleServiceImpl implements ArticleService {
         TokenModel model = tokenHelper.get(authStr);
         String userId = model.getUserId();
         if (Long.valueOf(userId) != article.getAuthorId()) {
-            return APIResult.newResult(ResultCode.NO_AUTH, "no auth", null);
+            return APIResult.newResult(ResultCode.Unauthorized, "Unauthorized", null);
         }
         if (article == null) {
             return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);

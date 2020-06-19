@@ -105,6 +105,7 @@ public class ArticleController {
 
     //todo 未测试
     @GetMapping(value = "findArticleWithTitleFuzzily")
+    @NoneAuth
     public APIResult findArticleWithTitleFuzzily(String title) {
         return articleService.findArticleWithTitleFuzzily(title);
     }
@@ -121,6 +122,7 @@ public class ArticleController {
     }
 
     @GetMapping(value = "findByAuthorIdOrderByUpdateDesc")
+    @NoneAuth
     APIResult findByAuthorIdOrderByUpdateDesc(long authorId) {
         return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);
     }

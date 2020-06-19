@@ -59,7 +59,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if (authStr == null){
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json; charset=utf-8");
-            APIResult<Object> result = APIResult.newResult(ResultCode.BadRequest, "auth is null", null);
+            APIResult<Object> result = APIResult.newResult(ResultCode.Unauthorized, "Unauthorized", null);
             String jsonString = JSON.toJSONString(result);
             response.getWriter().write(jsonString);
             return false;

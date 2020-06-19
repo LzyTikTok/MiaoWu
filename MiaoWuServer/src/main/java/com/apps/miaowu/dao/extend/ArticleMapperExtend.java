@@ -1,7 +1,7 @@
 package com.apps.miaowu.dao.extend;
 
-import com.apps.miaowu.bean.Article;
 import com.apps.miaowu.bean.extend.ArticleExtend;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,8 +27,7 @@ public interface ArticleMapperExtend {
 
     List<ArticleExtend> selectCommentArticleByArticleId(Long articleId);
 
-    //todo 未测试
-    List<ArticleExtend> selectArticleWithLabelByPage(Integer start, Integer end);
+    List<ArticleExtend> selectArticleWithLabelByPage(@Param("start")Integer start, @Param("end") Integer end);
 
     List<ArticleExtend> selectFollowsArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId);
 
