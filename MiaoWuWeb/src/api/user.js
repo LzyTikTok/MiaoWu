@@ -4,7 +4,7 @@ import qs from 'querystring'
 
 export function login(data) {
   return request({
-    url: settings.apiUrl + 'user/login',
+    url: settings.apiUrl + 'users/login',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -15,7 +15,7 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: settings.apiUrl + 'user/info',
+    url: settings.apiUrl + 'users/info',
     method: 'get',
     params: { token }
   })
@@ -26,7 +26,7 @@ export function logout(token) {
     token: token
   }
   return request({
-    url: settings.apiUrl + '/user/logout',
+    url: settings.apiUrl + '/users/logout',
     method: 'post',
     data: qs.stringify(form)
   })

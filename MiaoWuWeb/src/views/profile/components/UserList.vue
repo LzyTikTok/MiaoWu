@@ -51,7 +51,7 @@
         methods: {
             addOrDelFollow(userId) {
                 let self = this;
-                let url = settings.apiUrl + "follow/addOrDelFollow";
+                let url = settings.apiUrl + "follows";
                 let form = {
                     userId: userId,
                     fansId: self.$store.getters.id

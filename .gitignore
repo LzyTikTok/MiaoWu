@@ -1,2 +1,7 @@
-/MiaoWuServer/target
-.idea/workspace.xml
+target/
+/MiaoWuServer/target/
+.idea/
+.settings/
+.vscode/
+*.log
+*.temp

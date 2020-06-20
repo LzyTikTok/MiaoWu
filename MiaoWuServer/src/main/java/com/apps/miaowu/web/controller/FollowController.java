@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("follow")
+@RequestMapping("follows")
 public class FollowController {
 
     @Autowired
     FollowService followService;
 
-    @PostMapping(value = "addOrDelFollow")
+    @PostMapping(value = "")
     public APIResult addOrDelFollow(Long userId, Long fansId){
         return followService.addOrDelFollow(userId, fansId);
     }

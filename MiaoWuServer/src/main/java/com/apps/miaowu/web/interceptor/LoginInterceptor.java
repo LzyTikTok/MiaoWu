@@ -10,6 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import java.lang.reflect.Method;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +22,7 @@ import com.apps.miaowu.utils.token.TokenModel;
 @Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-    @Autowired
+    @Resource
     private TokenHelper tokenHelper;
 
     private static final String[] AUTH_WHITELIST = {
@@ -32,7 +33,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             "/webjars/**",
             "/swagger-resources/configuration/ui",
             "/swagger-resources/configuration/security",
-            "/swagger-resources"
+            "/swagger-resources",
+            "/error"
     };
 
     @Override

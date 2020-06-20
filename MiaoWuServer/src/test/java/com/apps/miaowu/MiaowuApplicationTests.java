@@ -129,4 +129,10 @@ class MiaowuApplicationTests {
         APIResult articleWithLabelByPage = articleService.findArticleWithLabelByPage(count, page);
         System.out.println(articleWithLabelByPage.getData());
     }
+
+    @Test
+    void testArticle(){
+        APIResult apiResult = articleService.cascadeFindById((1L));
+        System.out.println(apiResult);
+    }
 }

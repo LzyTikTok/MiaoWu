@@ -47,7 +47,7 @@
       onSubmit(){
         let self = this;
         self.loading = true;
-        let url = settings.apiUrl + "animal/add";
+        let url = settings.apiUrl + "animals/add";
         let form = {
           'name': self.form.name,
           'gender': self.form.gender,

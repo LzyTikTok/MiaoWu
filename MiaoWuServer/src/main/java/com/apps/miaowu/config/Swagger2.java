@@ -27,9 +27,9 @@ public class Swagger2 {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("喵呜")
-				.description("一个专注于领养救助猫（包括但不限于流浪猫）的app")
+				.description("一个专注于领养救助猫（包括但不限于流浪猫）的app\n本API遵循RESTful风格\n大部分GET无需授权，其余请求基本都要在header中添加token方可请求")
 				.termsOfServiceUrl("")
-				.version("1.0")
+				.version("1.1")
 				.build();
 	}
 }

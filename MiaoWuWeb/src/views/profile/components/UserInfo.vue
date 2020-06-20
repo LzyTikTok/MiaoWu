@@ -53,13 +53,13 @@
     },
     methods: {
       submit() {
-        //todo invalidate 未测试
-        let url = settings.apiUrl + "user/updateUserInfo";
+        //todo invalidate
+        let url = settings.apiUrl + "users";
         this.form.id = this.$store.getters.id;
         request
           .request({
             url,
-            method: "post",
+            method: "PUT",
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
             },

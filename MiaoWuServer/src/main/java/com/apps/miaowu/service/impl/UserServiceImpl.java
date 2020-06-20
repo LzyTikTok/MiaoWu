@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(id);
         List<User> users = userMapper.selectByExample(example);
-        return APIResult.newResult(ResultCode.SuccessCode, "Find all user successfully", users);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find user successfully", users);
     }
 
     @Override

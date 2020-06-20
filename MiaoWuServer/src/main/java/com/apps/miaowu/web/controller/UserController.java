@@ -15,6 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,21 +24,21 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
-    @GetMapping(value = "findAll")
+    @GetMapping(value = "")
     public APIResult findAll() {
         return userService.findAll();
     }
 
 //    @GetMapping(value = )
 
-
-    @PostMapping(value = "addUser")
+    @NoneAuth
+    @PostMapping(value = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "", required = false),
             @ApiImplicitParam(name = "name", value = "", required = false),
@@ -55,7 +56,7 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    @PostMapping(value = "updateUserInfo")
+    @PutMapping(value = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "", required = false),
             @ApiImplicitParam(name = "name", value = "", required = false),
@@ -73,51 +74,45 @@ public class UserController {
         return userService.updateUserInfo(user);
     }
 
-    @GetMapping(value = "info")
     @NoneAuth
+    @GetMapping(value = "info")
     public APIResult info(String token) {
         return userService.getInfo(token);
     }
 
-    @PostMapping(value = "login")
     @NoneAuth
+    @PostMapping(value = "login")
     public APIResult login(String phone, String password) {
         return userService.login(phone, password);
     }
 
-    @GetMapping(value = "findById")
-    public APIResult findById(Long id){
+    @GetMapping(value = "{id}")
+    public APIResult findById(@PathVariable Long id){
         return userService.findById(id);
     }
 
+    @NoneAuth
     @GetMapping(value = "findAllUserWithFound")
     public APIResult findAllUserWithFound(){
         return userService.findAllUserWithFound();
     }
 
+    @NoneAuth
     @GetMapping(value = "findAllUserWithFoundById")
     public APIResult findAllUserWithFoundById(Long id){
         return userService.findUserWithFoundById(id);
     }
 
+    @NoneAuth
     @GetMapping(value = "findAllUserWithSave")
     public APIResult findAllUserWithSave(){
         return userService.findAllUserWithSave();
     }
 
+    @NoneAuth
     @GetMapping(value = "findUserWithSaveById")
     public APIResult findUserWithSaveById(Long id){
         return userService.findUserWithSaveById(id);
-    }
-
-    @GetMapping(value = "cascadeFindAllUser")
-    public APIResult cascadeFindAllUser(){
-        return userService.cascadeFindAllUser();
-    }
-
-    @GetMapping(value = "cascadeFindUserById")
-    public APIResult cascadeFindUserById(Long id){
-        return userService.cascadeFindUserById(id);
     }
 
     @GetMapping(value = "getAllFollowByUserId")
@@ -126,8 +121,8 @@ public class UserController {
     @GetMapping(value = "getAllFansByUserId")
     public APIResult getAllFansByUserId(Long userId){return userService.findAllFans(userId);}
 
-    @DeleteMapping(value = "deleteUserById")
-    public APIResult deleteById(long id){return userService.deleteUserById(id);}
+    @DeleteMapping(value = "{id}")
+    public APIResult deleteById(@PathVariable long id){return userService.deleteUserById(id);}
 
     @NoneAuth
     @PostMapping(value = "logout")

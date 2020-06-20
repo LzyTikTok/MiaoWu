@@ -1,5 +1,6 @@
 package com.apps.miaowu.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.apps.miaowu.bean.*;
 import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.extend.CommentExtend;
@@ -26,6 +27,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -78,20 +80,6 @@ public class ArticleServiceImpl implements ArticleService {
             return APIResult.newResult(ResultCode.BadRequest, "no Clip Article", null);
         } else {
             return APIResult.newResult(ResultCode.SuccessCode, "success", articles);
-        }
-    }
-
-    @Override
-    public APIResult saveOrUpdate(ArticleWithBLOBs article) {
-        if (article.getId() != null) {
-            article.setLastUpdate(new Date());
-            articleMapper.updateByPrimaryKey(article);
-            return APIResult.newResult(ResultCode.SuccessCode, "Update successfully", null);
-        } else {
-            article.setWriteDate(new Date());
-            article.setLastUpdate(new Date());
-            articleMapper.insert(article);
-            return APIResult.newResult(ResultCode.SuccessCode, "insert successfully", null);
         }
     }
 
@@ -158,29 +146,34 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public APIResult cascadeFindById(Long id) {
+        if(id == null){
+            return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
+        }
+
+        HashMap res = new HashMap<String, Object>();
         try {
-            //获取评论信息
-            CommentExample commentExample = new CommentExample();
-            commentExample.createCriteria().andArticleIdEqualTo(id);
-            List<Comment> comments = commentMapper.selectByExample(commentExample);
+            //文章信息
+            Article article = articleMapper.selectByPrimaryKey(id);
+            res.put("article",article);
 
-            //获取文章信息
-            ArticleExtend articleExtend = articleMapperExtend.selectArticleById(id);
+            //评论信息
+            List<CommentExtend> commentExtends = commentMapperExtend.findByArticleIdWithUser(id);
+            res.put("comments",commentExtends);
 
-            if (!comments.isEmpty()) {
-                List<CommentExtend> commentExtends = commentMapperExtend.findByArticleIdWithUser(id);
-                articleExtend.setCommentExtends(commentExtends);
-            }
-
-            //获取标签信息
+            //标签信息
             List<Label> labels = labelMapperExtend.findLabelByArticleId(id);
+            res.put("labels", labels);
 
-            //处理返回的数据
-            articleExtend.setLabels(labels);
-            User user = userMapper.selectByPrimaryKey(articleExtend.getAuthorId());
-            articleExtend.setUser(user);
+            //用户信息
+            User user = userMapper.selectByPrimaryKey(article.getAuthorId());
+            user.setPassword(null);
+            user.setIdCode(null);
+            user.setPhone(null);
+            res.put("author", user);
 
-            return APIResult.newResult(ResultCode.SuccessCode, "success", articleExtend);
+//            String jsonString = JSON.toJSONString(res);
+
+            return APIResult.newResult(ResultCode.SuccessCode, "success", res);
         } catch (Exception e) {
             System.out.println(e);
             return APIResult.newResult(ResultCode.BadRequest, "can't find the article", null);

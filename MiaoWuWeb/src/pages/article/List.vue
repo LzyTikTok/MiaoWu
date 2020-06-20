@@ -37,11 +37,11 @@
     },
     created() {
       if(this.$store.getters.id){
-        request.get(settings.apiUrl + 'article/findAllWithClipByUserIdOrderByUpdateDesc' + '?userId=' + this.$store.getters.id).then((result) => {
+        request.get(settings.apiUrl + 'articles/findAllWithClipByUserIdOrderByUpdateDesc' + '?userId=' + this.$store.getters.id).then((result) => {
           this.articles = result.data;
         })
       } else{ //游客
-        request.get(settings.apiUrl + 'article/findAll').then(result =>{
+        request.get(settings.apiUrl + 'articles/findAll').then(result =>{
           this.articles = result.data;
         })
       }
@@ -81,7 +81,7 @@
       clipArticle(article) {
         if (article.clip === null) {
           let self = this;
-          let url = settings.apiUrl + "clip/addClipArticle"
+          let url = settings.apiUrl + "clips"
           if(!self.$store.state.user){
             self.$message.error("尚未登录");
           }
@@ -110,14 +110,14 @@
         }else {
           article.clip = false;
           let self = this;
-          let url = settings.apiUrl + "clip/deleteClipArticle"
+          let url = settings.apiUrl + "clips"
           let form = {
             'userId': self.$store.getters.id,
             'articleId': article.id
           }
           request.request({
             url,
-            method: "post",
+            method: "DELETE",
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
 

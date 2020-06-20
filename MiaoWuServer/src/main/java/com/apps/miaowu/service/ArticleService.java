@@ -23,8 +23,6 @@ public interface ArticleService {
 
     APIResult findById(Long articleId);
 
-    APIResult saveOrUpdate(ArticleWithBLOBs article);
-
     APIResult addArticle(ArticleWithBLOBs article);
 
     APIResult updateArticle(HttpServletRequest request, ArticleWithBLOBs article);

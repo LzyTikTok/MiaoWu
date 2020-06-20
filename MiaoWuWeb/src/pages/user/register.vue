@@ -264,7 +264,7 @@
       this.$refs.registerForm.validate(valid => {
         valid = true;
         if (valid) {
-          let url = settings.apiUrl + 'user/addUser';
+          let url = settings.apiUrl + 'users';
           request.request({
             url,
             method: "post",

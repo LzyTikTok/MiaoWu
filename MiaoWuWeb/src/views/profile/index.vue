@@ -100,7 +100,7 @@
           return;
         }
         let self = this;
-        let url = settings.apiUrl + 'article/findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id;
+        let url = settings.apiUrl + 'articles/findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id;
         request.request({
           url,
           method: "get",
@@ -123,7 +123,7 @@
       },
       getMyArticles() {
         let self = this;
-        let url = settings.apiUrl + 'article/findByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.getters.id;
+        let url = settings.apiUrl + 'articles/findByAuthorIdOrderByUpdateDesc' + "?authorId=" + self.$store.getters.id;
         request.request({
           url,
           method: "get",
@@ -146,7 +146,7 @@
       },
       getFollowArticles() {
         let self = this;
-        let url = settings.apiUrl + 'article/findFollowsArticleByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id;
+        let url = settings.apiUrl + 'articles/findFollowsArticleByUserIdOrderByUpdateDesc' + "?userId=" + self.$store.getters.id;
         request.request({
           url,
           method: "get",
@@ -168,12 +168,12 @@
         })
       },
       getFollows() {
-        request.get(settings.apiUrl + "user/getAllFollowByUserId?" + "userId=" + this.$store.state.user.id).then(result => {
+        request.get(settings.apiUrl + "users/getAllFollowByUserId?" + "userId=" + this.$store.state.user.id).then(result => {
           this.follows = result.data
         });
       },
       getFans() {
-        request.get(settings.apiUrl + "user/getAllFansByUserId?" + "userId=" + this.$store.state.user.id).then(result => {
+        request.get(settings.apiUrl + "users/getAllFansByUserId?" + "userId=" + this.$store.state.user.id).then(result => {
           this.fans = result.data
         })
       }

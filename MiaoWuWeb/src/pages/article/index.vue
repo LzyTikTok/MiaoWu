@@ -43,7 +43,7 @@
                 let self = this;
                 let url =
                     settings.apiUrl +
-                    "user/info" +
+                    "users/info" +
                     "?token=" +
                     window.localStorage.getItem("token");
                 request

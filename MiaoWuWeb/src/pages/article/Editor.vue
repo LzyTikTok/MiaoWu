@@ -98,7 +98,7 @@
             getArticle() {
                 let self = this;
                 if (self.$route.query.articleId) {
-                    request.get(settings.apiUrl + 'article/getById?id=' + self.$route.query.articleId).then(res => {
+                    request.get(settings.apiUrl + 'articles/getById?id=' + self.$route.query.articleId).then(res => {
                         if(res.data.authorId !== self.$store.getters.id){
                             self.$message.error("没有权限修改哦");
                             self.$router.go(-1);
@@ -179,8 +179,8 @@
                     'type': 1
                 }
                 let config = {
-                    method: 'POST',
-                    url: settings.apiUrl + 'article/updateArticle',
+                    method: 'PUT',
+                    url: settings.apiUrl + 'articles',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
@@ -237,7 +237,7 @@
                 })
             },
             submitTags(articleId) {
-                let url = settings.apiUrl + "Label/addLabel";
+                let url = settings.apiUrl + "labels";
                 let self = this;
                 let form = {
                     'articleId': articleId,
@@ -273,7 +273,7 @@
                 })
             },
             getFoundAnimals() {
-                let url = settings.apiUrl + "animal/findFoundAnimalByUserId?userId=" + this.$store.getters.id;
+                let url = settings.apiUrl + "animals?userId=" + this.$store.getters.id;
                 let self = this;
                 request.request({
                     url,

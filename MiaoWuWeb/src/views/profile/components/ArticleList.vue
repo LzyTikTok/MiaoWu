@@ -79,7 +79,7 @@
     methods: {
       handleLike(article) {
         let self = this;
-        let url = settings.apiUrl + "article/thumbUpOrDown";
+        let url = settings.apiUrl + "thumbs";
         let form = {
           'userId': self.$store.getters.id,
           'articleId': article.id

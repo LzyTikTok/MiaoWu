@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("Label")
+@RequestMapping("labels")
 public class LabelController{
 
     @Resource
     LabelService labelService;
 
 
-    @PostMapping("addLabel")
+    @PostMapping("")
     public APIResult addLabel(Long articleId, String[] labelNames){
         return labelService.addLabels(articleId,labelNames);
     }

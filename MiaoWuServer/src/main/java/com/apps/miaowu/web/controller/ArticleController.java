@@ -10,37 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/article")
+@RequestMapping("/articles")
 public class ArticleController {
 
-    @Autowired
+    @Resource
     ArticleService articleService;
 
-    @Autowired
+    @Resource
     protected HttpServletRequest request;
 
-    @PostMapping(value = "saveOrUpdate")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "", required = false),
-            @ApiImplicitParam(name = "title", value = "", required = true),
-            @ApiImplicitParam(name = "author_id", value = "", required = true),
-            @ApiImplicitParam(name = "content", value = "", required = false),
-            @ApiImplicitParam(name = "write_date", value = "", required = false),
-            @ApiImplicitParam(name = "last_update", value = "", required = false),
-            @ApiImplicitParam(name = "thumb_up", value = "", required = false),
-            @ApiImplicitParam(name = "animal_id", value = "", required = false),
-            //1是空间，2是救助文？？？
-            //todo 救助文与空间文分开两个接口去添加？
-            @ApiImplicitParam(name = "type", value = "", required = true),
-    })
-    public APIResult saveOrUpdate(ArticleWithBLOBs article) {
-        return articleService.saveOrUpdate(article);
-    }
-
-    @PostMapping(value = "addArticle")
+    @PostMapping(value = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "", required = false),
             @ApiImplicitParam(name = "title", value = "", required = true),
@@ -57,15 +40,21 @@ public class ArticleController {
         return articleService.addArticle(article);
     }
 
-    @PostMapping(value = "updateArticle")
+    @PutMapping(value = "")
     public APIResult updateArticle(ArticleWithBLOBs article) {
         return articleService.updateArticle(request, article);
     }
 
     @NoneAuth
-    @GetMapping(value = "findAll")
+    @GetMapping(value = "")
     public APIResult findAll() {
         return articleService.findAll();
+    }
+
+    @NoneAuth
+    @GetMapping(value = "?page={page}&count={count}")
+    public APIResult findArticleWithLabelByPage(@PathVariable Integer page, @PathVariable Integer count){
+        return articleService.findArticleWithLabelByPage(page, count);
     }
 
     @GetMapping(value = "findAllWithClipByUserIdOrderByUpdateDesc")
@@ -73,60 +62,60 @@ public class ArticleController {
         return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);
     }
 
+    @NoneAuth
     @GetMapping(value = "findAllArticleWithAnimal")
     public APIResult findAllArticleWithAnimal() {
         return articleService.findAllArticleWithAnimal();
     }
 
+    @NoneAuth
     @GetMapping(value = "findArticleWithAnimalById")
     public APIResult findArticleWithAnimalById(Long id) {
         return articleService.findArticleWithAnimalById(id);
     }
 
+    @NoneAuth
     @GetMapping(value = "findAllArticleWithLabel")
     public APIResult findAllArticleWithLabel() {
         return articleService.findAllArticleWithLabel();
     }
 
+    @NoneAuth
     @GetMapping(value = "findArticleWithLabelById")
     public APIResult findArticleWithLabelById(Long id) {
         return articleService.findArticleWithLabelById(id);
     }
 
-    @DeleteMapping(value = "deleteById")
+    @DeleteMapping(value = "{id}")
     public APIResult deleteById(Long id) {
         return articleService.deleteById(id);
     }
 
+    @NoneAuth
     @GetMapping(value = "findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc")
     public APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId) {
         return articleService.findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);
     }
 
-    //todo 未测试
-    @GetMapping(value = "findArticleWithTitleFuzzily")
     @NoneAuth
+    @GetMapping(value = "findArticleWithTitleFuzzily")
     public APIResult findArticleWithTitleFuzzily(String title) {
         return articleService.findArticleWithTitleFuzzily(title);
     }
 
-    @PostMapping(value = "thumbUpOrDown")
-    APIResult thumbUpOrDown(Long articleId, Long userId) {
-        return articleService.thumbUpOrDown(articleId, userId);
+    @NoneAuth
+    @GetMapping(value = "{id}")
+    APIResult cascadeFindById(@PathVariable Long id) {
+        return articleService.cascadeFindById(id);
     }
 
     @NoneAuth
-    @GetMapping(value = "cascadeFindById")
-    APIResult cascadeFindById(Long articleId) {
-        return articleService.cascadeFindById(articleId);
-    }
-
     @GetMapping(value = "findByAuthorIdOrderByUpdateDesc")
-    @NoneAuth
     APIResult findByAuthorIdOrderByUpdateDesc(long authorId) {
         return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);
     }
 
+    @NoneAuth
     @GetMapping(value = "findFollowsArticleByUserIdOrderByUpdateDesc")
     APIResult findFollowsArticleByUserIdOrderByUpdateDesc(long userId) {
         return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(userId);
@@ -136,12 +125,6 @@ public class ArticleController {
     APIResult uploadImg(MultipartFile image) {
         return null;
 //        return articleService.uploadImg(request,image);
-    }
-
-    @GetMapping(value = "getById")
-    @NoneAuth
-    APIResult getById(Long id) {
-        return articleService.findById(id);
     }
 
 }

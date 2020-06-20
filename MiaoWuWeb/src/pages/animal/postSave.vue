@@ -51,7 +51,7 @@
       },
       methods: {
         getFoundAnimals() {
-          let url = settings.apiUrl + "animal/findFoundAnimalByUserId?userId=" + this.$store.getters.id;
+          let url = settings.apiUrl + "animals/?userId=" + this.$store.getters.id;
           let self = this;
           request.request({
             url,
@@ -79,7 +79,7 @@
           })
         },
         getFollowUsers(){
-            let url = settings.apiUrl + "user/getAllFollowByUserId?userId=" + this.$store.getters.id;
+            let url = settings.apiUrl + "users/getAllFollowByUserId?userId=" + this.$store.getters.id;
             let self = this;
             request.request({
               url,
@@ -107,7 +107,7 @@
             })
         },
         postSave(){
-          let url = settings.apiUrl + "save/add";
+          let url = settings.apiUrl + "saves";
           let self = this;
           let form = {
             'userId': self.form.userId,
