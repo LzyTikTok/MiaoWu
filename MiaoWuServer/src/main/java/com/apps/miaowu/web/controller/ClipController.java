@@ -1,12 +1,11 @@
 package com.apps.miaowu.web.controller;
 
+import com.apps.miaowu.annotation.NoneAuth;
 import com.apps.miaowu.bean.result.APIResult;
+import com.apps.miaowu.service.ArticleService;
 import com.apps.miaowu.service.ClipService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -16,6 +15,15 @@ public class ClipController {
 
     @Resource
     ClipService ClipService;
+
+    @Resource
+    ArticleService articleService;
+
+    @NoneAuth
+    @GetMapping(value = "{userId}")
+    public APIResult getClipArticle(Long userId){
+        return articleService.findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);
+    }
 
     @PostMapping(value = "")
     public APIResult addClipArticle(Long userId, Long articleId){

@@ -2,26 +2,19 @@ package com.apps.miaowu.web.controller;
 
 import com.apps.miaowu.annotation.NoneAuth;
 import com.apps.miaowu.bean.User;
-import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.UserService;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -34,8 +27,6 @@ public class UserController {
     public APIResult findAll() {
         return userService.findAll();
     }
-
-//    @GetMapping(value = )
 
     @NoneAuth
     @PostMapping(value = "")
@@ -75,6 +66,7 @@ public class UserController {
     }
 
     @NoneAuth
+    @ApiOperation(value = "获取用户全部信息",notes = "其中的token必须为对应用户id的token")
     @GetMapping(value = "info")
     public APIResult info(String token) {
         return userService.getInfo(token);
@@ -86,40 +78,12 @@ public class UserController {
         return userService.login(phone, password);
     }
 
+    @NoneAuth
+    @ApiOperation(value = "获取用户部分信息")
     @GetMapping(value = "{id}")
     public APIResult findById(@PathVariable Long id){
         return userService.findById(id);
     }
-
-    @NoneAuth
-    @GetMapping(value = "findAllUserWithFound")
-    public APIResult findAllUserWithFound(){
-        return userService.findAllUserWithFound();
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findAllUserWithFoundById")
-    public APIResult findAllUserWithFoundById(Long id){
-        return userService.findUserWithFoundById(id);
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findAllUserWithSave")
-    public APIResult findAllUserWithSave(){
-        return userService.findAllUserWithSave();
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findUserWithSaveById")
-    public APIResult findUserWithSaveById(Long id){
-        return userService.findUserWithSaveById(id);
-    }
-
-    @GetMapping(value = "getAllFollowByUserId")
-    public APIResult getAllFollowByUserId(Long userId){return userService.findAllFollows(userId);}
-
-    @GetMapping(value = "getAllFansByUserId")
-    public APIResult getAllFansByUserId(Long userId){return userService.findAllFans(userId);}
 
     @DeleteMapping(value = "{id}")
     public APIResult deleteById(@PathVariable long id){return userService.deleteUserById(id);}
@@ -127,7 +91,6 @@ public class UserController {
     @NoneAuth
     @PostMapping(value = "logout")
     public APIResult logout(String token){ return userService.logout(token);}
-
 
     @InitBinder
     protected void init(HttpServletRequest request, ServletRequestDataBinder binder) {

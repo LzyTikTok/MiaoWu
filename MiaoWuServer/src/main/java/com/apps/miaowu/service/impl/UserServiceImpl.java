@@ -14,6 +14,7 @@ import com.apps.miaowu.utils.token.TokenHelper;
 import com.apps.miaowu.utils.token.TokenModel;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -22,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
     @Resource
     private UserMapper userMapper;
 
@@ -34,6 +35,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private TokenHelper tokenHelper;
+
+    @Resource
+    private FollowServiceImpl followService;
 
     @Override
     public APIResult findAll() {
@@ -65,8 +69,8 @@ public class UserServiceImpl implements UserService {
             User user = userMapper.selectByPrimaryKey(userId);
 
             //获取关注信息和粉丝信息
-            APIResult follows = this.findAllFollows(userId);
-            APIResult fans = this.findAllFans(userId);
+            APIResult follows = followService.findAllFollowsByUserId(userId);
+            APIResult fans = followService.findAllFansByUserId(userId);
 
             Map<String, Object> res = new HashMap<>();
             res.put("user", user);//用户信息
@@ -84,8 +88,15 @@ public class UserServiceImpl implements UserService {
     public APIResult findById(Long id) {
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(id);
+
         List<User> users = userMapper.selectByExample(example);
-        return APIResult.newResult(ResultCode.SuccessCode, "Find user successfully", users);
+        users.forEach((item) -> {
+            item.setPhone(null);
+            item.setPassword(null);
+            item.setIdCode(null);
+        });
+
+        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
     }
 
     @Override
@@ -134,40 +145,6 @@ public class UserServiceImpl implements UserService {
             return APIResult.newResult(500, "can't find the uesr", null);
         }
     }
-
-    @Override
-    public APIResult findAllFans(Long userId) {
-        FollowExample example = new FollowExample();
-        // 找到自己的所有粉丝
-        example.createCriteria().andUserIdEqualTo(userId);
-        List<Follow> follows = followMapper.selectByExample(example);
-        ArrayList<User> users = new ArrayList<>();
-        for (Follow follow : follows) {
-            users.add(userMapper.selectByPrimaryKey(follow.getFansId()));
-        }
-        if (users.isEmpty()) {
-            return APIResult.newResult(ResultCode.BadRequest, "can't find the fans", null);
-        }
-        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
-    }
-
-    @Override
-    public APIResult findAllFollows(Long userId) {
-        FollowExample example = new FollowExample();
-        // 找到自己关注的所有user
-        example.createCriteria().andFansIdEqualTo(userId);
-        List<Follow> follows = followMapper.selectByExample(example);
-        ArrayList<User> users = new ArrayList<>();
-        for (Follow follow : follows) {
-            users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
-        }
-        if (users.isEmpty()) {
-            return APIResult.newResult(ResultCode.BadRequest, "can't find the follows", null);
-        }
-        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
-    }
-
-    // todo logout
 
     @Override
     public APIResult addUser(User user) {
@@ -227,4 +204,6 @@ public class UserServiceImpl implements UserService {
             return APIResult.newResult(ResultCode.ServerInnerError, "fail",null);
         }
     }
+
+//    todo 将info和getById整合为一个接口
 }

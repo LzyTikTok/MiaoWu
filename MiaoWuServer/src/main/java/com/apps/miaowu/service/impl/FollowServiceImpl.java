@@ -3,6 +3,7 @@ package com.apps.miaowu.service.impl;
 import com.apps.miaowu.bean.Follow;
 import com.apps.miaowu.bean.FollowExample;
 import com.apps.miaowu.bean.FollowExample.Criteria;
+import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
 import com.apps.miaowu.dao.FollowMapper;
@@ -11,6 +12,8 @@ import com.apps.miaowu.service.FollowService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FollowServiceImpl implements FollowService {
@@ -56,4 +59,35 @@ public class FollowServiceImpl implements FollowService {
         }
     }
 
+    @Override
+    public APIResult findAllFollowsByUserId(Long userId) {
+        FollowExample example = new FollowExample();
+        // 找到自己关注的所有user
+        example.createCriteria().andFansIdEqualTo(userId);
+        List<Follow> follows = followMapper.selectByExample(example);
+        ArrayList<User> users = new ArrayList<>();
+        for (Follow follow : follows) {
+            users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
+        }
+        if (users.isEmpty()) {
+            return APIResult.newResult(ResultCode.BadRequest, "can't find the follows", null);
+        }
+        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
+    }
+
+    @Override
+    public APIResult findAllFansByUserId(Long userId) {
+        FollowExample example = new FollowExample();
+        // 找到自己的所有粉丝
+        example.createCriteria().andUserIdEqualTo(userId);
+        List<Follow> follows = followMapper.selectByExample(example);
+        ArrayList<User> users = new ArrayList<>();
+        for (Follow follow : follows) {
+            users.add(userMapper.selectByPrimaryKey(follow.getFansId()));
+        }
+        if (users.isEmpty()) {
+            return APIResult.newResult(ResultCode.BadRequest, "can't find the fans", null);
+        }
+        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
+    }
 }

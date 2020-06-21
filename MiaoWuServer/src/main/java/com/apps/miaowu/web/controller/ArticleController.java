@@ -57,33 +57,9 @@ public class ArticleController {
         return articleService.findArticleWithLabelByPage(page, count);
     }
 
-    @GetMapping(value = "findAllWithClipByUserIdOrderByUpdateDesc")
-    public APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId) {
+    @GetMapping(value = "?with=clips&userId={userId}")
+    public APIResult findAllWithClipByUserIdOrderByUpdateDesc(@PathVariable Long userId) {
         return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findAllArticleWithAnimal")
-    public APIResult findAllArticleWithAnimal() {
-        return articleService.findAllArticleWithAnimal();
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findArticleWithAnimalById")
-    public APIResult findArticleWithAnimalById(Long id) {
-        return articleService.findArticleWithAnimalById(id);
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findAllArticleWithLabel")
-    public APIResult findAllArticleWithLabel() {
-        return articleService.findAllArticleWithLabel();
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findArticleWithLabelById")
-    public APIResult findArticleWithLabelById(Long id) {
-        return articleService.findArticleWithLabelById(id);
     }
 
     @DeleteMapping(value = "{id}")
@@ -92,14 +68,8 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc")
-    public APIResult findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(Long userId) {
-        return articleService.findClipArticleWithAuthorNameByUserIdOrderByUpdateDesc(userId);
-    }
-
-    @NoneAuth
-    @GetMapping(value = "findArticleWithTitleFuzzily")
-    public APIResult findArticleWithTitleFuzzily(String title) {
+    @GetMapping(value = "?like={title}")
+    public APIResult findArticleWithTitleFuzzily(@PathVariable String title) {
         return articleService.findArticleWithTitleFuzzily(title);
     }
 
@@ -110,21 +80,21 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "findByAuthorIdOrderByUpdateDesc")
-    APIResult findByAuthorIdOrderByUpdateDesc(long authorId) {
+    @GetMapping(value = "?authorId={authorId}")
+    APIResult findByAuthorIdOrderByUpdateDesc(@PathVariable long authorId) {
         return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);
     }
 
     @NoneAuth
-    @GetMapping(value = "findFollowsArticleByUserIdOrderByUpdateDesc")
-    APIResult findFollowsArticleByUserIdOrderByUpdateDesc(long userId) {
-        return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(userId);
+    @GetMapping(value = "?fansId={fansId}")
+    APIResult findFollowsArticleByUserIdOrderByUpdateDesc(@PathVariable Long fansId) {
+        return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(fansId);
     }
-
-    @PostMapping(value = "uploadImg")
-    APIResult uploadImg(MultipartFile image) {
-        return null;
-//        return articleService.uploadImg(request,image);
-    }
+//    todo 上传图片
+//    @PostMapping(value = "uploadImg")
+//    APIResult uploadImg(MultipartFile image) {
+//        return null;
+////        return articleService.uploadImg(request,image);
+//    }
 
 }

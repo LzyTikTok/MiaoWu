@@ -33,10 +33,6 @@ public interface UserService {
 
     APIResult deleteUserById(Long id);
 
-    APIResult findAllFans(Long id);
-
-    APIResult findAllFollows(Long id);
-
     APIResult login(String phone, String password);
 
     APIResult logout(String token);
