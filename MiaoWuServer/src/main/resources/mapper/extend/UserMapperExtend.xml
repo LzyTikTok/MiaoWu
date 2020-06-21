@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apps.miaowu.dao.extend.UserMapperExtend">
+    <resultMap id="UserWithFoundResultMap" type="com.apps.miaowu.bean.extend.UserExtend"
+               extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
+        <collection property="found" resultMap="FoundResultMap" />
+    </resultMap>
+    <resultMap id="FoundResultMap" type="com.apps.miaowu.bean.Found">
+        <id column="found_id" jdbcType="BIGINT" property="id" />
+        <result column="user_id" jdbcType="BIGINT" property="userId" />
+        <result column="animal_id" jdbcType="BIGINT" property="animalId" />
+        <result column="site" jdbcType="VARCHAR" property="site" />
+        <result column="found_date" jdbcType="TIMESTAMP" property="foundDate" />
+    </resultMap>
+    <resultMap id="SaveResultMap" type="com.apps.miaowu.bean.Save">
+        <id column="save_id" jdbcType="BIGINT" property="id" />
+        <result column="user_id" jdbcType="BIGINT" property="userId" />
+        <result column="animal_id" jdbcType="BIGINT" property="animalId" />
+        <result column="save_date" jdbcType="TIMESTAMP" property="saveDate" />
+    </resultMap>
+
+    <resultMap id="ArticleResultMap" type="com.apps.miaowu.bean.Article">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="write_date" jdbcType="TIMESTAMP" property="writeDate" />
+        <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+        <result column="thump_up" jdbcType="BIGINT" property="thumpUp" />
+        <result column="author_id" jdbcType="BIGINT" property="authorId" />
+        <result column="animal_id" jdbcType="BIGINT" property="animalId" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+    </resultMap>
+
+    <resultMap id="UserWithSaveResultMap" type="com.apps.miaowu.bean.extend.UserExtend"
+               extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
+        <collection property="save" resultMap="SaveResultMap" />
+    </resultMap>
+
+    <resultMap id="UserWithArticleResultMap" type="com.apps.miaowu.bean.extend.UserExtend"
+               extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
+        <collection property="article" resultMap="ArticleResultMap" />
+    </resultMap>
+
+
+    <resultMap id="cascadeUserResultMap" type="com.apps.miaowu.bean.extend.UserExtend"
+               extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
+        <collection property="found" resultMap="FoundResultMap" />
+        <collection property="save" resultMap="SaveResultMap" />
+    </resultMap>
+
+    <resultMap id="UserWithFollowsAndFansMap" type="com.apps.miaowu.bean.extend.UserExtend"
+               extends="com.apps.miaowu.dao.UserMapper.BaseResultMap">
+        <collection property="follows" resultMap="com.apps.miaowu.dao.UserMapper.BaseResultMap" />
+        <collection property="fans" resultMap="com.apps.miaowu.dao.UserMapper.BaseResultMap" />
+    </resultMap>
+
+
+    <select id="selectUserWithFound" resultMap="UserWithFoundResultMap">
+    SELECT u.*, f.*
+    FROM user u LEFT JOIN found_table f
+    ON u.id = f.user_id;
+    </select>
+
+    <select id="selectUserWithFoundById" resultMap="UserWithFoundResultMap" parameterType="java.lang.Long">
+    SELECT u.*, f.*
+    FROM user u LEFT JOIN found_table f
+    ON u.id = f.user_id
+    WHERE u.id = #{id};
+    </select>
+
+    <select id="selectUserWithSave" resultMap="UserWithSaveResultMap">
+	SELECT u.*,s.*
+    FROM user u LEFT JOIN save s
+    ON u.id = s.user_id;
+    </select>
+
+    <select id="selectUserWithSaveById" resultMap="UserWithSaveResultMap" parameterType="java.lang.Long">
+    SELECT u.*,s.*
+    FROM user u LEFT JOIN save s
+    ON u.id = s.user_id
+    WHERE u.id = #{id};
+    </select>
+
+    <select id="cascadeFindAllUser" resultMap="cascadeUserResultMap">
+    SELECT u.*, s.*, f.*
+    FROM user u LEFT JOIN save s
+    ON u.id = s.user_id
+	LEFT JOIN found_table f
+	ON u.id = f.user_id;
+    </select>
+
+    <select id="cascadeFindUserById" resultMap="cascadeUserResultMap" parameterType="java.lang.Long">
+    SELECT u.*, s.*, f.*
+    FROM user u LEFT JOIN save s
+    ON u.id = s.user_id
+	LEFT JOIN found_table f
+	ON u.id = f.user_id
+	where u.id = #{id};
+    </select>
+
+    <select id="selectUserWithFollowsAndFansById" resultMap="UserWithFollowsAndFansMap" parameterType="java.lang.Long">
+
+
+
+    </select>
+
+</mapper>

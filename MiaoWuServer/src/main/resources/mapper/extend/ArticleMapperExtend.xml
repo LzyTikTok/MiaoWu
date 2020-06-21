@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apps.miaowu.dao.extend.ArticleMapperExtend">
+    <resultMap id="AnimalResultMap" type="com.apps.miaowu.bean.Animal">
+        <id column="animal_id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
+    </resultMap>
+
+    <resultMap id="clipResultMap" type="com.apps.miaowu.bean.Clip">
+        <id column="clip_id" jdbcType="BIGINT" property="id"/>
+    </resultMap>
+    <resultMap id="ArticleLabelResultMap" type="com.apps.miaowu.bean.ArticleLabel">
+        <id column="article_label_id" jdbcType="BIGINT" property="id"/>
+        <result column="label_id" jdbcType="BIGINT" property="labelId"/>
+        <result column="article_id" jdbcType="BIGINT" property="articleId"/>
+    </resultMap>
+
+    <resultMap id="LabelResultMap" type="com.apps.miaowu.bean.Label">
+        <id column="label_id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <resultMap id="commentResultMap" type="com.apps.miaowu.bean.Comment">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="comment_content" jdbcType="LONGVARCHAR" property="commentContent"/>
+        <result column="article_id" jdbcType="BIGINT" property="articleId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="date" jdbcType="TIMESTAMP" property="userId"/>
+    </resultMap>
+
+    <resultMap id="ArticleWithAnimalResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+        <collection property="animals" resultMap="AnimalResultMap"/>
+    </resultMap>
+
+    <resultMap id="ArticleWithArticleLabelResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+        <collection property="articleLabels" resultMap="ArticleLabelResultMap"/>
+        <collection property="labels" resultMap="LabelResultMap"/>
+    </resultMap>
+
+
+    <resultMap id="cascadeResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+        <association property="label" resultMap="LabelResultMap" javaType="com.apps.miaowu.bean.Label"/>
+        <collection property="animals" resultMap="AnimalResultMap"/>
+        <collection property="articleLabels" resultMap="ArticleArticleLabelResultMap"/>
+    </resultMap>
+
+    <resultMap id="articleWithCommentResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+        <collection property="commentExtends" resultMap="com.apps.miaowu.dao.extend.CommentMapperExtend.CommentWithUserResultMap"/>
+
+<!--        <result column="user_name" jdbcType="VARCHAR" property="authorName"/>-->
+    </resultMap>
+
+    <resultMap id="articleWithClipResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+            <association property="clip" resultMap="clipResultMap" />
+    </resultMap>
+
+    <resultMap id="articleWithAuthorNameResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+        <result column="user_name" jdbcType="VARCHAR" property="authorName"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMap" type="com.apps.miaowu.bean.extend.ArticleExtend"
+               extends="com.apps.miaowu.dao.ArticleMapper.BaseResultMap">
+    </resultMap>
+
+    <select id="selectArticleById" resultMap="BaseResultMap">
+        SELECT art.*
+        FROM article art
+        WHERE art.id = #{id,jdbcType=BIGINT};
+    </select>
+
+
+    <select id="selectArticleWithAnimal" resultMap="ArticleWithAnimalResultMap">
+        SELECT art.*, ani.*
+        FROM article art LEFT JOIN animal ani
+        ON art.animal_id = ani.id;
+    </select>
+
+    <select id="selectArticleWithAnimalById" parameterType="java.lang.Long" resultMap="ArticleWithAnimalResultMap">
+        SELECT art.*, ani.*
+        FROM article art LEFT JOIN animal ani
+        ON art.animal_id = ani.id
+        WHERE art.id = #{id,jdbcType=BIGINT};
+    </select>
+
+    <select id="selectArticleWithLabel" resultMap="ArticleWithArticleLabelResultMap">
+        SELECT a.*, l.*
+        FROM article a LEFT JOIN article_label l
+        ON a.id = l.article_id;
+    </select>
+
+    <select id="selectArticleWithLabelById" parameterType="java.lang.Long" resultMap="ArticleWithArticleLabelResultMap">
+        SELECT a.*, l.*
+        FROM article a
+        LEFT JOIN article_label l
+        ON a.id = l.article_id
+        WHERE art.id = #{id,jdbcType=BIGINT};
+    </select>
+
+<!--    todo 增加标签-->
+    <select id="selectArticleWithLabelByPage" parameterType="java.lang.Integer" resultMap="com.apps.miaowu.dao.ArticleMapper.BaseResultMap" >
+        SELECT a.*
+        FROM article a
+        LIMIT #{start},#{end};
+    </select>
+
+    <select id="cascadeFindAll" resultMap="cascadeResultMap">
+        SELECT art.*, ani.*, l.*
+        FROM article art
+        LEFT JOIN animal ani
+        ON art.animal_id = ani.id
+		LEFT JOIN article_label l
+		ON art.id = l.article_id;
+    </select>
+
+    <select id="cascadeFindById" parameterType="java.lang.Long" resultMap="cascadeResultMap">
+        SELECT art.*, ani.*, l.*
+        FROM article art
+        LEFT JOIN animal ani
+        ON art.animal_id = ani.id
+		LEFT JOIN article_label l
+		ON art.id = l.article_id
+		WHERE art.id = #{id,jdbcType=BIGINT};
+    </select>
+
+    <select id="selectClipArticleWithAuthorNameByUserIdOrderByUpdateDesc" parameterType="java.lang.Long"
+            resultMap="articleWithAuthorNameResultMap">
+        SELECT  art.*, u.name user_name
+        FROM article art, user u
+        WHERE art.id IN (SELECT article_id FROM clip WHERE user_id = #{id.jdbcType=BIGINT})
+        AND art.author_id = u.id
+        ORDER BY art.last_update desc
+    </select>
+
+    <select id="selectFollowsArticleWithAuthorNameByUserIdOrderByUpdateDesc" parameterType="java.lang.Long"
+            resultMap="articleWithAuthorNameResultMap">
+        SELECT  art.*, u.name user_name
+        FROM article art, user u
+        WHERE art.author_id IN (SELECT user_id FROM follow WHERE fans_id = #{id.jdbcType=BIGINT})
+        AND u.id = art.author_id
+        ORDER BY art.last_update desc
+    </select>
+
+
+    <select id="selectAllByUserIdOrderByUpdateDesc" resultMap="articleWithClipResultMap" parameterType="java.lang.Long">
+        SELECT a.*, c.id clip_id
+        FROM article a
+        LEFT JOIN clip c
+        on a.id = c.article_id AND user_id = #{id.jdbcType=BIGINT}
+        order by a.last_update desc
+    </select>
+
+    <select id="selectArticleWithCommentById" resultType="com.apps.miaowu.bean.extend.ArticleExtend" >
+        SELECT c.*, a.*
+        FROM comment_table c
+        LEFT JOIN article a
+        ON c.article_id = a.id
+        WHERE a.id = #{id,jdbcType=BIGINT};
+--         文章一对一
+    </select>
+    <select id="selectCommentArticleByArticleId" resultType="com.apps.miaowu.bean.extend.ArticleExtend">
+        SELECT a.*,c.id comment_id, c.content comment_content
+        FROM article a LEFT JOIN comment_table c
+        ON a.id = c.article_id;
+    </select>
+
+    <select id="selectLastUpdate" resultType="java.lang.Integer">
+        SELECT
+    </select>
+
+    <!--  <resultMap id="BaseResultMap" type="com.apps.miaowu.bean.Article">-->
+    <!--    &lt;!&ndash;-->
+    <!--      WARNING - @mbg.generated-->
+    <!--      This element is automatically generated by MyBatis Generator, do not modify.-->
+    <!--      This element was generated on Thu Jan 30 21:26:47 CST 2020.-->
+    <!--    &ndash;&gt;-->
+    <!--    <id column="id" jdbcType="BIGINT" property="id" />-->
+    <!--    <result column="write_date" jdbcType="TIMESTAMP" property="writeDate" />-->
+    <!--    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />-->
+    <!--    <result column="thump_up" jdbcType="BIGINT" property="thumpUp" />-->
+    <!--    <result column="animal_id" jdbcType="BIGINT" property="animalId" />-->
+    <!--    <result column="type" jdbcType="INTEGER" property="type" />-->
+    <!--  </resultMap>-->
+    <!--  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.apps.miaowu.bean.Article">-->
+    <!--    &lt;!&ndash;-->
+    <!--      WARNING - @mbg.generated-->
+    <!--      This element is automatically generated by MyBatis Generator, do not modify.-->
+    <!--      This element was generated on Thu Jan 30 21:26:47 CST 2020.-->
+    <!--    &ndash;&gt;-->
+    <!--    <result column="content" jdbcType="LONGVARBINARY" property="content" />-->
+    <!--  </resultMap>-->
+
+</mapper>
