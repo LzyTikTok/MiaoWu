@@ -32,7 +32,7 @@ public class AnimalController {
     }
 
     @NoneAuth
-    @GetMapping(value = "?userId={userId}")
+    @GetMapping(value = "userId={userId}")
     APIResult findFoundAnimalByUserId(Long userId){
         return animalService.findFoundAnimalByUserId(userId);
     }

@@ -37,7 +37,7 @@
     },
     created() {
       if(this.$store.getters.id){
-        request.get(settings.apiUrl + 'articles/?with=clip&userId=' + this.$store.getters.id).then((result) => {
+        request.get(settings.apiUrl + 'articles/with=clip&userId=' + this.$store.getters.id).then((result) => {
           this.articles = result.data;
         })
       } else{ //游客

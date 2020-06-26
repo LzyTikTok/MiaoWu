@@ -123,7 +123,7 @@
       },
       getMyArticles() {
         let self = this;
-        let url = settings.apiUrl + 'articles/?authorId=' + self.$store.getters.id;
+        let url = settings.apiUrl + 'articles/authorId=' + self.$store.getters.id;
         request.request({
           url,
           method: "get",
@@ -146,7 +146,7 @@
       },
       getFollowArticles() {
         let self = this;
-        let url = settings.apiUrl + 'articles/?fansId=' + self.$store.getters.id;
+        let url = settings.apiUrl + 'articles/fansId=' + self.$store.getters.id;
         request.request({
           url,
           method: "get",

@@ -77,11 +77,10 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        let dataModel =  JSON.parse(data);
-        const {id, password, phone, idCode, name, introduction } = dataModel.user;
+        const {id, password, phone, idCode, name, introduction } = data.user;
         let roles = ['admin'];
         let avatar = "@/static/profile.jpg";
-        commit('SET_USERINFO',dataModel)
+        commit('SET_USERINFO',data)
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)

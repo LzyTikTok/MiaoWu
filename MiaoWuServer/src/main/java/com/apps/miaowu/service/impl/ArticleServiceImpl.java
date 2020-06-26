@@ -302,7 +302,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         ArticleExample example = new ArticleExample();
         List<ArticleExtend> results = articleMapperExtend.selectAllByUserIdOrderByUpdateDesc(userId);
-        return APIResult.newResult(ResultCode.SuccessCode, "Find all article successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find all clip article successfully", results);
     }
 
     @Override

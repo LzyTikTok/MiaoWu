@@ -77,8 +77,7 @@ public class UserServiceImpl implements UserService{
             res.put("follows", follows.getData());//用户的关注信息
             res.put("fans", fans.getData());//用户的粉丝信息
 
-            String resString = JSON.toJSONString(res);
-            return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", resString);
+            return APIResult.newResult(ResultCode.SuccessCode, "Login successfully", res);
         } else { //不存在该token
             return APIResult.newResult(ResultCode.BadRequest, "token out of date", null);
         }

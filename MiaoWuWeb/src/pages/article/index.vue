@@ -59,8 +59,7 @@
                             return;
                         }
                         if (result.code === ResultCode.SuccessCode) {
-                            // debugger;
-                            // self.$store.state.userInfo = JSON.parse(result.data);
+                            self.$store.state.userInfo = result.data;
                         } else if (result.code === ResultCode.ServerInnerError) {
                             this.$message.error("服务器出错喵~");
                         }

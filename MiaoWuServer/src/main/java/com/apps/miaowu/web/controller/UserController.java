@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,7 +56,7 @@ public class UserController {
             @ApiImplicitParam(name = "idCode", value = "", required = false),
 //          思考 归属地的问题 可不可以通过号码直接判断
             //前端传送数据过来的时候 直接加上国际区号。
-            @ApiImplicitParam(name = "contry_id", value = "", required = true),
+            @ApiImplicitParam(name = "country_id", value = "", required = true),
             @ApiImplicitParam(name = "phone", value = "", required = true),
             @ApiImplicitParam(name = "create_date", value = "", required = false),
             @ApiImplicitParam(name = "birthday", value = "", required = false),

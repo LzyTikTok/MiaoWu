@@ -52,12 +52,13 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "?page={page}&count={count}")
-    public APIResult findArticleWithLabelByPage(@PathVariable Integer page, @PathVariable Integer count){
-        return articleService.findArticleWithLabelByPage(page, count);
+    @GetMapping(value = "page={page}&count={count}")
+    public APIResult findArticleWithLabelByPage(@PathVariable String page, @PathVariable String count){
+        return articleService.findArticleWithLabelByPage(Integer.valueOf(page), Integer.valueOf(count));
     }
 
-    @GetMapping(value = "?with=clips&userId={userId}")
+    @NoneAuth
+    @GetMapping(value = "with=clips?userId={userId}")
     public APIResult findAllWithClipByUserIdOrderByUpdateDesc(@PathVariable Long userId) {
         return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);
     }
@@ -68,7 +69,7 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "?like={title}")
+    @GetMapping(value = "like={title}")
     public APIResult findArticleWithTitleFuzzily(@PathVariable String title) {
         return articleService.findArticleWithTitleFuzzily(title);
     }
@@ -80,13 +81,13 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "?authorId={authorId}")
+    @GetMapping(value = "authorId={authorId}")
     APIResult findByAuthorIdOrderByUpdateDesc(@PathVariable long authorId) {
         return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);
     }
 
     @NoneAuth
-    @GetMapping(value = "?fansId={fansId}")
+    @GetMapping(value = "fansId={fansId}")
     APIResult findFollowsArticleByUserIdOrderByUpdateDesc(@PathVariable Long fansId) {
         return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(fansId);
     }
