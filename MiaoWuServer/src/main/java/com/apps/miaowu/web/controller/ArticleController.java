@@ -6,12 +6,12 @@ import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.ArticleService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 
 @RestController
 @RequestMapping("/articles")
@@ -23,7 +23,7 @@ public class ArticleController {
     @Resource
     protected HttpServletRequest request;
 
-    @PostMapping(value = "")
+    @PutMapping(value = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "", required = false),
             @ApiImplicitParam(name = "title", value = "", required = true),
@@ -40,7 +40,7 @@ public class ArticleController {
         return articleService.addArticle(article);
     }
 
-    @PutMapping(value = "")
+    @PostMapping(value = "")
     public APIResult updateArticle(ArticleWithBLOBs article) {
         return articleService.updateArticle(request, article);
     }
@@ -52,12 +52,13 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "?page={page}&count={count}")
-    public APIResult findArticleWithLabelByPage(@PathVariable Integer page, @PathVariable Integer count){
-        return articleService.findArticleWithLabelByPage(page, count);
+    @GetMapping(value = "page={page}&count={count}")
+    public APIResult findArticleWithLabelByPage(@PathVariable String page, @PathVariable String count){
+        return articleService.findArticleWithLabelByPage(Integer.valueOf(page), Integer.valueOf(count));
     }
 
-    @GetMapping(value = "?with=clips&userId={userId}")
+    @NoneAuth
+    @GetMapping(value = "with=clips&userId={userId}")
     public APIResult findAllWithClipByUserIdOrderByUpdateDesc(@PathVariable Long userId) {
         return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);
     }
@@ -68,7 +69,7 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "?like={title}")
+    @GetMapping(value = "like={title}")
     public APIResult findArticleWithTitleFuzzily(@PathVariable String title) {
         return articleService.findArticleWithTitleFuzzily(title);
     }
@@ -80,21 +81,15 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "?authorId={authorId}")
+    @GetMapping(value = "authorId={authorId}")
     APIResult findByAuthorIdOrderByUpdateDesc(@PathVariable long authorId) {
         return articleService.findArticleByAuthorIdOrderByUpdateDesc(authorId);
     }
 
     @NoneAuth
-    @GetMapping(value = "?fansId={fansId}")
+    @GetMapping(value = "fansId={fansId}")
     APIResult findFollowsArticleByUserIdOrderByUpdateDesc(@PathVariable Long fansId) {
         return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(fansId);
     }
-//    todo 上传图片
-//    @PostMapping(value = "uploadImg")
-//    APIResult uploadImg(MultipartFile image) {
-//        return null;
-////        return articleService.uploadImg(request,image);
-//    }
 
 }

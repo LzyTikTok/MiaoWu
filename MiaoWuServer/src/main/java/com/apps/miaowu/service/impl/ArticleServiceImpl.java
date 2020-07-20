@@ -63,8 +63,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private TokenHelper tokenHelper;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-
     @Override
     public APIResult findAll() {
         ArticleExample example = new ArticleExample();
@@ -302,7 +300,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         ArticleExample example = new ArticleExample();
         List<ArticleExtend> results = articleMapperExtend.selectAllByUserIdOrderByUpdateDesc(userId);
-        return APIResult.newResult(ResultCode.SuccessCode, "Find all article successfully", results);
+        return APIResult.newResult(ResultCode.SuccessCode, "Find all clip article successfully", results);
     }
 
     @Override
@@ -335,33 +333,6 @@ public class ArticleServiceImpl implements ArticleService {
             return APIResult.newResult(ResultCode.BadRequest, "no articles", null);
         }
         return APIResult.newResult(ResultCode.SuccessCode, "success", articleExtends);
-    }
-
-    @Override
-    public APIResult uploadImg(HttpServletRequest req, MultipartFile image) {
-        StringBuffer url = new StringBuffer();
-        String filePath = "/blogimg/" + sdf.format(new Date());
-        String imgFolderPath = req.getServletContext().getRealPath(filePath);
-        File imgFolder = new File(imgFolderPath);
-        if (!imgFolder.exists()) {
-            imgFolder.mkdirs();
-        }
-        url.append(req.getScheme())
-                .append("://")
-                .append(req.getServerName())
-                .append(":")
-                .append(req.getServerPort())
-                .append(req.getContextPath())
-                .append(filePath);
-        String imgName = UUID.randomUUID() + "_" + image.getOriginalFilename().replaceAll(" ", "");
-        try {
-            IOUtils.write(image.getBytes(), new FileOutputStream(new File(imgFolder, imgName)));
-            url.append("/").append(imgName);
-            return APIResult.newResult(ResultCode.SuccessCode, "success", null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return APIResult.newResult(ResultCode.BadRequest, "upload fail", null);
     }
 
     @Override

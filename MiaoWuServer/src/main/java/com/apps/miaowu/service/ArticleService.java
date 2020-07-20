@@ -51,6 +51,4 @@ public interface ArticleService {
 
     APIResult findFollowsArticleByUserIdOrderByUpdateDesc(Long UserId);
 
-    APIResult uploadImg(HttpServletRequest req, MultipartFile image);
-
 }

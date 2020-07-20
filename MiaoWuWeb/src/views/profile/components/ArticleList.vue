@@ -112,7 +112,7 @@
       },
       delArticle(articleId) {
         let self = this;
-        let url = settings.apiUrl + "article/deleteById";
+        let url = settings.apiUrl + "articles";
         let form = {
           'id': articleId,
         };

@@ -9,9 +9,11 @@ import com.apps.miaowu.dao.ArticleMapper;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.service.ArticleService;
 import com.apps.miaowu.service.UserService;
+import com.apps.miaowu.utils.LogUtils;
 import com.apps.miaowu.utils.RedisUtil;
 import com.apps.miaowu.utils.token.TokenModel;
 
+import org.slf4j.Logger;
 import redis.clients.jedis.Jedis;
 
 //import org.junit.Test;
@@ -29,6 +31,7 @@ import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
@@ -134,5 +137,11 @@ class MiaowuApplicationTests {
     void testArticle(){
         APIResult apiResult = articleService.cascadeFindById((1L));
         System.out.println(apiResult);
+    }
+
+    @Test
+    void testLog(){
+        Logger logger = LogUtils.getBusinessLogger();
+        logger.info("test log, for business");
     }
 }

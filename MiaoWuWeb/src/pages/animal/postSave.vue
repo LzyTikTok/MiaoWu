@@ -51,7 +51,7 @@
       },
       methods: {
         getFoundAnimals() {
-          let url = settings.apiUrl + "animals/?userId=" + this.$store.getters.id;
+          let url = settings.apiUrl + "animals/userId=" + this.$store.getters.id;
           let self = this;
           request.request({
             url,

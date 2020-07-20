@@ -33,6 +33,3 @@ spring:
         time-to-live: -1 #毫秒
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
-
-
-
