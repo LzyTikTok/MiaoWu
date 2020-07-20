@@ -6,12 +6,12 @@ import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.service.ArticleService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 
 @RestController
 @RequestMapping("/articles")
@@ -23,7 +23,7 @@ public class ArticleController {
     @Resource
     protected HttpServletRequest request;
 
-    @PostMapping(value = "")
+    @PutMapping(value = "")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "", required = false),
             @ApiImplicitParam(name = "title", value = "", required = true),
@@ -40,7 +40,7 @@ public class ArticleController {
         return articleService.addArticle(article);
     }
 
-    @PutMapping(value = "")
+    @PostMapping(value = "")
     public APIResult updateArticle(ArticleWithBLOBs article) {
         return articleService.updateArticle(request, article);
     }
@@ -58,7 +58,7 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "with=clips?userId={userId}")
+    @GetMapping(value = "with=clips&userId={userId}")
     public APIResult findAllWithClipByUserIdOrderByUpdateDesc(@PathVariable Long userId) {
         return articleService.findAllWithClipByUserIdOrderByUpdateDesc(userId);
     }
@@ -91,11 +91,5 @@ public class ArticleController {
     APIResult findFollowsArticleByUserIdOrderByUpdateDesc(@PathVariable Long fansId) {
         return articleService.findFollowsArticleByUserIdOrderByUpdateDesc(fansId);
     }
-//    todo 上传图片
-//    @PostMapping(value = "uploadImg")
-//    APIResult uploadImg(MultipartFile image) {
-//        return null;
-////        return articleService.uploadImg(request,image);
-//    }
 
 }

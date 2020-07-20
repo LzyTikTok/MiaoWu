@@ -26,7 +26,7 @@ public class AnimalController {
         return animalService.findById(id);
     }
 
-    @PostMapping(value = "")
+    @PutMapping(value = "")
     APIResult add(Animal animal, Long userId){
         return animalService.add(animal, userId);
     }
