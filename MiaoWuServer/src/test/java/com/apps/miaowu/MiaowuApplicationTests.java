@@ -11,6 +11,7 @@ import com.apps.miaowu.service.ArticleService;
 import com.apps.miaowu.service.UserService;
 import com.apps.miaowu.utils.LogUtils;
 import com.apps.miaowu.utils.RedisUtil;
+import com.apps.miaowu.utils.rabbitMQ.Producer;
 import com.apps.miaowu.utils.token.TokenModel;
 
 import org.slf4j.Logger;
@@ -47,9 +48,12 @@ class MiaowuApplicationTests {
     @Autowired
     UserService userService;
 
-    @Test
-    void contextLoads() {
+    @Autowired
+    Producer producer;
 
+    @Test
+    public void contextLoads(){
+        producer.produce();
     }
 
     @Test

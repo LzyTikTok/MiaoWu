@@ -31,5 +31,10 @@ spring:
   cache:
       redis:
         time-to-live: -1 #毫秒
+  rabbitmq:
+      host: 192.168.99.100
+      port: 5672
+      username: guest
+      password: guest
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
