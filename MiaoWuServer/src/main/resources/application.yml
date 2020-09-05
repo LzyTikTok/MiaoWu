@@ -2,6 +2,10 @@
 server:
   port: 8088
 spring:
+  data:
+    elasticsearch:
+      cluster-name: my-cluster
+      cluster-nodes: localhost:9300
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/miaowu?charactterEncoding=utf-8
@@ -38,3 +42,11 @@ spring:
       password: guest
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

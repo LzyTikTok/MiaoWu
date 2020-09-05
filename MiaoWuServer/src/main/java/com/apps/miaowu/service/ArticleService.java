@@ -33,7 +33,7 @@ public interface ArticleService {
 
     APIResult findArticleWithAnimalById(Long id);
 
-    APIResult findArticleWithTitleFuzzily(String title);
+    APIResult findArticleByKeyAndValueFuzzily(String key, String value);
 
     APIResult findAllArticleWithLabel();
 

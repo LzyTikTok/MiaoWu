@@ -67,9 +67,9 @@ public class ArticleController {
     }
 
     @NoneAuth
-    @GetMapping(value = "like={title}")
-    public APIResult findArticleWithTitleFuzzily(@PathVariable String title) {
-        return articleService.findArticleWithTitleFuzzily(title);
+    @GetMapping(value = "key={key}&value={value}")
+    public APIResult findArticleWithTitleFuzzily(@PathVariable String key,@PathVariable String value) {
+        return articleService.findArticleByKeyAndValueFuzzily(key, value);
     }
 
     @NoneAuth

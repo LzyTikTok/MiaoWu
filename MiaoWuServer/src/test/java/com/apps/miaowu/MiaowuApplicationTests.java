@@ -5,6 +5,7 @@ import com.apps.miaowu.bean.Animal;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
+import com.apps.miaowu.config.ElasticSearchConfig;
 import com.apps.miaowu.dao.ArticleMapper;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.service.ArticleService;
@@ -14,7 +15,13 @@ import com.apps.miaowu.utils.RedisUtil;
 import com.apps.miaowu.utils.rabbitMQ.Producer;
 import com.apps.miaowu.utils.token.TokenModel;
 
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.client.indices.CreateIndexResponse;
+import org.elasticsearch.client.indices.GetIndexRequest;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Qualifier;
 import redis.clients.jedis.Jedis;
 
 //import org.junit.Test;
@@ -28,6 +35,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -50,6 +58,10 @@ class MiaowuApplicationTests {
 
     @Autowired
     Producer producer;
+
+    @Autowired
+    @Qualifier("restHighLevelClient")
+    private RestHighLevelClient client;
 
     @Test
     public void contextLoads(){
@@ -148,4 +160,10 @@ class MiaowuApplicationTests {
         Logger logger = LogUtils.getBusinessLogger();
         logger.info("test log, for business");
     }
+
+    @Test
+    void testES() {
+        System.out.println(articleService.findArticleByKeyAndValueFuzzily("title","求收养").getData());
+    }
+
 }

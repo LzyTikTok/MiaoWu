@@ -1,6 +1,9 @@
 package com.apps.miaowu.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.apps.miaowu.bean.*;
 import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.extend.CommentExtend;
@@ -12,9 +15,21 @@ import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.dao.extend.CommentMapperExtend;
 import com.apps.miaowu.dao.extend.LabelMapperExtend;
 import com.apps.miaowu.service.ArticleService;
+import com.apps.miaowu.utils.JsonUtils;
 import com.apps.miaowu.utils.token.TokenHelper;
 import com.apps.miaowu.utils.token.TokenModel;
+import com.rabbitmq.tools.json.JSONUtil;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.ElasticsearchClient;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.IOUtils;
@@ -62,6 +77,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     private TokenHelper tokenHelper;
+
+    @Resource
+    private RestHighLevelClient client;
 
     @Override
     public APIResult findAll() {
@@ -179,20 +197,36 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public APIResult findArticleWithTitleFuzzily(String title) {
-        ArticleExample example = new ArticleExample();
-        StringBuilder sb = new StringBuilder();
-        sb.append("%");
-        sb.append(title);
-        sb.append("%");
-        title = sb.toString();
-        example.createCriteria().andTitleLike(title);
-        List<Article> articles = articleMapper.selectByExample(example);
-        if (!articles.isEmpty()) {
-            return APIResult.newResult(ResultCode.SuccessCode, "success", articles);
-        } else {
-            return APIResult.newResult(ResultCode.BadRequest, "can't find the article", null);
+    public APIResult findArticleByKeyAndValueFuzzily(String key, String value) {
+        SearchRequest searchRequest = new SearchRequest("article");
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.query(QueryBuilders.matchQuery(key, value));
+        searchRequest.source(searchSourceBuilder);
+        try {
+            SearchResponse response = client.search(searchRequest);
+            return APIResult.newResult(ResultCode.SuccessCode,"success",JSON.toJSONString(response.getHits()));
+//            String id = JsonUtils.getArrayColumns(response.toString(), "hits.hits._source", "id");
+//            System.out.println(id);
+        }catch (IOException exception){
+            exception.printStackTrace();
         }
+
+
+        return  null;
+        //用elasticSearch重写逻辑
+//        ArticleExample example = new ArticleExample();
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("%");
+//        sb.append(title);
+//        sb.append("%");
+//        title = sb.toString();
+//        example.createCriteria().andTitleLike(title);
+//        List<Article> articles = articleMapper.selectByExample(example);
+//        if (!articles.isEmpty()) {
+//            return APIResult.newResult(ResultCode.SuccessCode, "success", articles);
+//        } else {
+//            return APIResult.newResult(ResultCode.BadRequest, "can't find the article", null);
+//        }
 
     }
 

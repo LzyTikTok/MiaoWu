@@ -1,5 +1,9 @@
 <template>
   <el-row>
+    <el-col>
+      <el-input v-model="input" placeholder="搜索" style="width:300px"></el-input>
+      <el-button type="primary" icon="el-icon-search" @click="">搜索</el-button>
+    </el-col>
     <el-col :span="8" v-for="(article, index) in articles" :key="index" :offset="2">
       <el-card :body-style="{ padding: '0px' }" style="">
         <img src="@/static/defaultCat.jpg"
@@ -134,6 +138,26 @@
             }
           })
         }
+      },
+      search(value){
+        let url = settings.apiUrl + "articles" + "key=title" + "value=" + value
+          request.request({
+            url,
+            method: "get",
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+
+            }
+          }).then((result, error) => {
+            if (error) {
+              this.$message.error('服务器出错喵~');
+            } else if (result.code === ResultCode.SuccessCode) {
+              article.clip = {};
+              this.$message.success("搜索成功~");
+            } else if (result.code === ResultCode.ServerInnerError) {
+              this.$message.error('服务器出错喵~');
+            }
+          })
       },
       mounted() {
       },
