@@ -147,15 +147,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public APIResult addUser(User user) {
-        UserExample example = new UserExample();
-        example.createCriteria().andIdCodeEqualTo(user.getIdCode());
-        List<User> idCodeUsers = userMapper.selectByExample(example);
+        UserExample isUserExist = new UserExample();
+        isUserExist.createCriteria().andIdCodeEqualTo(user.getIdCode())
+                .andPhoneEqualTo(user.getPhone());
+        List<User> users = userMapper.selectByExample(isUserExist);
 
-        UserExample example2 = new UserExample();
-        example2.createCriteria().andPhoneEqualTo(user.getPhone());
-        List<User> phoneUsers = userMapper.selectByExample(example2);
-
-        if (idCodeUsers.isEmpty() && phoneUsers.isEmpty()) {
+        if (users.isEmpty()) {
             user.setCreateDate(new Date());
             userMapper.insert(user);
             return APIResult.newResult(ResultCode.SuccessCode, "add user successfully", null);

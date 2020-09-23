@@ -3,11 +3,14 @@ package com.apps.miaowu;
 import com.alibaba.fastjson.JSON;
 import com.apps.miaowu.bean.Animal;
 import com.apps.miaowu.bean.User;
+import com.apps.miaowu.bean.UserExample;
 import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.config.ElasticSearchConfig;
 import com.apps.miaowu.dao.ArticleMapper;
+import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.dao.extend.ArticleMapperExtend;
+import com.apps.miaowu.service.AnimalService;
 import com.apps.miaowu.service.ArticleService;
 import com.apps.miaowu.service.UserService;
 import com.apps.miaowu.utils.LogUtils;
@@ -38,10 +41,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {MiaowuApplication.class})
@@ -62,6 +62,12 @@ class MiaowuApplicationTests {
     @Autowired
     @Qualifier("restHighLevelClient")
     private RestHighLevelClient client;
+
+    @Resource
+    UserMapper userMapper;
+
+    @Autowired
+    AnimalService animalService;
 
     @Test
     public void contextLoads(){
@@ -164,6 +170,13 @@ class MiaowuApplicationTests {
     @Test
     void testES() {
         System.out.println(articleService.findArticleByKeyAndValueFuzzily("title","求收养").getData());
+    }
+
+
+    @Test
+    void testGetAnimalById(){
+        APIResult animals = animalService.findById(2L);
+        System.out.println(animals.getData());
     }
 
 }

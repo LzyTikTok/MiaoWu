@@ -210,24 +210,7 @@ public class ArticleServiceImpl implements ArticleService {
         }catch (IOException exception){
             exception.printStackTrace();
         }
-
-
         return  null;
-        //用elasticSearch重写逻辑
-//        ArticleExample example = new ArticleExample();
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("%");
-//        sb.append(title);
-//        sb.append("%");
-//        title = sb.toString();
-//        example.createCriteria().andTitleLike(title);
-//        List<Article> articles = articleMapper.selectByExample(example);
-//        if (!articles.isEmpty()) {
-//            return APIResult.newResult(ResultCode.SuccessCode, "success", articles);
-//        } else {
-//            return APIResult.newResult(ResultCode.BadRequest, "can't find the article", null);
-//        }
-
     }
 
     @Override

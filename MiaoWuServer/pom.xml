@@ -9,10 +9,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <modules>
-        <module>../cloud-provider-payment-8001</module>
-    </modules>
-
     <groupId>com.apps</groupId>
     <artifactId>miaowu</artifactId>
     <version>0.0.1-SNAPSHOT</version>

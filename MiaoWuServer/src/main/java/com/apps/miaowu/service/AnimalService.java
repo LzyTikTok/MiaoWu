@@ -12,6 +12,8 @@ public interface AnimalService {
 
     APIResult add(Animal animal, Long userId);
 
+    APIResult update(Animal animal);
+
     APIResult findAllSaveAnimalByUserId(Long UserId);
 
     APIResult findFoundAnimalByUserId(Long userId);

@@ -26,4 +26,8 @@ public class APIResult<T> extends ResultSupport {
         return apiResult;
     }
 
+    public static <U> APIResult<U> newResult(ResultEnum resultEnum, U data){
+        return newResult(resultEnum.getCode(), resultEnum.getMsg(), data);
+    }
+
 }
