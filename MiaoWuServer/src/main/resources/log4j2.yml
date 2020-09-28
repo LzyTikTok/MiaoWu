@@ -13,7 +13,7 @@ Configuration:
       - name: log.path
         value: log
       - name: project.name
-        value: endeavour
+        value: miaowu
       - name: log.pattern
         value: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p ${PID:-} [%15.15t] %-30.30C{1.} : %m%n"
 
@@ -59,10 +59,10 @@ Configuration:
         DefaultRolloverStrategy:     # 文件最多100个
           max: 100
       #   业务日志
-      - name: BUSSINESS_ROLLING_FILE
+      - name: BUSINESS_ROLLING_FILE
         ignoreExceptions: false
-        fileName: ${log.path}/bussiness/${project.name}_bussiness.log
-        filePattern: "${log.path}/bussiness/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz"
+        fileName: ${log.path}/business/${project.name}_business.log
+        filePattern: "${log.path}/business/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz"
         PatternLayout:
           pattern: ${log.pattern}
         Policies:
@@ -118,22 +118,25 @@ Configuration:
           - ref: CONSOLE
           - ref: PLATFORM_ROLLING_FILE
 
-      - name: bussiness
+      - name: business
         level: info
         additivity: false
         AppenderRef:
-          - ref: BUSSINESS_ROLLING_FILE
+          - ref: CONSOLE
+          - ref: BUSINESS_ROLLING_FILE
 
       - name: exception
         level: debug
         additivity: true
         AppenderRef:
+          - ref: CONSOLE
           - ref: EXCEPTION_ROLLING_FILE
 
       - name: db
         level: info
         additivity: false
         AppenderRef:
+          - ref: CONSOLE
           - ref: DB_ROLLING_FILE
 
 

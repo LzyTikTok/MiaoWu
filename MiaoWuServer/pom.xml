@@ -8,16 +8,15 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <groupId>com.apps</groupId>
     <artifactId>miaowu</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>miaowu</name>
     <description>A project for homeless animal</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
+<!--    <propertieses>-->
+<!--        <java.version>1.8</java.version>-->
+<!--    </propertieses>-->
 
     <dependencies>
         <dependency>
@@ -28,12 +27,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!--添加对日志系统的支持，采用最新的log4j2框架-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-log4j2</artifactId>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -118,15 +111,26 @@
             <version>5.1.38</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.yaml</groupId>-->
+<!--            <artifactId>snakeyaml</artifactId>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>${snakeyaml.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
             <optional>true</optional>
         </dependency>
         <!--        引入redis-->
@@ -165,21 +169,26 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.58</version>
         </dependency>
-        <!--添加log4j2相关jar包-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.logging.log4j</groupId>-->
-        <!--            <artifactId>log4j-api</artifactId>-->
-        <!--            <version>2.7</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.logging.log4j</groupId>-->
-        <!--            <artifactId>log4j-core</artifactId>-->
-        <!--            <version>2.7</version>-->
-        <!--        </dependency>-->
-        <!-- 加上这个才能辨认到log4j2.yml文件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+<!--        添加log4j2相关jar包-->
+<!--                <dependency>-->
+<!--                    <groupId>org.apache.logging.log4j</groupId>-->
+<!--                    <artifactId>log4j-api</artifactId>-->
+<!--                    <version>2.7</version>-->
+<!--                </dependency>-->
+<!--                <dependency>-->
+<!--                    <groupId>org.apache.logging.log4j</groupId>-->
+<!--                    <artifactId>log4j-core</artifactId>-->
+<!--                    <version>2.7</version>-->
+<!--                </dependency>-->
+<!--         加上这个才能辨认到log4j2.yml文件-->
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>2.9.8</version>
         </dependency>
     </dependencies>
 
