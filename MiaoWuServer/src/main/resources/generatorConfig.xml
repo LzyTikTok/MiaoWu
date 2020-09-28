@@ -10,7 +10,8 @@
   <context id="DB2Tables" targetRuntime="MyBatis3">
 
     <property name="javaFileEncoding" value="UTF-8"/>
-
+       <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+      <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
     <commentGenerator>
       <property name="suppressDate" value="true"/>
     </commentGenerator>
