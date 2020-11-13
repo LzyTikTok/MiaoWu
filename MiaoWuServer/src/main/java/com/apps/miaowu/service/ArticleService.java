@@ -5,6 +5,7 @@ import com.apps.miaowu.bean.ArticleWithBLOBs;
 import com.apps.miaowu.bean.extend.ArticleExtend;
 import com.apps.miaowu.bean.result.APIResult;
 
+import com.apps.miaowu.common.service.MiaoWuService;
 import io.swagger.models.auth.In;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface ArticleService {
+public interface ArticleService extends MiaoWuService{
     APIResult findAll();
 
     APIResult findAllWithClipByUserIdOrderByUpdateDesc(Long userId);

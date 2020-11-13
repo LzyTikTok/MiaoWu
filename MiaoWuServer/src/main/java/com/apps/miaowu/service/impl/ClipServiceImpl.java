@@ -5,6 +5,7 @@ import com.apps.miaowu.bean.ClipExample;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
+import com.apps.miaowu.bean.result.ResultEnum;
 import com.apps.miaowu.dao.ArticleMapper;
 import com.apps.miaowu.dao.ClipMapper;
 import com.apps.miaowu.dao.UserMapper;
@@ -44,7 +45,7 @@ public class ClipServiceImpl implements ClipService {
         clip.setUserId(userId);
         clip.setDate(new Date());
         clipMapper.insert(clip);
-        return APIResult.newResult(ResultCode.SuccessCode, "Clip article successfully", clip);
+        return APIResult.newResult(ResultEnum.SUCCESS, clip);
     }
 
 
@@ -54,7 +55,7 @@ public class ClipServiceImpl implements ClipService {
         ClipExample example = new ClipExample();
         example.createCriteria().andArticleIdEqualTo(articleId).andUserIdEqualTo(userId);
         clipMapper.deleteByExample(example);
-        return APIResult.newResult(ResultCode.SuccessCode, "Delete clip article successfully", null);
+        return APIResult.newResult(ResultEnum.SUCCESS, null);
     }
     
 }

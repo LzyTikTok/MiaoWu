@@ -1,4 +1,4 @@
-package com.apps.miaowu.utils.rabbitMQ;
+package com.apps.miaowu.common.utils.rabbitMQ;
 
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;

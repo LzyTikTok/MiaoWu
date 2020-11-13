@@ -1,11 +1,9 @@
-package com.apps.miaowu.utils.token;
+package com.apps.miaowu.common.utils.token;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import com.apps.miaowu.utils.MiaoWuUtil;
-import com.apps.miaowu.utils.RedisUtil;
-import com.mysql.jdbc.StringUtils;
+import com.apps.miaowu.common.utils.RedisUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

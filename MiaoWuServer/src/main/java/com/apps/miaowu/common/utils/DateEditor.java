@@ -1,4 +1,4 @@
-package com.apps.miaowu.utils;
+package com.apps.miaowu.common.utils;
 
 import org.apache.commons.lang3.time.DateUtils;
 

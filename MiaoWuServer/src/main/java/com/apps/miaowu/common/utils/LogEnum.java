@@ -1,4 +1,4 @@
-package com.apps.miaowu.utils;
+package com.apps.miaowu.common.utils;
 
 public enum LogEnum {
 

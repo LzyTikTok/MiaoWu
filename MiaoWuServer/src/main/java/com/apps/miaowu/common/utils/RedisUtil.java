@@ -1,7 +1,6 @@
-package com.apps.miaowu.utils;
+package com.apps.miaowu.common.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;

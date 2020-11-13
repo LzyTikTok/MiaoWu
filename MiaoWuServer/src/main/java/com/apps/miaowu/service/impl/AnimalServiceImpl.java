@@ -6,6 +6,8 @@ import com.apps.miaowu.bean.Found;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
 import com.apps.miaowu.bean.result.ResultEnum;
+import com.apps.miaowu.common.exception.MiaowuException;
+import com.apps.miaowu.common.service.MiaoWuService;
 import com.apps.miaowu.dao.AnimalMapper;
 import com.apps.miaowu.dao.FoundMapper;
 import com.apps.miaowu.dao.extend.AnimalMapperExtend;
@@ -41,14 +43,18 @@ public class AnimalServiceImpl implements AnimalService {
     public APIResult findAll() {
         AnimalExample example = new AnimalExample();
         List<Animal> results = animalMapper.selectByExample(example);
-        return APIResult.newResult(200, "Find all animal successfully", results);
+        return APIResult.newResult(ResultEnum.SUCCESS, results);
     }
 
     @Override
     public APIResult findById(Long id) {
-        if (id == null) {
-            return APIResult.newResult(ResultCode.BadRequest, "params invalid", null);
+        //参数空值校验
+        try {
+            varifyNullParam(id);
+        } catch (MiaowuException miaowuException) {
+            return APIResult.newResult(ResultEnum.ILLEGAL_PARAM, null);
         }
+
         AnimalExample example = new AnimalExample();
         example.createCriteria().andIdEqualTo(id);
         List<Animal> animals = animalMapper.selectByExample(example);
@@ -66,33 +72,38 @@ public class AnimalServiceImpl implements AnimalService {
                 }
             }
         });
-        return APIResult.newResult(200, "Find animal by id successfully", animals);
+        return APIResult.newResult(ResultEnum.SUCCESS, animals);
     }
 
     @Override
     public APIResult add(Animal animal, Long userId) {
-        // //todo 把update改成部分更新字段
+        //参数空值校验
+        try {
+            varifyNullParam(animal,userId);
+        } catch (MiaowuException miaowuException) {
+            return APIResult.newResult(ResultEnum.ILLEGAL_PARAM, null);
+        }
 
         animalMapper.insert(animal);
         Found found = new Found();
         found.setAnimalId(animal.getId());
         found.setUserId(userId);
         foundMapper.insert(found);
-        return APIResult.newResult(ResultCode.SuccessCode, "Insert animal successfully", null);
+        return APIResult.newResult(ResultEnum.SUCCESS, null);
     }
 
     @Override
-    public APIResult findAllSaveAnimalByUserId(Long UserId) {
-        return null;
+    public APIResult findAllSaveAnimalByUserId(Long userId) {
+        return APIResult.newResult(ResultEnum.NO_CONTENT, null);
     }
 
     @Override
     public APIResult findFoundAnimalByUserId(Long userId) {
         List<Animal> animals = animalMapperExtend.selectFoundAnimalByUserId(userId);
         if (animals.isEmpty()) {
-            return APIResult.newResult(ResultCode.BadRequest, "no Animals", null);
+            return APIResult.newResult(ResultEnum.BAD_REQUEST, null);
         } else {
-            return APIResult.newResult(ResultCode.SuccessCode, "success", animals);
+            return APIResult.newResult(ResultEnum.SUCCESS, animals);
         }
     }
 

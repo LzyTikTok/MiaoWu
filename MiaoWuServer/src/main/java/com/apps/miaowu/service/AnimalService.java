@@ -2,10 +2,12 @@ package com.apps.miaowu.service;
 
 import com.apps.miaowu.bean.Animal;
 import com.apps.miaowu.bean.result.APIResult;
+import com.apps.miaowu.common.service.MiaoWuService;
 
 import java.util.List;
 
-public interface AnimalService {
+public interface AnimalService extends MiaoWuService{
+
     APIResult findAll();
 
     APIResult findById(Long id);
@@ -14,7 +16,7 @@ public interface AnimalService {
 
     APIResult update(Animal animal);
 
-    APIResult findAllSaveAnimalByUserId(Long UserId);
+    APIResult findAllSaveAnimalByUserId(Long userId);
 
     APIResult findFoundAnimalByUserId(Long userId);
 

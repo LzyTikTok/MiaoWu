@@ -4,16 +4,12 @@ import com.apps.miaowu.bean.Comment;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
-import com.apps.miaowu.dao.ArticleMapper;
+import com.apps.miaowu.bean.result.ResultEnum;
 import com.apps.miaowu.dao.CommentMapper;
-import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.service.CommentService;
-import com.apps.miaowu.utils.MiaoWuUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -40,7 +36,7 @@ public class CommentServiceImpl implements CommentService {
             comment.setDate(new Date());
 
             commentMapper.insert(comment);
-            return APIResult.newResult(ResultCode.SuccessCode, "Add comment successfully", null);
+            return APIResult.newResult(ResultEnum.SUCCESS, null);
         }
     }
 
@@ -48,7 +44,7 @@ public class CommentServiceImpl implements CommentService {
     public APIResult deleteComment(User user, Long commentId) {
         if (commentMapper.selectByPrimaryKey(commentId) != null) {
             commentMapper.deleteByPrimaryKey(commentId);
-            return APIResult.newResult(ResultCode.SuccessCode, "Delete successfully", null);
+            return APIResult.newResult(ResultEnum.SUCCESS,  null);
         } else {
             return APIResult.newResult(ResultCode.BadRequest, "can't not find the comment", null);
         }
@@ -58,7 +54,7 @@ public class CommentServiceImpl implements CommentService {
     public APIResult updateComment(User user, Comment comment) {
         if (commentMapper.selectByPrimaryKey(comment.getId()) != null) {
             commentMapper.updateByPrimaryKey(comment);
-            return APIResult.newResult(ResultCode.SuccessCode, "Update successfully", null);
+            return APIResult.newResult(ResultEnum.SUCCESS,  null);
         } else {
             return APIResult.newResult(ResultCode.BadRequest, "can't not find the comment", null);
         }

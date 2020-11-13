@@ -3,7 +3,6 @@ package com.apps.miaowu.web.interceptor;
 import com.alibaba.fastjson.JSON;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -16,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.apps.miaowu.annotation.NoneAuth;
 import com.apps.miaowu.constant.NormalConstant;
-import com.apps.miaowu.utils.token.TokenHelper;
-import com.apps.miaowu.utils.token.TokenModel;
+import com.apps.miaowu.common.utils.token.TokenHelper;
+import com.apps.miaowu.common.utils.token.TokenModel;
 
 @Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {

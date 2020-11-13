@@ -6,3 +6,8 @@ target/
 *.log
 *.temp
 MiaoWuServer/miaowu.iml
+/log/
+*.gz
+.project
+.factorypath
+.classpath

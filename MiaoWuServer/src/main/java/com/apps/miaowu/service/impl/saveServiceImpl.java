@@ -4,6 +4,7 @@ import com.apps.miaowu.bean.Save;
 import com.apps.miaowu.bean.SaveExample;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
+import com.apps.miaowu.bean.result.ResultEnum;
 import com.apps.miaowu.dao.SaveMapper;
 import com.apps.miaowu.service.SaveService;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class saveServiceImpl implements SaveService {
     @Override
     public APIResult addSave(Long userId, Long animalId) {
         if(userId == null || animalId == null){
-            return APIResult.newResult(ResultCode.BadRequest, "invalid params", null);
+            return APIResult.newResult(ResultEnum.ILLEGAL_PARAM, null);
         }
         SaveExample example = new SaveExample();
         example.createCriteria().andUserIdEqualTo(userId).andAnimalIdEqualTo(animalId);
@@ -37,7 +38,7 @@ public class saveServiceImpl implements SaveService {
         save.setSaveDate(new Date());
 
         saveMapper.insert(save);
-        return APIResult.newResult(ResultCode.SuccessCode, "success", null);
+        return APIResult.newResult(ResultEnum.SUCCESS, null);
 //        return null;
     }
 
@@ -47,13 +48,13 @@ public class saveServiceImpl implements SaveService {
         if (save != null) {
             try {
                 saveMapper.deleteByPrimaryKey(userId);
-                return APIResult.newResult(ResultCode.SuccessCode, "delete save record successfully", null);
+                return APIResult.newResult(ResultEnum.SUCCESS, null);
             } catch (Exception e) {
                 System.out.println(e);
                 return APIResult.newResult(ResultCode.BadRequest, "error", null);
             }
         } else {
-            return APIResult.newResult(ResultCode.BadRequest, "record not exist", null);
+            return APIResult.newResult(ResultEnum.NO_CONTENT, null);
         }
     }
 }

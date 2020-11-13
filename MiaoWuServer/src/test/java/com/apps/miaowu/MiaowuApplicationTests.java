@@ -3,43 +3,35 @@ package com.apps.miaowu;
 import com.alibaba.fastjson.JSON;
 import com.apps.miaowu.bean.Animal;
 import com.apps.miaowu.bean.User;
-import com.apps.miaowu.bean.UserExample;
-import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
-import com.apps.miaowu.config.ElasticSearchConfig;
-import com.apps.miaowu.dao.ArticleMapper;
+import com.apps.miaowu.bean.result.ResultCode;
+import com.apps.miaowu.bean.result.ResultEnum;
+import com.apps.miaowu.bean.result.TestLombok;
+import com.apps.miaowu.common.exception.MiaowuException;
 import com.apps.miaowu.dao.UserMapper;
-import com.apps.miaowu.dao.extend.ArticleMapperExtend;
 import com.apps.miaowu.service.AnimalService;
 import com.apps.miaowu.service.ArticleService;
 import com.apps.miaowu.service.UserService;
-import com.apps.miaowu.utils.LogUtils;
-import com.apps.miaowu.utils.RedisUtil;
-import com.apps.miaowu.utils.rabbitMQ.Producer;
-import com.apps.miaowu.utils.token.TokenModel;
+import com.apps.miaowu.common.utils.LogUtils;
+import com.apps.miaowu.common.utils.RedisUtil;
+import com.apps.miaowu.common.utils.rabbitMQ.Producer;
+import com.apps.miaowu.common.utils.token.TokenModel;
 
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.client.indices.CreateIndexResponse;
-import org.elasticsearch.client.indices.GetIndexRequest;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
-import redis.clients.jedis.Jedis;
 
 //import org.junit.Test;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -179,4 +171,18 @@ class MiaowuApplicationTests {
         System.out.println(animals.getData());
     }
 
+    @Test
+    void testException(){
+        Object obj = null;
+        try{
+            animalService.varifyNullParam(obj);
+        } catch (MiaowuException miaowuException) {
+            System.out.println(APIResult.newResult(ResultCode.BadRequest,miaowuException.getMessage(),null));
+        }
+    }
+
+    @Test
+    void testLombok(){
+        System.out.println(ResultEnum.BAD_REQUEST.getMsg());
+    }
 }

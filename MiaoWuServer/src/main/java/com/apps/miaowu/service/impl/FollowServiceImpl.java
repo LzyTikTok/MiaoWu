@@ -6,6 +6,7 @@ import com.apps.miaowu.bean.FollowExample.Criteria;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
+import com.apps.miaowu.bean.result.ResultEnum;
 import com.apps.miaowu.dao.FollowMapper;
 import com.apps.miaowu.dao.UserMapper;
 import com.apps.miaowu.service.FollowService;
@@ -45,14 +46,14 @@ public class FollowServiceImpl implements FollowService {
             //取消关注 todo 未测试
             try {
                 followMapper.deleteByExample(followExample);
-                return APIResult.newResult(ResultCode.CancelSuccessCode, "Cancel follow successfully", null);
+                return APIResult.newResult(ResultEnum.SUCCESS, null);
             } catch (Exception e) {
                 return APIResult.newResult(ResultCode.ServerInnerError, e.toString(), null);
             }
         } else{
             try{
                 followMapper.insert(follow);
-                return APIResult.newResult(ResultCode.SuccessCode, "Add follow successfully", follow);
+                return APIResult.newResult(ResultEnum.SUCCESS, follow);
             } catch (Exception e){
                 return  APIResult.newResult(ResultCode.ServerInnerError,e.toString(),null);
             }
@@ -70,9 +71,9 @@ public class FollowServiceImpl implements FollowService {
             users.add(userMapper.selectByPrimaryKey(follow.getUserId()));
         }
         if (users.isEmpty()) {
-            return APIResult.newResult(ResultCode.BadRequest, "can't find the follows", null);
+            return APIResult.newResult(ResultEnum.NO_CONTENT, null);
         }
-        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
+        return APIResult.newResult(ResultEnum.SUCCESS, users);
     }
 
     @Override
@@ -86,8 +87,8 @@ public class FollowServiceImpl implements FollowService {
             users.add(userMapper.selectByPrimaryKey(follow.getFansId()));
         }
         if (users.isEmpty()) {
-            return APIResult.newResult(ResultCode.BadRequest, "can't find the fans", null);
+            return APIResult.newResult(ResultEnum.NO_CONTENT, null);
         }
-        return APIResult.newResult(ResultCode.SuccessCode, "success", users);
+        return APIResult.newResult(ResultEnum.SUCCESS, users);
     }
 }

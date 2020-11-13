@@ -1,8 +1,6 @@
-package com.apps.miaowu.utils;
+package com.apps.miaowu.common.utils;
 
 import org.slf4j.Logger;
-
-import java.util.logging.LogManager;
 
 public class Log4j2Test {
 

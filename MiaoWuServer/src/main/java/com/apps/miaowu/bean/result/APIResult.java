@@ -30,4 +30,12 @@ public class APIResult<T> extends ResultSupport {
         return newResult(resultEnum.getCode(), resultEnum.getMsg(), data);
     }
 
+    @Override
+    public String toString() {
+        return "APIResult{" +
+                "code=" + getCode() +
+                ", message=" + getMessage() +
+                ", data=" + data +
+                '}';
+    }
 }

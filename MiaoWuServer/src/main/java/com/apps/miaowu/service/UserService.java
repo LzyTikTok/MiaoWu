@@ -4,11 +4,12 @@ import com.apps.miaowu.bean.Article;
 import com.apps.miaowu.bean.User;
 import com.apps.miaowu.bean.extend.UserExtend;
 import com.apps.miaowu.bean.result.APIResult;
+import com.apps.miaowu.common.service.MiaoWuService;
 import io.swagger.annotations.Api;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends MiaoWuService {
     APIResult findAll();
 
     APIResult updateUserInfo(User user);

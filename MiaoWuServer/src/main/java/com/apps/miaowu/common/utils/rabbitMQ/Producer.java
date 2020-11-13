@@ -1,4 +1,4 @@
-package com.apps.miaowu.utils.rabbitMQ;
+package com.apps.miaowu.common.utils.rabbitMQ;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

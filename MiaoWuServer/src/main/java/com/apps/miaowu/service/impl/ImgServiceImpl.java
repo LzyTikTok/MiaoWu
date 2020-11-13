@@ -2,6 +2,7 @@ package com.apps.miaowu.service.impl;
 
 import com.apps.miaowu.bean.result.APIResult;
 import com.apps.miaowu.bean.result.ResultCode;
+import com.apps.miaowu.bean.result.ResultEnum;
 import com.apps.miaowu.service.ImgService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
@@ -23,12 +24,13 @@ import java.util.UUID;
 @Service
 public class ImgServiceImpl implements ImgService {
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
     @Override
     public APIResult addImg(HttpServletRequest req, MultipartFile image) {
         StringBuffer url = new StringBuffer();
-        String filePath = "/miaowuimg/" + sdf.format(new Date());
+        String sourcePath = "miaowuimg";
+        String filePath = sourcePath + sdf.format(new Date());
         String imgFolderPath = req.getServletContext().getRealPath(filePath);
         File imgFolder = new File(imgFolderPath);
         if (!imgFolder.exists()) {
@@ -45,7 +47,7 @@ public class ImgServiceImpl implements ImgService {
         try {
             IOUtils.write(image.getBytes(), new FileOutputStream(new File(imgFolder, imgName)));
             url.append("/").append(imgName);
-            return APIResult.newResult(ResultCode.SuccessCode, "success", url.toString());
+            return APIResult.newResult(ResultEnum.SUCCESS, url.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,6 +56,6 @@ public class ImgServiceImpl implements ImgService {
 
     @Override
     public APIResult delImg(String url) {
-        return null;
+        return APIResult.newResult(ResultEnum.NO_CONTENT, null);
     }
 }

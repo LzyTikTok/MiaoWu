@@ -1,4 +1,4 @@
-package com.apps.miaowu.utils.token;
+package com.apps.miaowu.common.utils.token;
 
 import com.alibaba.fastjson.annotation.JSONField;
 

@@ -7,13 +7,33 @@ import lombok.*;
  * @Author lzy
  * @create 2020/9/23 12:23
  */
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Getter
 public enum ResultEnum {
-    SUCCESS(ResultCode.SuccessCode,"操作成功"),
-    UNAUTH(ResultCode.Unauthorized,"无权限"),
-    BAD_REQUEST(ResultCode.BadRequest,"坏请求");
+    SUCCESS(ResultCode.SuccessCode, "success"),
+    UNAUTH(ResultCode.Unauthorized,"unauthorized"),
+    BAD_REQUEST(ResultCode.BadRequest,"bad request"),
+    ILLEGAL_PARAM(ResultCode.BadRequest, "illegal param"),
+    NO_CONTENT(ResultCode.NoSuchContent,"no content");
     private int code;
     private String msg;
 
+    ResultEnum(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }
